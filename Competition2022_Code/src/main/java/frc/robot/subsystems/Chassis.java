@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import java.util.List;
+
+import javax.print.CancelablePrintJob;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -30,7 +33,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 public class Chassis extends SubsystemBase
 {
@@ -58,6 +62,11 @@ public class Chassis extends SubsystemBase
 
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
+
+  public CANCoder AbsEncoder1 = new CANCoder(Constants.ABS_ENCODER_1_ID);
+  public CANCoder AbsEncoder2 = new CANCoder(Constants.ABS_ENCODER_2_ID);
+  public CANCoder AbsEncoder3 = new CANCoder(Constants.ABS_ENCODER_3_ID);
+  public CANCoder AbsEncoder4 = new CANCoder(Constants.ABS_ENCODER_4_ID);
 
   // private SwerveDriveKinematics m_swerveDriveKinematics;
   // private SwerveDriveOdometry m_swerveDriveOdometry;
@@ -162,6 +171,15 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("BR Angle Motor Position", m_angleMotorBackRight.getSelectedSensorPosition());
     SmartDashboard.putNumber("BL Angle Motor Position", m_angleMotorBackLeft.getSelectedSensorPosition());
 
+    SmartDashboard.putNumber("Encoder  1Value", AbsEncoder1.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 1 Value", AbsEncoder1.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 2 Value", AbsEncoder2.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 2 Value", AbsEncoder2.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 3 Value", AbsEncoder3.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 3 Value", AbsEncoder3.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 4 Value", AbsEncoder4.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 4 Value", AbsEncoder4.getAbsolutePosition());
+
   }
 
   public WPI_TalonFX getMotorFR ()
@@ -217,7 +235,7 @@ public class Chassis extends SubsystemBase
 
       //Swerve Gyro Difference Establishing
       // double gyro_current = m_ahrs.getPitch();  
-      double gyro_current = m_ahrs.getYaw();
+      double gyro_current = m_ahrs.getYaw() - 6;
       //adjust strafe vector so that moving forward goes in the set direction and not towards where the robot is facing
       double r = Math.sqrt(vX * vX + vY * vY);
       double strafe_angle = Math.atan2(vY, vX);
@@ -285,7 +303,7 @@ public class Chassis extends SubsystemBase
       if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] < backRight[3]) {backRight[5] -= 2 * Math.PI;}
       if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] > backRight[3]) {backRight[5] += 2 * Math.PI;}
 
-      drive(m_speedMotorFrontRight, m_angleMotorFrontRight, frontRight[2], -(frontRight[3] + frontRight[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
+      drive(m_speedMotorFrontRight, m_angleMotorFrontRight, -frontRight[2], -(frontRight[3] + frontRight[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorFrontLeft, m_angleMotorFrontLeft, frontLeft[2], -(frontLeft[3] + frontLeft[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackLeft, m_angleMotorBackLeft, backLeft[2], -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackRight, m_angleMotorBackRight, backRight[2], -(backRight[3] + backRight[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
@@ -301,9 +319,20 @@ public class Chassis extends SubsystemBase
       SmartDashboard.putNumber("Current Angle 3", backLeft[4]);  
       SmartDashboard.putNumber("Current Angle 4", backRight[4]);  
 
+      SmartDashboard.putNumber("Angle 1", -(frontRight[3] + frontRight[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
+      SmartDashboard.putNumber("Angle 2", -(frontLeft[3] + frontLeft[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
+      SmartDashboard.putNumber("Angle 3",  -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
+      SmartDashboard.putNumber("Angle 4", -(backRight[3] + backRight[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
+
+      SmartDashboard.putNumber("Speed 1", frontRight[2]);
+      SmartDashboard.putNumber("Speed 2", frontLeft[2]);
+      SmartDashboard.putNumber("Speed 3", backLeft[2]);
+      SmartDashboard.putNumber("Speed 4", backRight[2]);
+
       SmartDashboard.putNumber("Swerve Yaw", m_ahrs.getYaw());
       // SmartDashboard.putNumber("Swerve Angle", m_ahrs.getAngle());
       //SmartDashboard.putNumber("Swerve Compass", m_ahrs.getCompassHeading());
+
 
 
       System.out.println(x1);
@@ -313,7 +342,7 @@ public class Chassis extends SubsystemBase
 
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
   {
-    speedMotor.set(speed * 0.75);
+    speedMotor.set(speed * 0.75); //speed*0.75
 
     double setpoint = angle * (Constants.SWERVE_DRIVE_MAX_VOLTAGE * 1.5);
     
@@ -327,7 +356,7 @@ public class Chassis extends SubsystemBase
       setpoint -= setpoint;
     }
 
-    angleMotor.set(TalonFXControlMode.Position, angle);
+    angleMotor.set(TalonFXControlMode.Position, angle); //0
 
     System.out.println("Speed" + speed);
     SmartDashboard.putNumber("Angle", angle);

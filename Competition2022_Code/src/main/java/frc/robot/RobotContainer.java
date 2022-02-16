@@ -50,6 +50,8 @@ public class RobotContainer
    */
   public static final InlineCommands m_inlineCommands = new InlineCommands();
   public static final OI m_OI = new OI();
+  public static final Launcher m_launcher = new Launcher();
+  public static final Intake m_intake = new Intake();
 
   /**
    * Instantiation of autonomous chooser.

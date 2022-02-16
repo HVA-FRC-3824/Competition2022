@@ -44,6 +44,12 @@ public class InlineCommands {
   public final Command m_setMotorPosition;
   public final Command m_resetMotorPosition;
 
+
+  public final Command m_startLaunchSequence;
+  public final Command m_stopLaunchSequence;
+  public final Command m_startIntake;
+  public final Command m_stopIntake;
+
 //   /* Climber Inline Command Declarations */
 //   public final Command m_extendClimberLeft;
 //   public final Command m_retractClimberLeft;
@@ -124,6 +130,18 @@ public class InlineCommands {
 
     m_resetMotorPosition =
       new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
+
+    m_startLaunchSequence = 
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.5));
+
+    m_stopLaunchSequence =
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
+
+    m_startIntake =
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+
+    m_stopIntake =
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
 
     // /* Climber Inline Command Instantiations */
     // m_extendClimberLeft =

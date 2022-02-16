@@ -24,6 +24,17 @@ public class Constants
   public static final int BACK_RIGHT_ANGLE_MOTOR_ID                         = 10; //6
   public static final int BACK_RIGHT_SPEED_MOTOR_ID                         = 11; //7
 
+  public static final int LAUNCHER_SPEED_MOTOR_ID                           = 7;
+  public static final int LAUNCHER_HOOD_MOTOR_ID                           = 0;
+  public static final int LAUNCHER_FEED_MOTOR_ID                           = 0;
+
+  public static final int INTAKE_MOTOR_ID                                   = 0;
+
+  public static final int ABS_ENCODER_1_ID                                  = 1;
+  public static final int ABS_ENCODER_2_ID                                  = 2;
+  public static final int ABS_ENCODER_3_ID                                  = 3;
+  public static final int ABS_ENCODER_4_ID                                  = 4;
+
   /* Chassis */
   public static final double K_CHASSIS_TURN_P                               = 0;
   public static final double K_CHASSIS_TURN_I                               = 0;
@@ -48,6 +59,37 @@ public class Constants
    * Subsystem-Specific Values For Commands
    */
 
+
+  //#region Launcher
+  public static final int LAUNCHER_SPEED_P                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_SPEED_I                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_SPEED_D                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_SPEED_F                                                        = 0; //These are all temporary values
+ 
+  public static final int LAUNCHER_HOOD_P                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_HOOD_I                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_HOOD_D                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_HOOD_F                                                        = 0; //These are all temporary values
+  
+  public static final int LAUNCHER_FEED_P                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_FEED_I                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_FEED_D                                                        = 0; //These are all temporary values
+  public static final int LAUNCHER_FEED_F                                                        = 0; //These are all temporary values
+  //#endregion
+
+  //#region Intake
+  public static final int INTAKE_P                                                           = 0;
+  public static final int INTAKE_I                                                           = 0;
+  public static final int INTAKE_D                                                           = 0;
+  public static final int INTAKE_F                                                           = 0;
+  ////#endregion
+
+  //#region Climber
+  public static final int CLIMBER_LEFT_ID                                                           = 0;
+  public static final int CLIMBER_RIGHT_ID                                                           = 0;
+  ////#endregion
+  
+
   /* Chassis */
   public static final double CHASSIS_MAX_POWER                              = 0.7;
   public static final double WHEEL_MOTOR_TICKS_PER_REVOLUTION               = 2048 * 12; //kSensorUnitsPerRotation / kGearRatio;
@@ -62,8 +104,17 @@ public class Constants
 
   /* Joystick */
   public static final int    DRIVER_JOYSTICK_PORT                           = 0;
+  public static final int    OPERATOR_JOYSTICK_PORT                         = 1;
 
   /* Buttons */
+
+//#region Launcher
+
+  public static final int    LAUNCH_BTN_ID                             = 6;
+  public static final int    INTAKE_BTN_ID                               = 5;
+
+//#endregion
+
   public static final int    DRIVER_SET_HEADING_BTN_ID                      = 4;
   public static final int    DRIVER_SET_MOTOR_POSITION_BTN_ID               = 1;
   public static final int    DRIVER_RESET_MOTOR_POSITION_BTN_ID             = 2;
