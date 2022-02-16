@@ -5,15 +5,12 @@ import frc.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -22,23 +19,24 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
  * Instead, the structure of the robot (including subsystems, commands, and
  * button mappings) should be declared here.
  */
-public class RobotContainer 
+public class RobotContainer
 {
-    /**
+  /**
    * Instantiation of subsystems.
    * Subsystems were not made to be private as recommended in the documentation because they are 
    * practically being used in every class. Making them private would create the need 
    * to pass in the subsystem to each individual class which is more work than just making them public.
    */
-
   public static final Chassis m_chassis = new Chassis();
-//   public static final Climber m_climber = new Climber();
-//   public static final Intake m_intake = new Intake();
-//   public static final Launcher m_launcher = new Launcher();
+  public static final Climb m_climber = new Climb();
+  // public static final ControlPanel m_controlPanel = new ControlPanel();
+  public static final Intake m_intake = new Intake();
+  public static final Launcher m_launcher = new Launcher();
+
 //   public static final Limelight m_limelight = Limelight.getInstance();
 //   public static final LEDs m_LEDs = new LEDs();
 
-    /**
+  /**
    * Instantiation of OI and inline commands.
    * The OI class requires the inline commands class to be instantiated when binding 
    * commands to joystick buttons. The inline commands class requires the OI class when
@@ -50,15 +48,16 @@ public class RobotContainer
    */
   public static final InlineCommands m_inlineCommands = new InlineCommands();
   public static final OI m_OI = new OI();
-  public static final Launcher m_launcher = new Launcher();
-  public static final Intake m_intake = new Intake();
+  
+  /**
+   * Instantiation of other commands.
+   */
 
   /**
    * Instantiation of autonomous chooser.
    * Allows operators to preselect which autonomous command to run during autonomous period.
    */
   private final SendableChooser<String> m_autoChooser = new SendableChooser<>();
-
 
   /**
    * This code runs at robotInit.
@@ -87,10 +86,10 @@ public class RobotContainer
    */
   private void initializeStartup()
   {
-    // /* Turn off Limelight LED when first started up so it doesn't blind drive team. */
+    /* Turn off Limelight LED when first started up so it doesn't blind drive team. */
     // m_limelight.turnOffLED();
 
-    // /* Start ultrasonics. */
+    /* Start ultrasonics. */
     // m_chamber.startUltrasonics();
   }
 
@@ -139,25 +138,25 @@ public class RobotContainer
    * 
    * @return the command to run during the autonomous period.
    */
-//   public Command getAutonomousCommand() 
+//   public Command getAutonomousCommand() .
 //   {
 //     switch (m_autoChooser.getSelected())
 //     {
-//       case "default":
-//         return null;
-//       case "test":
-//         return new CommandGroupTemplate();
-//       case "three_ball_forward":
-//         return new AutonomousThreeBall(1, 2.0);
-//       case "three_ball_backward":
-//         return new AutonomousThreeBall(-1, 3.0);
-//       case "six_ball":
-//         return new AutonomousSixBall();
-//       case "barrel":
-//         return new AutoNavBarrel();
-//       default:
-//         System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
-//         return null;
+//     //   case "default":
+//     //     return null;
+//     //   case "test":
+//     //     return new CommandGroupTemplate();
+//     //   case "three_ball_forward":
+//     //     return new AutonomousThreeBall(1, 2.0);
+//     //   case "three_ball_backward":
+//     //     return new AutonomousThreeBall(-1, 3.0);
+//     //   case "six_ball":
+//     //     return new AutonomousSixBall();
+//     //   case "barrel":
+//     //     return new AutoNavBarrel();
+//     //   default:
+//     //     System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
+//     //     return null;
 //     }
 //   }
 
@@ -282,14 +281,9 @@ public class RobotContainer
   {
     /* Generate number fields on SmartDashboard for PID values to be input into. */
     SmartDashboard.putNumber("F Value", 0.0);
-    SmartDashboard.putNumber("Right P Value", Constants.K_CHASSIS_RIGHT_ANGLE_P);
-    SmartDashboard.putNumber("Right I Value", Constants.K_CHASSIS_RIGHT_ANGLE_I);
-    SmartDashboard.putNumber("Right D Value", Constants.K_CHASSIS_RIGHT_ANGLE_D);
-
-    SmartDashboard.putNumber("Left P Value", Constants.K_CHASSIS_LEFT_ANGLE_P);
-    SmartDashboard.putNumber("Left I Value", Constants.K_CHASSIS_LEFT_ANGLE_I);
-    SmartDashboard.putNumber("Left D Value", Constants.K_CHASSIS_LEFT_ANGLE_D);
-
+    SmartDashboard.putNumber("P Value", 0.0);
+    SmartDashboard.putNumber("I Value", 0.0);
+    SmartDashboard.putNumber("D Value", 0.0);
 
     // SmartDashboard.putNumber("Cruise Velocity Value", 0);
     // SmartDashboard.putNumber("Acceleration Value", 0);
@@ -310,6 +304,14 @@ public class RobotContainer
   }
 
   /**
+   * Method to spin color wheel four times with color inuput.
+   */
+  public void testColorSensing()
+  {
+    // SmartDashboard.putData("Color Wheel Spinning", new ControlPanelSpinFour());
+  }
+
+  /**
    * Method to display position, velocity, error, and motor ouput of a TalonSRX.
    * Primarily used for PID tuning.
    */
@@ -320,6 +322,20 @@ public class RobotContainer
     SmartDashboard.putNumber(label + " Velocity", talonSRX.getSelectedSensorVelocity());
     SmartDashboard.putNumber(label + " Error",    talonSRX.getClosedLoopError());
     SmartDashboard.putNumber(label + " Output",   talonSRX.getMotorOutputVoltage());
+  }
+
+  /**
+   * Method to display position, velocity, error, and motor ouput of a TalonFX.
+   * Primarily used for PID tuning.
+   */
+  public static void displayTalonFXInfo(WPI_TalonFX talonFX, String label)
+  {
+    SmartDashboard.putNumber(label + " Setpoint", talonFX.getClosedLoopTarget());
+    SmartDashboard.putNumber(label + " Position", talonFX.getSelectedSensorPosition());
+    SmartDashboard.putNumber(label + " Position Graph", talonFX.getSelectedSensorPosition());
+    SmartDashboard.putNumber(label + " Velocity", talonFX.getSelectedSensorVelocity());
+    SmartDashboard.putNumber(label + " Error",    talonFX.getClosedLoopError());
+    SmartDashboard.putNumber(label + " Output",   talonFX.getMotorOutputVoltage());
   }
 
   /**

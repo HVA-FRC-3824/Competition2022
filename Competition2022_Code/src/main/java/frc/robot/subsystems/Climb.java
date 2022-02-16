@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-
-
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
@@ -14,18 +12,18 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-public class Climber {
+public class Climb {
     
     WPI_TalonFX m_climbRight;
     WPI_TalonFX m_climbLeft;
 
-    public Climber() {
-        m_climbRight = new WPI_TalonFX(Constants.CLIMBER_RIGHT_ID);
+    public Climb() {
+        m_climbRight = new WPI_TalonFX(Constants.CLIMB_RIGHT_ID);
         RobotContainer.configureTalonFX(m_climbRight, true, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbRight.setNeutralMode(NeutralMode.Brake);
 
-        m_climbLeft = new WPI_TalonFX(Constants.CLIMBER_LEFT_ID);
+        m_climbLeft = new WPI_TalonFX(Constants.CLIMB_LEFT_ID);
         RobotContainer.configureTalonFX(m_climbLeft, true, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbLeft.setNeutralMode(NeutralMode.Brake);
