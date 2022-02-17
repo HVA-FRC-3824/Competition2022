@@ -35,11 +35,11 @@ public class OI
     m_operatorJoystick                  = new Joystick(Constants.OPERATOR_JOYSTICK_PORT);
 
 
-    m_setHeadingBtn                   = new JoystickButton(m_driverJoystick, Constants.DRIVER_SET_HEADING_BTN_ID);
+    // m_setHeadingBtn                   = new JoystickButton(m_driverJoystick, Constants.DRIVER_SET_HEADING_BTN_ID);
 
-    m_setMotorPosition                = new JoystickButton(m_driverJoystick, Constants.DRIVER_SET_MOTOR_POSITION_BTN_ID);
+    // m_setMotorPosition                = new JoystickButton(m_driverJoystick, Constants.DRIVER_SET_MOTOR_POSITION_BTN_ID);
 
-    m_resetMotorPosition              = new JoystickButton(m_driverJoystick, Constants.DRIVER_RESET_MOTOR_POSITION_BTN_ID);
+    // m_resetMotorPosition              = new JoystickButton(m_driverJoystick, Constants.DRIVER_RESET_MOTOR_POSITION_BTN_ID);
   
     
     m_startLaunchSequenceBtn          = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
@@ -68,10 +68,10 @@ public class OI
     m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
 
 
-    m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
-    m_startLaunchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
+    // m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
+    // m_startLaunchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
 
-    m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
-    m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
+    // m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
+    // m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
   }
 }

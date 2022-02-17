@@ -25,7 +25,7 @@ public class Intake extends SubsystemBase
 
     public Intake()
     {
-        m_intake = new WPI_TalonSRX(Constants.INTAKE_ID);
+        m_intake = new WPI_TalonSRX(Constants.INTAKE_MOTOR_ID);
     RobotContainer.configureTalonSRX(m_intake, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
                                     Constants.INTAKE_F, Constants.INTAKE_P,
                                     Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
@@ -36,7 +36,7 @@ public class Intake extends SubsystemBase
    * Methods for Robot.java to get TalonFX/TalonSRX objects to pass to the SetPIDValues command to configure PIDs via SmartDashboard.
    * @return TalonFX/TalonSRX object to be configured.
    */
-  public WPI_TalonFX getWheelIntakeTalonSRX()
+  public WPI_TalonSRX getWheelIntakeTalonSRX()
   {
       return m_intake;
   }

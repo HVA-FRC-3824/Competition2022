@@ -5,6 +5,7 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants;
 import frc.robot.commands.*;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -20,25 +21,30 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Launcher extends SubsystemBase 
 {
-  private WPI_TalonFX m_launcherMiddle;
-  private WPI_TalonFX m_launcherTop;
-  private WPI_TalonSRX m_launcherBottom;
+  private WPI_TalonFX m_launcherHood;
+  private WPI_TalonFX m_launcherLaunch;
+  private WPI_TalonFX m_launcherAccelerate;
+  private WPI_TalonSRX m_launcherIndex;
+
 
   public Launcher()
   {
-    m_launcherMiddle = new WPI_TalonFX(Constants.LAUNCHER_MIDDLE_ID);
-    RobotContainer.configureTalonFX(m_launcherMiddle, false, false, Constants.LAUNCHER_MIDDLE_F, Constants.LAUNCHER_MIDDLE_P,
-                                    Constants.LAUNCHER_MIDDLE_I, Constants.LAUNCHER_MIDDLE_D);
+    m_launcherHood = new WPI_TalonFX(Constants.LAUNCHER_HOOD_ID);
+    RobotContainer.configureTalonFX(m_launcherHood, false, false, Constants.LAUNCHER_HOOD_F, Constants.LAUNCHER_HOOD_P,
+                                    Constants.LAUNCHER_HOOD_I, Constants.LAUNCHER_HOOD_D);
 
-    m_launcherTop = new WPI_TalonFX(Constants.LAUNCHER_TOP_ID);
-        RobotContainer.configureTalonFX(m_launcherTop, false, false, Constants.LAUNCHER_TOP_F, Constants.LAUNCHER_TOP_P,
-                                        Constants.LAUNCHER_TOP_I, Constants.LAUNCHER_TOP_D);
+    m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_LAUNCH_ID);
+    RobotContainer.configureTalonFX(m_launcherLaunch, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P,
+                                    Constants.LAUNCHER_LAUNCH_I, Constants.LAUNCHER_LAUNCH_D);
+    
+    m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_ACCELERATE_ID);
+    RobotContainer.configureTalonFX(m_launcherAccelerate, false, false, Constants.LAUNCHER_ACCELERATE_F, Constants.LAUNCHER_ACCELERATE_P,
+                                    Constants.LAUNCHER_ACCELERATE_I, Constants.LAUNCHER_ACCELERATE_D);
 
 
-    m_launcherBottom = new WPI_TalonSRX(Constants.LAUNCHER_BOTTOM_ID);
-    RobotContainer.configureTalonSRX(m_launcherBottom, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
-                                    Constants.LAUNCHER_BOTTOM_F, Constants.LAUNCHER_BOTTOM_P,
-                                    Constants.LAUNCHER_BOTTOM_I, Constants.LAUNCHER_BOTTOM_D, 0, 0, false);
+    m_launcherIndex = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_ID);
+    RobotContainer.configureTalonSRX(m_launcherIndex, ControlMode.PercentOutput, false, false, setSensorPhase, kF, kP, 
+                                     kI, kD, kCruiseVelocity, kAcceleration, resetPos);
  }
 
 }

@@ -45,10 +45,10 @@ public class InlineCommands {
   public final Command m_resetMotorPosition;
 
 
-  public final Command m_startLaunchSequence;
-  public final Command m_stopLaunchSequence;
-  public final Command m_startIntake;
-  public final Command m_stopIntake;
+  // public final Command m_startLaunchSequence;
+  // public final Command m_stopLaunchSequence;
+  // public final Command m_startIntake;
+  // public final Command m_stopIntake;
 
 //   /* Climber Inline Command Declarations */
 //   public final Command m_extendClimberLeft;
