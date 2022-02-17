@@ -135,7 +135,9 @@ public class Constants
 
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int INTAKE_BTN_ID                                   = 5;
+  public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
+  public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
+  public static final int INTAKE_BTN_ID                                   = 3;
 
 
 

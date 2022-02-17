@@ -37,14 +37,29 @@ public class Launcher extends SubsystemBase
     RobotContainer.configureTalonFX(m_launcherLaunch, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P,
                                     Constants.LAUNCHER_LAUNCH_I, Constants.LAUNCHER_LAUNCH_D);
     
-    m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_ACCELERATE_ID);
+    m_launcherAccelerate = new WPI_TalonFX(Constants.LAUNCHER_ACCELERATE_ID);
     RobotContainer.configureTalonFX(m_launcherAccelerate, false, false, Constants.LAUNCHER_ACCELERATE_F, Constants.LAUNCHER_ACCELERATE_P,
                                     Constants.LAUNCHER_ACCELERATE_I, Constants.LAUNCHER_ACCELERATE_D);
 
 
     m_launcherIndex = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_ID);
-    RobotContainer.configureTalonSRX(m_launcherIndex, ControlMode.PercentOutput, false, false, setSensorPhase, kF, kP, 
-                                     kI, kD, kCruiseVelocity, kAcceleration, resetPos);
+    RobotContainer.configureTalonSRX(m_launcherIndex, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, Constants.LAUNCHER_INDEX_F, Constants.LAUNCHER_INDEX_P, 
+                                     Constants.LAUNCHER_INDEX_I, Constants.LAUNCHER_INDEX_D, 0, 0, false);
+ }
+
+ public void setLauncherSpeed(double power)
+ {
+   m_launcherLaunch.set(ControlMode.PercentOutput, power);
+ }
+
+ public void setAcceleratorSpeed(double power)
+ {
+   m_launcherAccelerate.set(ControlMode.PercentOutput, power);
+ }
+
+ public void setIndexSpeed(double power)
+ {
+   m_launcherIndex.set(ControlMode.PercentOutput, power);
  }
 
 }

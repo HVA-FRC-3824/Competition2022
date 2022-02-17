@@ -45,10 +45,14 @@ public class InlineCommands {
   public final Command m_resetMotorPosition;
 
 
-  // public final Command m_startLaunchSequence;
-  // public final Command m_stopLaunchSequence;
-  // public final Command m_startIntake;
-  // public final Command m_stopIntake;
+  public final Command m_startLaunchSequence;
+  public final Command m_stopLaunchSequence;
+  public final Command m_startLaunchAccelerate;
+  public final Command m_stopLaunchAccelerate;
+  public final Command m_startLaunchIndex;
+  public final Command m_stopLaunchIndex;
+  public final Command m_startIntake;
+  public final Command m_stopIntake;
 
 //   /* Climber Inline Command Declarations */
 //   public final Command m_extendClimberLeft;
@@ -131,17 +135,29 @@ public class InlineCommands {
     m_resetMotorPosition =
       new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
 
-    // m_startLaunchSequence = 
-    //   new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.5));
+    m_startLaunchSequence = 
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.5));
 
-    // m_stopLaunchSequence =
-    //   new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
+    m_stopLaunchSequence =
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
 
-    // m_startIntake =
-    //   new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+    m_startLaunchAccelerate =
+      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0.5));
 
-    // m_stopIntake =
-    //   new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+    m_stopLaunchAccelerate =
+      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0));
+
+    m_startLaunchIndex = 
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.2));
+
+    m_stopLaunchIndex =
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0));
+
+    m_startIntake =
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+
+    m_stopIntake =
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
 
     // /* Climber Inline Command Instantiations */
     // m_extendClimberLeft =

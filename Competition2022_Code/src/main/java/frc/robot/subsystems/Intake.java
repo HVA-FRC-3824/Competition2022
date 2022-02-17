@@ -5,6 +5,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -39,6 +40,11 @@ public class Intake extends SubsystemBase
   public WPI_TalonSRX getWheelIntakeTalonSRX()
   {
       return m_intake;
+  }
+
+  public void setIntakePower(double power)
+  {
+      m_intake.set(ControlMode.PercentOutput, power);
   }
 
 }

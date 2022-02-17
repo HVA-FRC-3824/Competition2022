@@ -20,6 +20,8 @@ public class OI
   // Operator Joystick
   private static Joystick       m_operatorJoystick;
   private static JoystickButton m_startLaunchSequenceBtn;
+  private static JoystickButton m_indexLauncherBtn;
+  private static JoystickButton m_accelerateLauncherBtn;
   private static JoystickButton m_startIntakeBtn;
 
   public OI() 
@@ -43,6 +45,8 @@ public class OI
   
     
     m_startLaunchSequenceBtn          = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
+    m_indexLauncherBtn                = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_INDEX__BTN_ID);
+    m_accelerateLauncherBtn           = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_ACCELERATE_BTN_ID);
 
     m_startIntakeBtn                  = new JoystickButton(m_operatorJoystick, Constants.INTAKE_BTN_ID);
 
@@ -68,10 +72,16 @@ public class OI
     m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
 
 
-    // m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
-    // m_startLaunchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
+    m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
+    m_startLaunchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
 
-    // m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
-    // m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
+    m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
+    m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
+
+    m_accelerateLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchAccelerate);
+    m_accelerateLauncherBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchAccelerate);
+
+    m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
+    m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopLaunchIndex);
   }
 }
