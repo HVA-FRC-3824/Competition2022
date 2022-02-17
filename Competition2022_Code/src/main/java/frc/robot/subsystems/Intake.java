@@ -27,9 +27,9 @@ public class Intake extends SubsystemBase
     public Intake()
     {
         m_intake = new WPI_TalonSRX(Constants.INTAKE_MOTOR_ID);
-    RobotContainer.configureTalonSRX(m_intake, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
-                                    Constants.INTAKE_F, Constants.INTAKE_P,
-                                    Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
+        RobotContainer.configureTalonSRX(m_intake, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
+        Constants.INTAKE_F, Constants.INTAKE_P,
+        Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
 
     }
 

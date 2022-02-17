@@ -28,7 +28,7 @@ public class RobotContainer
    * to pass in the subsystem to each individual class which is more work than just making them public.
    */
   public static final Chassis m_chassis = new Chassis();
-  public static final Climb m_climber = new Climb();
+  public static final Climb m_climb = new Climb();
   // public static final ControlPanel m_controlPanel = new ControlPanel();
   public static final Intake m_intake = new Intake();
   public static final Launcher m_launcher = new Launcher();

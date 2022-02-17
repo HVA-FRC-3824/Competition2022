@@ -43,8 +43,9 @@ public class Launcher extends SubsystemBase
 
 
     m_launcherIndex = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_ID);
-    RobotContainer.configureTalonSRX(m_launcherIndex, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, Constants.LAUNCHER_INDEX_F, Constants.LAUNCHER_INDEX_P, 
-                                     Constants.LAUNCHER_INDEX_I, Constants.LAUNCHER_INDEX_D, 0, 0, false);
+    RobotContainer.configureTalonSRX(m_intake, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
+                                    Constants.INTAKE_F, Constants.INTAKE_P,
+                                    Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
  }
 
  public void setLauncherSpeed(double power)
