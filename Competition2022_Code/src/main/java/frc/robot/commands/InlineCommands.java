@@ -11,38 +11,38 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
-/**
- * Inline commands are a convenient way of creating commands without the need
- * for an entirely new CommandBase file. Inline commands will be used for
- * "simple" actions (Example: extending a piston). For "complex" actions
- * (Example: ten-ball autonomous command sequence), create a separate
- * CommandBase/CommandGroup file. Inline commands can also be utilized in other
- * files (other commands or OI.java for binding commands to buttons).
+/** Inline commands allow the creation of new commands without a new CommandBase file.
+ *  Usage: single/double commands (Example: extending a piston)
+ * Can be used in other files (other commands or OI.java for binding commands to buttons).
+ * For chains of commands (Example: ten-ball autonomous command sequence), create a separate CommandBase/CommandGroup file.
  */
 public class InlineCommands {
-  /**
-   * Declare all inline commands here.
-   */
 
-  /* Chamber Inline Command Declarations */
-  // public final Command m_setChamberBaseRPM;
-  // public final Command m_stopChamberBase;
 
-//   public final Command m_setChamberElevatorToLaunch;
-//   public final Command m_setChamberElevatorDown;
-//   public final Command m_stopChamberElevator;
 
-  /* Chassis Inline Command Declarations */
+  /*
+  ██████  ███████  ██████ ██       █████  ██████  ███████                  
+  ██   ██ ██      ██      ██      ██   ██ ██   ██ ██                       
+  ██   ██ █████   ██      ██      ███████ ██████  █████                    
+  ██   ██ ██      ██      ██      ██   ██ ██   ██ ██                       
+  ██████  ███████  ██████ ███████ ██   ██ ██   ██ ███████                  
+                                                                          
+                                                                          
+  ██████  ██████  ███    ███ ███    ███  █████  ███    ██ ██████  ███████ 
+  ██      ██   ██ ████  ████ ████  ████ ██   ██ ████   ██ ██   ██ ██      
+  ██      ██   ██ ██ ████ ██ ██ ████ ██ ███████ ██ ██  ██ ██   ██ ███████ 
+  ██      ██   ██ ██  ██  ██ ██  ██  ██ ██   ██ ██  ██ ██ ██   ██      ██ 
+  ██████  ██████  ██      ██ ██      ██ ██   ██ ██   ████ ██████  ███████ 
+  */
+    
+  
+
+  /* Chassis */
   public final Command m_driveWithJoystick;
 
-//   public final Command m_shiftHighGear;
-//   public final Command m_shiftLowGear;
-
-//   public final Command m_toggleLimelight;
-
-  public final Command m_setHeading;
-  public final Command m_setMotorPosition;
-  public final Command m_resetMotorPosition;
+  // public final Command m_setHeading;
+  // public final Command m_setMotorPosition;
+  // public final Command m_resetMotorPosition;
 
 
   public final Command m_startLaunchSequence;
@@ -54,10 +54,10 @@ public class InlineCommands {
   public final Command m_startIntake;
   public final Command m_stopIntake;
 
-//   /* Climber Inline Command Declarations */
-//   public final Command m_extendClimberLeft;
-//   public final Command m_retractClimberLeft;
-//   public final Command m_stopClimberLeft;
+//Climber Inline Command Declarations
+   public final Command m_extendClimb;
+   public final Command m_retractClimb;
+   public final Command m_stopClimb;
 
 //   public final Command m_extendClimberRight;
 //   public final Command m_retractClimberRight;
@@ -126,14 +126,14 @@ public class InlineCommands {
     // m_toggleLimelight =
     //   new InstantCommand(() -> RobotContainer.m_limelight.toggleMode());
 
-    m_setHeading =
-      new InstantCommand(() -> RobotContainer.m_chassis.zeroHeading());
+    // m_setHeading =
+    //   new InstantCommand(() -> RobotContainer.m_chassis.zeroHeading());
 
-    m_setMotorPosition =
-      new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 3000));
+    // m_setMotorPosition =
+    //   new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 3000));
 
-    m_resetMotorPosition =
-      new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
+    // m_resetMotorPosition =
+    //   new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
 
     m_startLaunchSequence = 
       new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.8));
@@ -142,7 +142,7 @@ public class InlineCommands {
       new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
 
     m_startLaunchAccelerate =
-      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0.5));
+      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0.6));
 
     m_stopLaunchAccelerate =
       new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0));
@@ -168,15 +168,32 @@ public class InlineCommands {
     //   new InstantCommand(() -> this.m_extendClimberLeft.cancel()).alongWith(new InstantCommand(() -> this.m_retractClimberLeft.cancel()))
     //     .andThen(new InstantCommand(() -> RobotContainer.m_climber.setLeftLiftPower(0.0)).alongWith(new InstantCommand(() -> RobotContainer.m_climber.setLeftReelPower(0.0))));
 
-    // m_extendClimberRight =
-    //   new ClimberSetRightPower(1);
-    // m_retractClimberRight =
-    //   new ClimberSetRightPower(-1);
-    // m_stopClimberRight =
-    //   new InstantCommand(() -> this.m_extendClimberRight.cancel()).alongWith(new InstantCommand(() -> this.m_retractClimberRight.cancel()))
-    //     .andThen(new InstantCommand(() -> RobotContainer.m_climber.setRightLiftPower(0.0)).alongWith(new InstantCommand(() -> RobotContainer.m_climber.setRightReelPower(0.0))));
 
-    /* Control Panel Command Instantiations */
+    //#region Climb commands
+
+      m_extendClimb =
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(-0.5));
+      m_retractClimb =
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0.5));
+      m_stopClimb = 
+        new InstantCommand(() -> this.m_extendClimb.cancel()).alongWith(new InstantCommand(() -> this.m_retractClimb.cancel()))
+        .andThen(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0)).alongWith(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0))));
+
+    //#endregion
+        
+    //#region Intake
+
+    // m_intakeSuck = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(-0.5), RobotContainer.m_intake); //tem
+    // m_intakeUnsuck = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.5), RobotContainer.m_intake); 
+    // m_intakeStopSucking = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0), RobotContainer.m_intake); 
+
+    //#endregion
+
+    
+        /* Control Panel Command Instantiations */
     // m_setControlPanelSpinnerPower =
     //   new InstantCommand(() -> RobotContainer.m_controlPanel.setPanelSpinnerPower(Constants.CONTROL_PANEL_SPINNER_POWER));
     // m_setControlPanelSpinnerRPM = 

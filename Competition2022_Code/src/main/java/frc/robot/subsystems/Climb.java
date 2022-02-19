@@ -43,11 +43,21 @@ public class Climb {
     * Method to retract climber poles with power.
     * @param power range is from 1.0 to -1.0
     */
-    public void setLeftClimbPower(double power){
+
+    //#region Commands
+
+    public void setClimbPower(double power)
+    {
+        setLeftClimbPower(0);
+        setRightClimbPower(power);
+    }
+    void setLeftClimbPower(double power){
         m_climbLeft.set(ControlMode.PercentOutput, power);
     }
-    public void setRightClimbPower(double power){
+    void setRightClimbPower(double power){
         m_climbRight.set(ControlMode.PercentOutput, power);
     }
+
+    //#endregion
 
 }
