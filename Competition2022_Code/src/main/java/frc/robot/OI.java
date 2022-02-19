@@ -33,6 +33,7 @@ public class OI
     /*
     //  * Driver Joystick 
      */
+
     m_driverJoystick                  = new Joystick(Constants.DRIVER_JOYSTICK_PORT);
     m_operatorJoystick                  = new Joystick(Constants.OPERATOR_JOYSTICK_PORT);
 
@@ -65,11 +66,11 @@ public class OI
 
   public void configureButtonBindings()
   {
-    m_setHeadingBtn.whenPressed(RobotContainer.m_inlineCommands.m_setHeading);
+    // m_setHeadingBtn.whenPressed(RobotContainer.m_inlineCommands.m_setHeading);
 
-    m_setMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_setMotorPosition);
+    // m_setMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_setMotorPosition);
 
-    m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
+    // m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
 
 
     m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);

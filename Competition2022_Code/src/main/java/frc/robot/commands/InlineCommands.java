@@ -136,7 +136,7 @@ public class InlineCommands {
       new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
 
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.5));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.8));
 
     m_stopLaunchSequence =
       new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
