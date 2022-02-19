@@ -40,9 +40,9 @@ public class InlineCommands {
   /* Chassis */
   public final Command m_driveWithJoystick;
 
-  public final Command m_setHeading;
-  public final Command m_setMotorPosition;
-  public final Command m_resetMotorPosition;
+  // public final Command m_setHeading;
+  // public final Command m_setMotorPosition;
+  // public final Command m_resetMotorPosition;
 
 
   public final Command m_startLaunchSequence;
@@ -126,23 +126,23 @@ public class InlineCommands {
     // m_toggleLimelight =
     //   new InstantCommand(() -> RobotContainer.m_limelight.toggleMode());
 
-    m_setHeading =
-      new InstantCommand(() -> RobotContainer.m_chassis.zeroHeading());
+    // m_setHeading =
+    //   new InstantCommand(() -> RobotContainer.m_chassis.zeroHeading());
 
-    m_setMotorPosition =
-      new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 3000));
+    // m_setMotorPosition =
+    //   new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 3000));
 
-    m_resetMotorPosition =
-      new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
+    // m_resetMotorPosition =
+    //   new RunCommand(() -> RobotContainer.m_chassis.getMotorFR().set(TalonFXControlMode.Position, 0));
 
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.5));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.8));
 
     m_stopLaunchSequence =
       new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0));
 
     m_startLaunchAccelerate =
-      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0.5));
+      new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0.6));
 
     m_stopLaunchAccelerate =
       new InstantCommand(() -> RobotContainer.m_launcher.setAcceleratorSpeed(0));
@@ -172,9 +172,9 @@ public class InlineCommands {
     //#region Climb commands
 
       m_extendClimb =
-        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(1));
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0.25));
       m_retractClimb =
-        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(-1));
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(-0.25));
       m_stopClimb = 
         new InstantCommand(() -> this.m_extendClimb.cancel()).alongWith(new InstantCommand(() -> this.m_retractClimb.cancel()))
         .andThen(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0)).alongWith(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0))));
@@ -183,12 +183,12 @@ public class InlineCommands {
         
     //#region Intake
 
-    m_intakeSuck = 
-    new InstantCommand(() -> RobotContainer.m_intake.setWheelPower(-0.5), RobotContainer.m_intake); //tem
-    m_intakeUnsuck = 
-    new InstantCommand(() -> RobotContainer.m_intake.setWheelPower(0.5), RobotContainer.m_intake); 
-    m_intakeStopSucking = 
-    new InstantCommand(() -> RobotContainer.m_intake.setWheelPower(0), RobotContainer.m_intake); 
+    // m_intakeSuck = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(-0.5), RobotContainer.m_intake); //tem
+    // m_intakeUnsuck = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.5), RobotContainer.m_intake); 
+    // m_intakeStopSucking = 
+    // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0), RobotContainer.m_intake); 
 
     //#endregion
 

@@ -28,8 +28,8 @@ public class Constants
   public static final int INTAKE_MOTOR_ID                                 = 0;
 
   public static final int LAUNCHER_HOOD_ID                                = 0;
-  public static final int LAUNCHER_LAUNCH_ID                              = 0;
-  public static final int LAUNCHER_ACCELERATE_ID                          = 0;
+  public static final int LAUNCHER_LAUNCH_ID                              = 5;
+  public static final int LAUNCHER_ACCELERATE_ID                          = 6;
   public static final int LAUNCHER_INDEX_ID                               = 0;
 
   public static final int ABS_ENCODER_1_ID                                = 1;
@@ -138,6 +138,8 @@ public class Constants
   public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
   public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
   public static final int INTAKE_BTN_ID                                   = 3;
+  public static final int EXTEND_CLIMB_BTN_ID                             = 2;
+  public static final int RETRACT_CLIMB_BTN_ID                            = 4;
 
 
 

@@ -34,8 +34,8 @@ public class OI
   //#endregion
 
   //#region Climb
-  public static JoystickButton m_extendClimb;
-  public static JoystickButton m_retractClimb;
+  public static JoystickButton m_extendClimbBtn;
+  public static JoystickButton m_retractClimbBtn;
   public static JoystickButton m_stopClimb;
   //#endregion
 
@@ -69,8 +69,8 @@ public class OI
     //#endregion
 
     //#region Climb
-    m_extendClimb = new JoystickButton(m_operatorJoystick, Constants.EXTEND_CLIMB_BTN_ID);
-    m_retractClimb = new JoystickButton(m_operatorJoystick, Constants.EXTEND_CLIMB_BTN_ID);
+    m_extendClimbBtn  = new JoystickButton(m_operatorJoystick, Constants.EXTEND_CLIMB_BTN_ID);
+    m_retractClimbBtn = new JoystickButton(m_operatorJoystick, Constants.RETRACT_CLIMB_BTN_ID);
     //#endregion
   //#endregion
   
@@ -87,11 +87,11 @@ public class OI
 
   public void configureButtonBindings()
   {
-    m_setHeadingBtn.whenPressed(RobotContainer.m_inlineCommands.m_setHeading);
+    // m_setHeadingBtn.whenPressed(RobotContainer.m_inlineCommands.m_setHeading);
 
-    m_setMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_setMotorPosition);
+    // m_setMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_setMotorPosition);
 
-    m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
+    // m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
 
 
     m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
@@ -105,5 +105,10 @@ public class OI
 
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopLaunchIndex);
+
+    m_extendClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_extendClimb);
+    m_extendClimbBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopClimb);
+    m_retractClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_retractClimb);
+    m_retractClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopClimb);
   }
 }
