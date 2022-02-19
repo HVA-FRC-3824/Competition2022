@@ -57,8 +57,8 @@ public class Constants
 
 
   /* Climber */
-  public static final int CLIMB_LEFT_ID                                   = 0;
-  public static final int CLIMB_RIGHT_ID                                  = 0;   
+  public static final int CLIMB_LEFT_ID                                   = 18;
+  public static final int CLIMB_RIGHT_ID                                  = 17;   
 
 
   /* Chassis */
@@ -138,8 +138,8 @@ public class Constants
   public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
   public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
   public static final int INTAKE_BTN_ID                                   = 3;
-  public static final int EXTEND_CLIMB_BTN_ID                             = 2;
-  public static final int RETRACT_CLIMB_BTN_ID                            = 4;
+  public static final int EXTEND_CLIMB_BTN_ID                             = 4;
+  public static final int RETRACT_CLIMB_BTN_ID                            = 2;
 
 
 

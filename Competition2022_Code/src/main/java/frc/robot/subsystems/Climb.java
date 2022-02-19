@@ -48,7 +48,7 @@ public class Climb {
 
     public void setClimbPower(double power)
     {
-        setLeftClimbPower(power);
+        setLeftClimbPower(0);
         setRightClimbPower(power);
     }
     void setLeftClimbPower(double power){

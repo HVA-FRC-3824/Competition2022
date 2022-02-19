@@ -172,9 +172,9 @@ public class InlineCommands {
     //#region Climb commands
 
       m_extendClimb =
-        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0.25));
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(-0.5));
       m_retractClimb =
-        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(-0.25));
+        new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0.5));
       m_stopClimb = 
         new InstantCommand(() -> this.m_extendClimb.cancel()).alongWith(new InstantCommand(() -> this.m_retractClimb.cancel()))
         .andThen(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0)).alongWith(new InstantCommand(() -> RobotContainer.m_climb.setClimbPower(0))));
