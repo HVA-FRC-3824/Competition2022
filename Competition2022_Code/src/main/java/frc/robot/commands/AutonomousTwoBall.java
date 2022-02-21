@@ -16,11 +16,16 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 */
 public class AutonomousTwoBall{
     public AutonomousTwoBall(){
-        /*addCommands(
-            new [command name here] -> ;
-            new [command name here] -> ;
-            new [command name here] -> ;
-            new [command name here] -> ;
-        )*/
+        //start launcher
+        //wait for balls to launch
+        //stop launcher
+        //start intake
+        //follow path to pick up ball
+        //wait for reset
+        //stop intake
+        //follow path back to launch point
+        //start launcher
+        //wait for launch
+        //stop launcher
     }
 }
