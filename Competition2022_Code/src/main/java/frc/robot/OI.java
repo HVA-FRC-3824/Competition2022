@@ -29,14 +29,13 @@ public class OI
   private static JoystickButton m_accelerateLauncherBtn;
   //#endregion
 
-  //#region Intake
+  /* Intake */
   private static JoystickButton m_startIntakeBtn;
-  //#endregion
 
-  //#region Climb
-  public static JoystickButton m_extendClimbBtn;
-  public static JoystickButton m_retractClimbBtn;
-  public static JoystickButton m_stopClimb;
+  /* Climb */
+  public static JoystickButton m_leftClimbBtn;
+  public static JoystickButton m_rightClimbBtn;
+  public static JoystickButton m_toggleClimbBtn;
   //#endregion
 
   public OI() 
@@ -71,11 +70,9 @@ public class OI
     //#endregion
 
     //#region Climb
-    m_extendClimbBtn  = new JoystickButton(m_operatorJoystick, Constants.EXTEND_CLIMB_BTN_ID);
-    m_retractClimbBtn = new JoystickButton(m_operatorJoystick, Constants.RETRACT_CLIMB_BTN_ID);
-    //#endregion
-  //#endregion
-  
+    m_leftClimbBtn  = new JoystickButton(m_operatorJoystick, Constants.LEFT_CLIMB_BTN_ID);
+    m_rightClimbBtn = new JoystickButton(m_operatorJoystick, Constants.RIGHT_CLIMB_BTN_ID);
+    m_toggleClimbBtn  = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_CLIMB_BTN_ID);  
   }
 
   /**
@@ -102,15 +99,16 @@ public class OI
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
 
-    m_accelerateLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchAccelerate);
-    m_accelerateLauncherBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchAccelerate);
-
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopLaunchIndex);
 
-    m_extendClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_extendClimb);
-    m_extendClimbBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopClimb);
-    m_retractClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_retractClimb);
-    m_retractClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopClimb);
+    m_leftClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_moveLeftClimb);
+    m_leftClimbBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLeftClimb);
+    m_rightClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_moveRightClimb);
+    m_rightClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopRightClimb);
+
+    m_toggleClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleClimb);
+
+
   }
 }

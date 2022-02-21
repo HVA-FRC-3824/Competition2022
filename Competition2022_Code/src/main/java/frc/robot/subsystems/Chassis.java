@@ -11,25 +11,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.TrajectoryGenerator;
-import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstraint;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.RamseteController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
@@ -38,13 +21,6 @@ public class Chassis extends SubsystemBase
  /**
    * Declaring objects for the drivetrain
    */
-  private WPI_TalonFX m_leftMaster;
-  private WPI_TalonFX m_leftSlave;
-
-  private WPI_TalonFX m_rightMaster;
-  private WPI_TalonFX m_rightSlave;
-
-  private DifferentialDrive m_differentialDrive;
 
   private AHRS m_ahrs;
 
@@ -77,7 +53,6 @@ public class Chassis extends SubsystemBase
   /**
    * Declaring objects for autonomous path following.
    */
-  private final DifferentialDriveOdometry m_odometry;
 
     public Chassis()
     {
@@ -112,7 +87,6 @@ public class Chassis extends SubsystemBase
      */
 
     /* Used for tracking robot pose. */
-    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(this.getHeading()));
 
     /**
      * doubleious methods to call when chassis subsystem first starts up.
@@ -409,22 +383,6 @@ public class Chassis extends SubsystemBase
     return Math.IEEEremainder(m_ahrs.getAngle(), 360) * (Constants.K_GYRO_REVERSED ? -1.0 : 1.0);
   }
 
-  /**
-   * Updates the odometry with current gyro angle and encoder distances.
-   */
-//   public void updateOdometry()
-//   {
-    // m_odometry.update(Rotation2d.fromDegrees(this.getHeading()), this.getLeftEncoderDistance(), this.getRightEncoderDistance());
-//   }
-
-  /**
-   * Get an estimation for the current pose of the robot.
-   * @return the pose in meters.
-   */
-  public Pose2d getPose()
-  {
-    return m_odometry.getPoseMeters();
-  }
 
 
 }
