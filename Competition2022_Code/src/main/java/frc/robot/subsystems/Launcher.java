@@ -1,22 +1,14 @@
 package frc.robot.subsystems;
 
-import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
 import frc.robot.Constants;
-import frc.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Launcher extends SubsystemBase 
@@ -48,13 +40,13 @@ public class Launcher extends SubsystemBase
                                     Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
  }
 
- public void setLauncherSpeed(double power)
+ public void setLauncherRPM(double power)
  {
    m_launcherLaunch.set(ControlMode.PercentOutput, power);
    SmartDashboard.putNumber("Launcher", power);
  }
 
- public void setAcceleratorSpeed(double power)
+ public void setAcceleratorRPM(double power)
  {
    m_launcherAccelerate.set(ControlMode.PercentOutput, power);
    SmartDashboard.putNumber("Accelerate", power);
@@ -65,4 +57,10 @@ public class Launcher extends SubsystemBase
    m_launcherIndex.set(ControlMode.PercentOutput, power);
  }
 
+ public void setPreset(int launchRPM, int accelerateRPM)
+ {
+    this.setLauncherRPM(launchRPM);
+    this.setAcceleratorRPM(accelerateRPM);
+ }
+ 
 }

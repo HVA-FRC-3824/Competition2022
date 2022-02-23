@@ -1,11 +1,6 @@
 package frc.robot.commands;
 
-import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -93,12 +88,12 @@ public class InlineCommands {
     
     /* Launcher */
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0.8)).alongWith(new InstantCommand(()
-      -> RobotContainer.m_launcher.setAcceleratorSpeed(0.6)));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0.8)).alongWith(new InstantCommand(()
+      -> RobotContainer.m_launcher.setAcceleratorRPM(0.6)));
 
     m_stopLaunchSequence =
-      new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherSpeed(0)).alongWith(new InstantCommand(() 
-      -> RobotContainer.m_launcher.setAcceleratorSpeed(0))));
+      new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0)).alongWith(new InstantCommand(() 
+      -> RobotContainer.m_launcher.setAcceleratorRPM(0))));
 
     m_startLaunchIndex = 
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.2));

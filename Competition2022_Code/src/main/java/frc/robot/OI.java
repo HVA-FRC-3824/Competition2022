@@ -15,18 +15,12 @@ public class OI
 //Driver Joystick 
   private static Joystick       m_driverJoystick;
 
-  private static JoystickButton m_setHeadingBtn;
-  private static JoystickButton m_setMotorPosition;
-  private static JoystickButton m_resetMotorPosition;
-
-
 // Operator Joystick
   private static Joystick       m_operatorJoystick;
 
   //#region Launcher
-  private static JoystickButton m_startLaunchSequenceBtn;
+  private static JoystickButton m_launchSequenceBtn;
   private static JoystickButton m_indexLauncherBtn;
-  private static JoystickButton m_accelerateLauncherBtn;
   //#endregion
 
   /* Intake */
@@ -60,9 +54,8 @@ public class OI
     
   //#region Operator joystick
     //#region Launcher
-    m_startLaunchSequenceBtn          = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
+    m_launchSequenceBtn          = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
     m_indexLauncherBtn                = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_INDEX__BTN_ID);
-    m_accelerateLauncherBtn           = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_ACCELERATE_BTN_ID);
     //#endregion
 
     //#region Intake
@@ -93,8 +86,8 @@ public class OI
     // m_resetMotorPosition.whenPressed(RobotContainer.m_inlineCommands.m_resetMotorPosition);
 
 
-    m_startLaunchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
-    m_startLaunchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
+    m_launchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
+    m_launchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
 
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);

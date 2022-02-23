@@ -89,27 +89,39 @@ public class Constants
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
+  public static final int AUTO_INTAKE_WHEEL_POWER                         = 3000;
+
 
   /* Launcher */
-  public static final int LAUNCHER_HOOD_P                                 = 0; //These are all temporary values
-  public static final int LAUNCHER_HOOD_I                                 = 0; //These are all temporary values
-  public static final int LAUNCHER_HOOD_D                                 = 0; //These are all temporary values
-  public static final int LAUNCHER_HOOD_F                                 = 0; //These are all temporary values
+  public static final int LAUNCHER_HOOD_P                                 = 0;  
+  public static final int LAUNCHER_HOOD_I                                 = 0;  
+  public static final int LAUNCHER_HOOD_D                                 = 0;  
+  public static final int LAUNCHER_HOOD_F                                 = 0;  
 
-  public static final int LAUNCHER_LAUNCH_P                               = 0; //These are all temporary values
-  public static final int LAUNCHER_LAUNCH_I                               = 0; //These are all temporary values
-  public static final int LAUNCHER_LAUNCH_D                               = 0; //These are all temporary values
-  public static final int LAUNCHER_LAUNCH_F                               = 0; //These are all temporary values
+  public static final int LAUNCHER_LAUNCH_P                               = 0;  
+  public static final int LAUNCHER_LAUNCH_I                               = 0;  
+  public static final int LAUNCHER_LAUNCH_D                               = 0;  
+  public static final int LAUNCHER_LAUNCH_F                               = 0;  
   
-  public static final int LAUNCHER_ACCELERATE_P                           = 0; //These are all temporary values
-  public static final int LAUNCHER_ACCELERATE_I                           = 0; //These are all temporary values
-  public static final int LAUNCHER_ACCELERATE_D                           = 0; //These are all temporary values
-  public static final int LAUNCHER_ACCELERATE_F                           = 0; //These are all temporary values
+  public static final int LAUNCHER_ACCELERATE_P                           = 0;  
+  public static final int LAUNCHER_ACCELERATE_I                           = 0;  
+  public static final int LAUNCHER_ACCELERATE_D                           = 0;  
+  public static final int LAUNCHER_ACCELERATE_F                           = 0;  
 
-  public static final int LAUNCHER_INDEX_P                                = 0; //These are all temporary values
-  public static final int LAUNCHER_INDEX_I                                = 0; //These are all temporary values
-  public static final int LAUNCHER_INDEX_D                                = 0; //These are all temporary values
-  public static final int LAUNCHER_INDEX_F                                = 0; //These are all temporary values
+  public static final int LAUNCHER_INDEX_P                                = 0;  
+  public static final int LAUNCHER_INDEX_I                                = 0;  
+  public static final int LAUNCHER_INDEX_D                                = 0;  
+  public static final int LAUNCHER_INDEX_F                                = 0;  
+
+  public static final int LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM             = 0;
+  public static final int LAUNCHER_AUTO_TARMAC_LAUNCH_RPM                 = 0;
+ 
+  /* LEDS */
+  public static final int TOTAL_LEDS                                      = 0;
+  public static final int LEDS_ID                                         = 0;
+  public static final int LEDS_BUFFER_ID                                  = 0;
+
+
   
 
 
