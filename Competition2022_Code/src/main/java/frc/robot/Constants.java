@@ -120,6 +120,7 @@ public class Constants
   public static final int TOTAL_LEDS                                      = 0;
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
+  public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
 
 
   
