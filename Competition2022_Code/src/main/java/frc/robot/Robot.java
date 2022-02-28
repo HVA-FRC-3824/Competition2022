@@ -81,15 +81,27 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() 
+  {
+    RobotContainer.initializeDefaultCommands();
+    RobotContainer.m_limelight.setModeDriver();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic()
+  {
+    SmartDashboard.putNumber("Limelight X", RobotContainer.m_limelight.getTargetOffsetX());
+    SmartDashboard.putNumber("Limelight Y", RobotContainer.m_limelight.getTargetOffsetY());
+    SmartDashboard.putNumber("Limelight Area", RobotContainer.m_limelight.getTargetArea());
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit()
+  {
+    RobotContainer.m_limelight.turnOffLED();
+  }
 
   /** This function is called periodically when disabled. */
   @Override

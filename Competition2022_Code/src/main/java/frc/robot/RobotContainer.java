@@ -32,7 +32,7 @@ public class RobotContainer
   public static final Intake m_intake = new Intake();
   public static final Launcher m_launcher = new Launcher();
 
-//   public static final Limelight m_limelight = Limelight.getInstance();
+  public static final Limelight m_limelight = Limelight.getInstance();
   public static final LEDs m_LEDs = new LEDs();
 
   /**

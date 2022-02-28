@@ -21,6 +21,7 @@ public class SwerveModule {
             m_absoluteEncoder = new CANCoder(absoluteEncoderId);
 
             m_driveMotor = new WPI_TalonFX(driveMotorId);
+            
             RobotContainer.configureTalonFX(m_driveMotor, false, false, 0, 0, 0, 0);
 
             m_turnMotor = new WPI_TalonFX(turningMotorId);

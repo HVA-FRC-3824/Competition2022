@@ -32,6 +32,7 @@ public class InlineCommands {
 
   /* Chassis */
   public final Command m_driveWithJoystick;
+  public final Command m_turnToTarget;
 
   /* Climb */
    public final Command m_moveLeftClimb;
@@ -51,6 +52,9 @@ public class InlineCommands {
   public final Command m_stopLaunchSequence;
   public final Command m_startLaunchIndex;
   public final Command m_stopLaunchIndex;
+
+  /* Limelight */
+  public final Command m_toggleLimelight;
   
   public InlineCommands()
   {
@@ -70,6 +74,9 @@ public class InlineCommands {
     new RunCommand(() -> RobotContainer.m_chassis.convertSwerveValues(RobotContainer.m_OI.getDriverJoystick().getRawAxis(0), 
                   RobotContainer.m_OI.getDriverJoystick().getRawAxis(1), RobotContainer.m_OI.getDriverJoystick().getRawAxis(4)), 
                   RobotContainer.m_chassis);
+
+    m_turnToTarget = 
+      new TurnToTarget().andThen(new InstantCommand(() -> RobotContainer.m_limelight.setModeDriver()));
   
     /* Climb */
     m_moveLeftClimb =
@@ -87,9 +94,9 @@ public class InlineCommands {
 
     /* Intake */
     m_startIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0.5));
     m_stopIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0));
     
     /* Launcher */
     m_startLaunchSequence = 
@@ -101,10 +108,14 @@ public class InlineCommands {
       -> RobotContainer.m_launcher.setAcceleratorRPM(0))));
 
     m_startLaunchIndex = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.2));
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.5));
 
     m_stopLaunchIndex =
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0));
+
+    /* Limelight */
+    m_toggleLimelight =
+      new InstantCommand(() -> RobotContainer.m_limelight.toggleMode());
 
 //     /* LEDs Inline Command Instantiations */
 //     m_chaseInwards =

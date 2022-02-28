@@ -16,7 +16,8 @@ public class Launcher extends SubsystemBase
   private WPI_TalonFX m_launcherHood;
   private WPI_TalonFX m_launcherLaunch;
   private WPI_TalonFX m_launcherAccelerate;
-  private WPI_TalonSRX m_launcherIndex;
+  private WPI_TalonSRX m_launcherIndexTop;
+  private WPI_TalonSRX m_launcherIndexBottom;
 
 
   public Launcher()
@@ -34,8 +35,13 @@ public class Launcher extends SubsystemBase
                                     Constants.LAUNCHER_ACCELERATE_I, Constants.LAUNCHER_ACCELERATE_D);
 
 
-    m_launcherIndex = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_ID);
-    RobotContainer.configureTalonSRX(m_launcherIndex, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
+    m_launcherIndexTop = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_TOP_ID);
+    RobotContainer.configureTalonSRX(m_launcherIndexTop, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
+                                    Constants.INTAKE_F, Constants.INTAKE_P,
+                                    Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
+
+    m_launcherIndexBottom = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_BOTTOM_ID);
+    RobotContainer.configureTalonSRX(m_launcherIndexTop, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
                                     Constants.INTAKE_F, Constants.INTAKE_P,
                                     Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
  }
@@ -54,7 +60,8 @@ public class Launcher extends SubsystemBase
 
  public void setIndexSpeed(double power)
  {
-   m_launcherIndex.set(ControlMode.PercentOutput, power);
+   m_launcherIndexTop.set(ControlMode.PercentOutput, power);
+   m_launcherIndexBottom.set(ControlMode.PercentOutput, -power);
  }
 
  public void setPreset(int launchRPM, int accelerateRPM)

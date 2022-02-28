@@ -25,17 +25,21 @@ public class Constants
   public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 10; //6
   public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 11; //7
 
-  public static final int INTAKE_MOTOR_ID                                 = 0;
+  public static final int INTAKE_MOTOR_ID                                 = 20;
 
   public static final int LAUNCHER_HOOD_ID                                = 0;
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
-  public static final int LAUNCHER_INDEX_ID                               = 0;
+  public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
+  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
   public static final int ABS_ENCODER_1_ID                                = 1;
   public static final int ABS_ENCODER_2_ID                                = 2;
   public static final int ABS_ENCODER_3_ID                                = 3;
   public static final int ABS_ENCODER_4_ID                                = 4;
+
+  public static final int CLIMB_LEFT_ID                                   = 18;
+  public static final int CLIMB_RIGHT_ID                                  = 17;  
 
 
 
@@ -56,9 +60,7 @@ public class Constants
 
 
 
-  /* Climber */
-  public static final int CLIMB_LEFT_ID                                   = 18;
-  public static final int CLIMB_RIGHT_ID                                  = 17;   
+  /* Climber */ 
 
 
   /* Chassis */
@@ -122,6 +124,10 @@ public class Constants
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
 
+  /* Limelight */
+  public static final double ROBOT_ANGLE_THRESHOLD                        = 0.3;
+  public static final double ROBOT_TURN_OUTPUT                            = 0.2;
+
 
   
 
@@ -148,12 +154,14 @@ public class Constants
 
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
+  public static final int LAUNCHER_INDEX_BTN_ID                           = 1;
   public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
   public static final int INTAKE_BTN_ID                                   = 3;
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
+  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 9;
+  public static final int TURN_TO_TARGET_BTN_ID                           = 8;
 
 
 

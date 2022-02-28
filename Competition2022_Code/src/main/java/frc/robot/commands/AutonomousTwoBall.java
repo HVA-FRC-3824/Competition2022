@@ -21,7 +21,7 @@ public class AutonomousTwoBall extends SequentialCommandGroup{
         //stop launcher
         new InlineCommands().m_stopLaunchSequence,
         //start intake
-        new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(Constants.AUTO_INTAKE_WHEEL_POWER)),
+        new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(Constants.AUTO_INTAKE_WHEEL_POWER)),
         //follow path to pick up ball
 
         //TODO Write running code
@@ -29,7 +29,7 @@ public class AutonomousTwoBall extends SequentialCommandGroup{
         //wait for reset
         new WaitCommand(0.5),
         //stop intake
-        new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0)),
+        new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0)),
         //follow path back to launch point
 
         //TODO Write running code
