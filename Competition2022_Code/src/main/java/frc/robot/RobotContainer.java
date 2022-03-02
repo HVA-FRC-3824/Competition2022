@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -119,11 +120,8 @@ public class RobotContainer
   {
     /* Add options (which autonomous commands can be selected) to chooser. */
     m_autoChooser.setDefaultOption("DEFAULT COMMAND NAME HERE", "default");
-    m_autoChooser.addOption("TEST", "test");
-    m_autoChooser.addOption("THREE BALL FORWARD", "three_ball_forward");
-    m_autoChooser.addOption("THREE BALL BACKWARD", "three_ball_backward");
-    m_autoChooser.addOption("SIX BALL", "six_ball");
-    m_autoChooser.addOption("BARREL", "barrel");
+    // m_autoChooser.addOption("TEST", "test");
+    m_autoChooser.addOption("TWO BALL", "two_Ball");
 
     /*
      * Display chooser on SmartDashboard for operators to select which autonomous
@@ -137,27 +135,19 @@ public class RobotContainer
    * 
    * @return the command to run during the autonomous period.
    */
-//   public Command getAutonomousCommand() .
-//   {
-//     switch (m_autoChooser.getSelected())
-//     {
-//     //   case "default":
-//     //     return null;
-//     //   case "test":
-//     //     return new CommandGroupTemplate();
-//     //   case "three_ball_forward":
-//     //     return new AutonomousThreeBall(1, 2.0);
-//     //   case "three_ball_backward":
-//     //     return new AutonomousThreeBall(-1, 3.0);
-//     //   case "six_ball":
-//     //     return new AutonomousSixBall();
-//     //   case "barrel":
-//     //     return new AutoNavBarrel();
-//     //   default:
-//     //     System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
-//     //     return null;
-//     }
-//   }
+  public Command getAutonomousCommand()
+  {
+    switch (m_autoChooser.getSelected())
+    {
+      case "default":
+        return null;
+      case "two_Ball":
+        return new AutonomousTwoBall();
+      default:
+        System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
+        return null;
+    }
+  }
 
   /**
    * Configures TalonSRX objects with passed in parameters.

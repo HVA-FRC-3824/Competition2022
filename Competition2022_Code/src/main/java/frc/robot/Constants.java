@@ -82,7 +82,7 @@ public class Constants
 
   public static final double K_CHASSIS_RIGHT_ANGLE_P                      = 0.2245;    //previous: 0.225
   public static final double K_CHASSIS_RIGHT_ANGLE_I                      = 0.0000185; //previous: 0.0002
-  public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
+  public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000001;  //previous: 0.000005
 
 
   /* Intake */
@@ -189,9 +189,12 @@ public class Constants
   public static final int K_TIMEOUT_MS                                    = 30;
 
   /* Swerve */
+  public static final double WHEEL_RADIUS                                 = 0.0762;
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
   public static final double SWERVE_GEAR_RATIO                            = 0.0833333; //wheel spins per angle motor spin    
   public static final double SWERVE_TPR                                   = 2048 / SWERVE_GEAR_RATIO; //motors ticks per revolution of wheel
+  public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
+  public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
 
   public static final Translation2d BACK_LEFT_WHEEL_LOCATION              = new Translation2d(-12.5 , 10.75);
   public static final Translation2d BACK_RIGHT_WHEEL_LOCATION             = new Translation2d(-12.5 , -10.75);
