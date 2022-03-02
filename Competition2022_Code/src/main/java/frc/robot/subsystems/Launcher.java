@@ -64,7 +64,7 @@ public class Launcher extends SubsystemBase
    m_launcherIndexBottom.set(ControlMode.PercentOutput, -power);
  }
 
- public void setPreset(int launchRPM, int accelerateRPM)
+ public void setPreset(double launchRPM, double accelerateRPM)
  {
     this.setLauncherRPM(launchRPM);
     this.setAcceleratorRPM(accelerateRPM);

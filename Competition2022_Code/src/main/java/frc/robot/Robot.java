@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() 
   {
     RobotContainer.initializeDefaultCommands();
-    RobotContainer.m_limelight.setModeDriver();
+    RobotContainer.m_limelight.setModeVision();
   }
 
   /** This function is called periodically during operator control. */

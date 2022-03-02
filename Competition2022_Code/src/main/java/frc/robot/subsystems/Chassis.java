@@ -301,11 +301,6 @@ public class Chassis extends SubsystemBase
       // SmartDashboard.putNumber("Swerve Angle", m_ahrs.getAngle());
       //SmartDashboard.putNumber("Swerve Compass", m_ahrs.getCompassHeading());
 
-
-
-      System.out.println(x1);
-      System.out.println(x2);
-      System.out.println(y1);
     }
 
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)

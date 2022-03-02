@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 public class AutonomousTwoBall extends SequentialCommandGroup{
     public AutonomousTwoBall(){
         addCommands(
-        //start launcher
-        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.LAUNCHER_AUTO_TARMAC_LAUNCH_RPM,
-                                 Constants.LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM)),
+        //start launcher and index
+        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER,
+                                 Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.2))),
         //wait for balls to launch
         new WaitCommand(1.5),
         //stop launcher
@@ -35,8 +35,8 @@ public class AutonomousTwoBall extends SequentialCommandGroup{
         //TODO Write running code
 
         //start launcher
-        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.LAUNCHER_AUTO_TARMAC_LAUNCH_RPM,
-                                 Constants.LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM)),
+        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER,
+                                 Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)),
         //wait for balls to launch
         new WaitCommand(1.5),
         //stop launcher

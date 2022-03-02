@@ -91,7 +91,7 @@ public class Constants
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
-  public static final int AUTO_INTAKE_WHEEL_POWER                         = 3000;
+  public static final double AUTO_INTAKE_WHEEL_POWER                      = 0.3;
 
 
   /* Launcher */
@@ -115,8 +115,8 @@ public class Constants
   public static final int LAUNCHER_INDEX_D                                = 0;  
   public static final int LAUNCHER_INDEX_F                                = 0;  
 
-  public static final int LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM             = 0;
-  public static final int LAUNCHER_AUTO_TARMAC_LAUNCH_RPM                 = 0;
+  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.5;
+  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.8;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
