@@ -9,15 +9,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.math.controller.HolonomicDriveController;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.SPI;
 import com.ctre.phoenix.sensors.CANCoder;
-
-import java.lang.ModuleLayer.Controller;
-
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 public class Chassis extends SubsystemBase
@@ -27,8 +20,6 @@ public class Chassis extends SubsystemBase
    */
 
   private AHRS m_ahrs;
-
-  private HolonomicDriveController m_holonomicDriveController;
 
   private WPI_TalonFX m_angleMotorFrontRight;
   private WPI_TalonFX m_speedMotorFrontRight;
@@ -92,8 +83,6 @@ public class Chassis extends SubsystemBase
      * Autonomous path following objects
      */
 
-    m_holonomicDriveController = new HolonomicDriveController(new PIDController(1, 0, 0), new PIDController(1, 0, 0),
-                                 new ProfiledPIDController(1, 0, 0, new TrapezoidProfile.Constraints(3.5, 3.14)));
     /* Used for tracking robot pose. */
 
     /**
@@ -129,6 +118,12 @@ public class Chassis extends SubsystemBase
 
     m_speedMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
+
+    // frontRight[3] = AbsEncoder1.getAbsolutePosition();
+    // frontLeft[3] = AbsEncoder2.getAbsolutePosition();
+    // backRight[3] = AbsEncoder3.getAbsolutePosition();
+    // backLeft[3] = AbsEncoder4.getAbsolutePosition();
+
     }
 
     /**
@@ -214,7 +209,7 @@ public class Chassis extends SubsystemBase
 
       //Swerve Gyro Difference Establishing
       // double gyro_current = m_ahrs.getPitch();  
-      double gyro_current = m_ahrs.getYaw() - 6;
+      double gyro_current = m_ahrs.getYaw();
       //adjust strafe vector so that moving forward goes in the set direction and not towards where the robot is facing
       double r = Math.sqrt(vX * vX + vY * vY);
       double strafe_angle = Math.atan2(vY, vX);
