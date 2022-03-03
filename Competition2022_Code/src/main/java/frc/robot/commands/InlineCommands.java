@@ -94,21 +94,21 @@ public class InlineCommands {
 
     /* Intake */
     m_startIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0.35));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0.5));
     m_stopIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0));
     
     /* Launcher */
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0.85)).alongWith(new InstantCommand(()
-      -> RobotContainer.m_launcher.setAcceleratorRPM(0.5)));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0.8)).alongWith(new InstantCommand(()
+      -> RobotContainer.m_launcher.setAcceleratorRPM(0.6)));
 
     m_stopLaunchSequence =
       new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0)).alongWith(new InstantCommand(() 
       -> RobotContainer.m_launcher.setAcceleratorRPM(0))));
 
     m_startLaunchIndex = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.4));
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.5));
 
     m_stopLaunchIndex =
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0));
@@ -119,9 +119,9 @@ public class InlineCommands {
 
 //     /* LEDs Inline Command Instantiations */
 //     m_chaseInwards =
-//       new RunCommand(() -> RobotContainer.m_LEDs.chaseInward()); 
+//       new RunCommand(() -> RobotContainer.m_LEDs.strobeOutward()); 
 //     m_chaseOutwards =
-//       new RunCommand(() -> RobotContainer.m_LEDs.chaseOutward()); 
+//       new RunCommand(() -> RobotContainer.m_LEDs.toggleableLauncherLEDS()()); 
 //     m_rainbow =
 //       new RunCommand(() -> RobotContainer.m_LEDs.rainbow()); 
 //     m_neutral = 

@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 //#endregion
 
-//TODO Figure out what LEDs are meant to be on at certain times; remove defense LEDs
 
 public class LEDs extends SubsystemBase{
 
@@ -41,6 +40,12 @@ public class LEDs extends SubsystemBase{
        m_launcherLEDs.setLength(m_LEDLength.getLength());
 
    }
+   @Override
+   public void periodic(){
+        if(m_isLaunching){
+           this.strobeOutward();
+        } //I do not know what to put here since the github has defense
+   }
 
    /*public void defenseModeLEDs(){
 
@@ -64,31 +69,36 @@ public class LEDs extends SubsystemBase{
    public void resetSequences(){m_isLaunching = false;}
 
    public void strobeOutward(){
-       for(int i = (Constants.LAUNCHER_NUM_OF_LEDS / 2); i>=0; i--) // The reason for the total over 2 is because both sides are counting toward the total
+       for(int i = (Constants.LAUNCHER_NUM_OF_LEDS / 2); i >= 0; i--) // The reason for the total over 2 is because both sides are counting toward the total
        {
             if(i == m_neutralColorToChange){
-                m_LEDLength.setRGB(i, 255, 255, 255);
+                m_LEDLength.setHSV(i, 255, 0, 255);
             }
+            
        }
        if(m_neutralColorToChange > 0){m_neutralColorToChange--;}
+       else m_neutralColorToChange = Constants.LAUNCHER_NUM_OF_LEDS;
    }
    public void toggleableLauncherLEDS(){
         if(m_twoLoadedLEDs){
-            for(int i=0; i< Constants.TOTAL_LEDS; i++){
+            for(int i=0; i < Constants.TOTAL_LEDS; i++){
                 m_LEDLength.setRGB(i, 0, 255, 0);
             }
             m_twoLoadedLEDs = true;
         }
         else if(m_oneLoadedLEDs){
-            for(int i=0; i< Constants.TOTAL_LEDS; i++){
+            for(int i=0; i < Constants.TOTAL_LEDS; i++){
                 m_LEDLength.setRGB(i, 255, 255, 0);
             }
             m_oneLoadedLEDs = true;
         }
         else{
-            for(int i=0; i< Constants.TOTAL_LEDS; i++){
+            for(int i = 0; i < Constants.TOTAL_LEDS; i++){
                 m_LEDLength.setRGB(i, 0, 0, 0);
             }
         }
-   }
+        for(var LED = 0; LED < m_LEDLength.getLength(); LED++){
+            m_LEDLength.setHSV(LED, 0, 0, 0);
+        }
+    }
 }

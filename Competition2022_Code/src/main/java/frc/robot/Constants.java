@@ -25,21 +25,17 @@ public class Constants
   public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 10; //6
   public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 11; //7
 
-  public static final int INTAKE_MOTOR_ID                                 = 20;
+  public static final int INTAKE_MOTOR_ID                                 = 0;
 
   public static final int LAUNCHER_HOOD_ID                                = 0;
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
-  public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
-  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
+  public static final int LAUNCHER_INDEX_ID                               = 0;
 
   public static final int ABS_ENCODER_1_ID                                = 1;
   public static final int ABS_ENCODER_2_ID                                = 2;
   public static final int ABS_ENCODER_3_ID                                = 3;
   public static final int ABS_ENCODER_4_ID                                = 4;
-
-  public static final int CLIMB_LEFT_ID                                   = 18;
-  public static final int CLIMB_RIGHT_ID                                  = 17;  
 
 
 
@@ -60,7 +56,9 @@ public class Constants
 
 
 
-  /* Climber */ 
+  /* Climber */
+  public static final int CLIMB_LEFT_ID                                   = 18;
+  public static final int CLIMB_RIGHT_ID                                  = 17;   
 
 
   /* Chassis */
@@ -82,7 +80,7 @@ public class Constants
 
   public static final double K_CHASSIS_RIGHT_ANGLE_P                      = 0.2245;    //previous: 0.225
   public static final double K_CHASSIS_RIGHT_ANGLE_I                      = 0.0000185; //previous: 0.0002
-  public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000001;  //previous: 0.000005
+  public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
 
 
   /* Intake */
@@ -91,7 +89,7 @@ public class Constants
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
-  public static final double AUTO_INTAKE_WHEEL_POWER                      = 0.3;
+  public static final int AUTO_INTAKE_WHEEL_POWER                         = 3000;
 
 
   /* Launcher */
@@ -115,18 +113,14 @@ public class Constants
   public static final int LAUNCHER_INDEX_D                                = 0;  
   public static final int LAUNCHER_INDEX_F                                = 0;  
 
-  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.5;
-  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.8;
+  public static final int LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM             = 0;
+  public static final int LAUNCHER_AUTO_TARMAC_LAUNCH_RPM                 = 0;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
-
-  /* Limelight */
-  public static final double ROBOT_ANGLE_THRESHOLD                        = 0.3;
-  public static final double ROBOT_TURN_OUTPUT                            = 0.2;
 
 
   
@@ -154,14 +148,12 @@ public class Constants
 
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int LAUNCHER_INDEX_BTN_ID                           = 1;
+  public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
   public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
   public static final int INTAKE_BTN_ID                                   = 3;
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
-  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 9;
-  public static final int TURN_TO_TARGET_BTN_ID                           = 8;
 
 
 
@@ -189,12 +181,9 @@ public class Constants
   public static final int K_TIMEOUT_MS                                    = 30;
 
   /* Swerve */
-  public static final double WHEEL_RADIUS                                 = 0.0762;
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
   public static final double SWERVE_GEAR_RATIO                            = 0.0833333; //wheel spins per angle motor spin    
   public static final double SWERVE_TPR                                   = 2048 / SWERVE_GEAR_RATIO; //motors ticks per revolution of wheel
-  public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
-  public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
 
   public static final Translation2d BACK_LEFT_WHEEL_LOCATION              = new Translation2d(-12.5 , 10.75);
   public static final Translation2d BACK_RIGHT_WHEEL_LOCATION             = new Translation2d(-12.5 , -10.75);
@@ -214,7 +203,12 @@ public class Constants
   public static final int K_ENCODER_TICKS_PER_REVOLUTION                  = 28300;
   public static final double K_WHEEL_DIAMETER_METERS                      = 0.1524;
   public static final double K_ENCODER_DISTANCE_PER_PULSE                 = (K_WHEEL_DIAMETER_METERS * Math.PI) / 
+          
                                                                             (double) K_ENCODER_TICKS_PER_REVOLUTION;
+
+
+  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER              = 0;
+  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER          = 0;
 
   /* Use robot characterization tool for these values. */
   // public static final double K_S_VOLTS                                    = 0.372; //TODO check these out

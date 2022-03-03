@@ -24,7 +24,7 @@ public class AutonomousTwoBall extends SequentialCommandGroup{
         new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(Constants.AUTO_INTAKE_WHEEL_POWER)),
         //follow path to pick up ball
 
-        //TODO Write running code
+//TODO Write running code
 
         //wait for reset
         new WaitCommand(0.5),
@@ -45,3 +45,4 @@ public class AutonomousTwoBall extends SequentialCommandGroup{
     }
 
 }
+
