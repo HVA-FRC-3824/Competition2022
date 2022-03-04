@@ -33,10 +33,10 @@ public class Chassis extends SubsystemBase
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
-  public CANCoder AbsEncoder1 = new CANCoder(Constants.ABS_ENCODER_1_ID);
-  public CANCoder AbsEncoder2 = new CANCoder(Constants.ABS_ENCODER_2_ID);
-  public CANCoder AbsEncoder3 = new CANCoder(Constants.ABS_ENCODER_3_ID);
-  public CANCoder AbsEncoder4 = new CANCoder(Constants.ABS_ENCODER_4_ID);
+  public CANCoder AbsEncoderFR = new CANCoder(Constants.ABS_ENCODER_FR_ID);
+  public CANCoder AbsEncoderFL = new CANCoder(Constants.ABS_ENCODER_FL_ID);
+  public CANCoder AbsEncoderBL = new CANCoder(Constants.ABS_ENCODER_BL_ID);
+  public CANCoder AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
 
   // private SwerveDriveKinematics m_swerveDriveKinematics;
   // private SwerveDriveOdometry m_swerveDriveOdometry;
@@ -89,7 +89,7 @@ public class Chassis extends SubsystemBase
      * doubleious methods to call when chassis subsystem first starts up.
      */
     /* Reset encoders & gyro to ensure autonomous path following is correct. */
-    this.zeroHeading();
+    // this.zeroHeading();
 
     m_angleMotorFrontRight = new WPI_TalonFX(Constants.FRONT_RIGHT_ANGLE_MOTOR_ID);
     RobotContainer.configureTalonFX(m_angleMotorFrontRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, 
@@ -119,10 +119,17 @@ public class Chassis extends SubsystemBase
     m_speedMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
-    // frontRight[3] = AbsEncoder1.getAbsolutePosition();
-    // frontLeft[3] = AbsEncoder2.getAbsolutePosition();
-    // backRight[3] = AbsEncoder3.getAbsolutePosition();
-    // backLeft[3] = AbsEncoder4.getAbsolutePosition();
+    this.setMotorPosition();
+
+    // frontRight[3] = AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // frontLeft[3] = AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // // backLeft[3] = AbsEncoder3.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // backRight[3] = AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+
+    // frontRight[4] = AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // frontLeft[4] = AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // // backLeft[3] = AbsEncoder3.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
+    // backRight[4] = AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
 
     }
 
@@ -138,21 +145,21 @@ public class Chassis extends SubsystemBase
     /* Update drivetrain information on SmartDashboard for testing. */
     // this.displayDrivetrainInfo();
 
-    SmartDashboard.putNumber("FR Angle Motor Position", m_angleMotorFrontRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("FR Angle Motor Position", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
     SmartDashboard.putNumber("FR Angle Motor Position Graph", m_angleMotorFrontRight.getSelectedSensorPosition());
 
     SmartDashboard.putNumber("FL Angle Motor Position", m_angleMotorFrontLeft.getSelectedSensorPosition());
     SmartDashboard.putNumber("BR Angle Motor Position", m_angleMotorBackRight.getSelectedSensorPosition());
     SmartDashboard.putNumber("BL Angle Motor Position", m_angleMotorBackLeft.getSelectedSensorPosition());
 
-    SmartDashboard.putNumber("Encoder  1Value", AbsEncoder1.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 1 Value", AbsEncoder1.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 2 Value", AbsEncoder2.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 2 Value", AbsEncoder2.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 3 Value", AbsEncoder3.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 3 Value", AbsEncoder3.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 4 Value", AbsEncoder4.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 4 Value", AbsEncoder4.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder  1Value", AbsEncoderFR.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 1 Value", AbsEncoderFR.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 2 Value", AbsEncoderFL.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 2 Value", AbsEncoderFL.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 3 Value", AbsEncoderBL.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 3 Value", AbsEncoderBL.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder 4 Value", AbsEncoderBR.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder 4 Value", AbsEncoderBR.getAbsolutePosition());
 
   }
 
@@ -357,6 +364,14 @@ public class Chassis extends SubsystemBase
     m_ahrs.setAngleAdjustment(heading);
   }
 
+  public void setMotorPosition()
+  {
+    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
+    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
+    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
+    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
+
+  }
   /**
    * Get the distance the left and right sides of the robot have driven with encoder feedback.
    * Convert position (units) to distance (meters).
@@ -380,8 +395,5 @@ public class Chassis extends SubsystemBase
   {
     return Math.IEEEremainder(m_ahrs.getAngle(), 360) * (Constants.K_GYRO_REVERSED ? -1.0 : 1.0);
   }
-
-
-
 }
 

@@ -33,10 +33,10 @@ public class Constants
   public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
   public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
-  public static final int ABS_ENCODER_1_ID                                = 1;
-  public static final int ABS_ENCODER_2_ID                                = 2;
-  public static final int ABS_ENCODER_3_ID                                = 3;
-  public static final int ABS_ENCODER_4_ID                                = 4;
+  public static final int ABS_ENCODER_FR_ID                               = 1;
+  public static final int ABS_ENCODER_FL_ID                               = 2;
+  public static final int ABS_ENCODER_BL_ID                               = 3;
+  public static final int ABS_ENCODER_BR_ID                               = 4;
 
   public static final int CLIMB_LEFT_ID                                   = 18;
   public static final int CLIMB_RIGHT_ID                                  = 17;  

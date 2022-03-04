@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnToTarget extends CommandBase
 {
-    private double m_trunOutput;
+    private double m_turnOutput;
     private double m_turnError;
 
     public TurnToTarget()
@@ -25,7 +25,7 @@ public class TurnToTarget extends CommandBase
     @Override
     public void initialize()
     {
-        m_trunOutput = 0.0;
+        m_turnOutput = 0.0;
         m_turnError = 0.0;
 
         RobotContainer.m_limelight.setModeVision();
@@ -43,19 +43,19 @@ public class TurnToTarget extends CommandBase
     /* Use limelight output to designate how to drive the motors*/
     if (m_turnError >= Constants.ROBOT_ANGLE_THRESHOLD)
     {
-        m_trunOutput = Constants.ROBOT_TURN_OUTPUT * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
+        m_turnOutput = Constants.ROBOT_TURN_OUTPUT * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
     }
     else if (m_turnError <= Constants.ROBOT_ANGLE_THRESHOLD)
     {
-        m_trunOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
+        m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
     }
     else
     {
-        m_trunOutput = 0.0;
+        m_turnOutput = 0.0;
     }
 
     /* Give the robot the turn value */
-    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_trunOutput);
+    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput);
     }
 
    /**

@@ -20,7 +20,6 @@ public class SwerveModule {
 
     private final CANCoder m_absoluteEncoder;
     private final boolean absoluteEncoderReversed;
-    private final double absoluteEncoderOffsetRad;
 
     private final PIDController m_drivePIDController = new PIDController(Constants.K_CHASSIS_TURN_P, Constants.K_CHASSIS_TURN_I, Constants.K_CHASSIS_TURN_D);
     private final ProfiledPIDController m_turningPIDController = new ProfiledPIDController(Constants.K_CHASSIS_RIGHT_ANGLE_P, Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D, 
@@ -32,7 +31,6 @@ public class SwerveModule {
     public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, int absoluteEncoderId,
         double absoluteEncoderOffset, boolean absoluteEncoderReversed)
         {
-            this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
             this.absoluteEncoderReversed = absoluteEncoderReversed;
             m_absoluteEncoder = new CANCoder(absoluteEncoderId);
 
