@@ -120,6 +120,10 @@ public class Chassis extends SubsystemBase
     RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
     this.setMotorPosition();
+    // frontRight[3] = AbsEncoder1.getAbsolutePosition();
+    // frontLeft[3] = AbsEncoder2.getAbsolutePosition();
+    // backRight[3] = AbsEncoder3.getAbsolutePosition();
+    // backLeft[3] = AbsEncoder4.getAbsolutePosition();
 
     // frontRight[3] = AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
     // frontLeft[3] = AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
@@ -145,21 +149,19 @@ public class Chassis extends SubsystemBase
     /* Update drivetrain information on SmartDashboard for testing. */
     // this.displayDrivetrainInfo();
 
-    SmartDashboard.putNumber("FR Angle Motor Position", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
-    SmartDashboard.putNumber("FR Angle Motor Position Graph", m_angleMotorFrontRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("FR Angle Motor Pos in Rel Degrees", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
+    SmartDashboard.putNumber("FL Angle Motor Pos", m_angleMotorFrontLeft.getSelectedSensorPosition());
+    SmartDashboard.putNumber("BR Angle Motor Pos", m_angleMotorBackRight.getSelectedSensorPosition());
+    SmartDashboard.putNumber("BL Angle Motor Pos", m_angleMotorBackLeft.getSelectedSensorPosition());
 
-    SmartDashboard.putNumber("FL Angle Motor Position", m_angleMotorFrontLeft.getSelectedSensorPosition());
-    SmartDashboard.putNumber("BR Angle Motor Position", m_angleMotorBackRight.getSelectedSensorPosition());
-    SmartDashboard.putNumber("BL Angle Motor Position", m_angleMotorBackLeft.getSelectedSensorPosition());
-
-    SmartDashboard.putNumber("Encoder  1Value", AbsEncoderFR.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 1 Value", AbsEncoderFR.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 2 Value", AbsEncoderFL.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 2 Value", AbsEncoderFL.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 3 Value", AbsEncoderBL.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 3 Value", AbsEncoderBL.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder 4 Value", AbsEncoderBR.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder 4 Value", AbsEncoderBR.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder FR Pos", AbsEncoderFR.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder FR Pos", AbsEncoderFR.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder FL Pos", AbsEncoderFL.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder FL Pos", AbsEncoderFL.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder BL Pos", AbsEncoderBL.getPosition());
+    SmartDashboard.putNumber("Absolute Encoder BL Pos", AbsEncoderBL.getAbsolutePosition());
+    SmartDashboard.putNumber("Encoder BR Pos", AbsEncoderBR.getPosition());
+    SmartDashboard.putNumber("Abs Encoder BR Pos", AbsEncoderBR.getAbsolutePosition());
 
   }
 
@@ -288,32 +290,6 @@ public class Chassis extends SubsystemBase
       drive(m_speedMotorFrontLeft, m_angleMotorFrontLeft, frontLeft[2], -(frontLeft[3] + frontLeft[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackLeft, m_angleMotorBackLeft, backLeft[2], -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackRight, m_angleMotorBackRight, backRight[2], -(backRight[3] + backRight[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-
-      SmartDashboard.putNumber("Wheel one offset", frontRight[5]);
-      //SmartDashboard.putNumber("Wheel 3 total encoder ticks",  -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-      //SmartDashboard.putNumber("Wheel 3 Current Pos", m_angleMotorBackLeft.getSelectedSensorPosition());
-      //SmartDashboard.putNumber("Wheel 3 Setpoint", m_angleMotorBackLeft.getClosedLoopTarget());
-      //SmartDashboard.putNumber("Total Angle ", (frontRight[3] + frontRight[5]));
-      //SmartDashboard.putNumber("Last Angle", frontRight[4]);
-      SmartDashboard.putNumber("Current Angle 1", frontRight[4]);  
-      SmartDashboard.putNumber("Current Angle 2", frontLeft[4]);  
-      SmartDashboard.putNumber("Current Angle 3", backLeft[4]);  
-      SmartDashboard.putNumber("Current Angle 4", backRight[4]);  
-
-      SmartDashboard.putNumber("Angle 1", -(frontRight[3] + frontRight[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-      SmartDashboard.putNumber("Angle 2", -(frontLeft[3] + frontLeft[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-      SmartDashboard.putNumber("Angle 3",  -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-      SmartDashboard.putNumber("Angle 4", -(backRight[3] + backRight[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
-
-      SmartDashboard.putNumber("Speed 1", frontRight[2]);
-      SmartDashboard.putNumber("Speed 2", frontLeft[2]);
-      SmartDashboard.putNumber("Speed 3", backLeft[2]);
-      SmartDashboard.putNumber("Speed 4", backRight[2]);
-
-      SmartDashboard.putNumber("Swerve Yaw", m_ahrs.getYaw());
-      // SmartDashboard.putNumber("Swerve Angle", m_ahrs.getAngle());
-      //SmartDashboard.putNumber("Swerve Compass", m_ahrs.getCompassHeading());
-
     }
 
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
@@ -338,6 +314,13 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("Angle", angle);
   }
 
+  public void setMotorPosition()
+  {
+    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
+    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
+    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
+    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
+  }
   /**
    * Get heading of the robot (no domain).
    * @return the angle of the gyro in degrees.

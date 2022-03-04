@@ -41,11 +41,11 @@ public class TurnToTarget extends CommandBase
     m_turnError = RobotContainer.m_limelight.getTargetOffsetX();
 
     /* Use limelight output to designate how to drive the motors*/
-    if (m_turnError >= Constants.ROBOT_ANGLE_THRESHOLD)
+    if (m_turnError >= Constants.CHASSIS_TURN_ERROR_THRESHOLD)
     {
-        m_turnOutput = Constants.ROBOT_TURN_OUTPUT * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
+        m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
     }
-    else if (m_turnError <= Constants.ROBOT_ANGLE_THRESHOLD)
+    else if (m_turnError <= Constants.CHASSIS_TURN_ERROR_THRESHOLD)
     {
         m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
     }
