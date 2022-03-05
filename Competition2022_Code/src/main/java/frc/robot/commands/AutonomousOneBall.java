@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 /*
 [Placeholder text]
 */
-public class AutonomousTwoBall extends SequentialCommandGroup{
-    public AutonomousTwoBall(){
+public class AutonomousOneBall extends SequentialCommandGroup{
+    public AutonomousOneBall(){
         addCommands(
         //start launcher and index
         new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.2)).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setPreset

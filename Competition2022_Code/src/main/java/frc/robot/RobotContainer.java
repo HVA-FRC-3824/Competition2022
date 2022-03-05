@@ -29,9 +29,9 @@ public class RobotContainer
    */
   public static final Chassis m_chassis = new Chassis();
   public static final Climb m_climb = new Climb();
-  // public static final ControlPanel m_controlPanel = new ControlPanel();
   public static final Intake m_intake = new Intake();
   public static final Launcher m_launcher = new Launcher();
+  // public static final SwerveChassis m_swerve = new SwerveChassis();
 
   public static final Limelight m_limelight = Limelight.getInstance();
   public static final LEDs m_LEDs = new LEDs();
@@ -72,11 +72,6 @@ public class RobotContainer
 
     /* Initialize autonomous command chooser and display on the SmartDashboard. */
     this.initializeAutoChooser();
-
-    /* Initialize PID tuning for use on the SmartDashboard. */
-    this.initializePIDValues();
-
-    // this.testColorSensing();
   }
 
   /**
@@ -87,10 +82,7 @@ public class RobotContainer
   private void initializeStartup()
   {
     /* Turn off Limelight LED when first started up so it doesn't blind drive team. */
-    // m_limelight.turnOffLED();
-
-    /* Start ultrasonics. */
-    // m_chamber.startUltrasonics();
+    m_limelight.turnOffLED();
   }
 
   /**
@@ -102,11 +94,7 @@ public class RobotContainer
   public static void initializeDefaultCommands()
   {
     m_chassis.setDefaultCommand(m_inlineCommands.m_driveWithJoystick);
-    // m_intake.setDefaultCommand(null);
-    // m_chamber.setDefaultCommand(new ChamberIndexBalls());
-    // m_launcher.setDefaultCommand(null);
-    // m_climber.setDefaultCommand(null);
-    // m_controlPanel.setDefaultCommand(null);
+    // m_swerve.setDefaultCommand(m_inlineCommands.m_swerve);
   }
 
   /**
@@ -121,13 +109,13 @@ public class RobotContainer
     /* Add options (which autonomous commands can be selected) to chooser. */
     m_autoChooser.setDefaultOption("DEFAULT COMMAND NAME HERE", "default");
     // m_autoChooser.addOption("TEST", "test");
-    m_autoChooser.addOption("TWO BALL", "two_Ball");
+    m_autoChooser.addOption("ONE BALL", "one_Ball");
 
     /*
      * Display chooser on SmartDashboard for operators to select which autonomous
      * command to run during the auto period.
      */
-    SmartDashboard.putData("Autonomous Commands", m_autoChooser);
+    SmartDashboard.putData("Autonomous Command", m_autoChooser);
   }
 
   /**
@@ -141,8 +129,8 @@ public class RobotContainer
     {
       case "default":
         return null;
-      case "two_Ball":
-        return new AutonomousTwoBall();
+      case "one_Ball":
+        return new AutonomousOneBall();
       default:
         System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
         return null;
@@ -260,44 +248,6 @@ public class RobotContainer
      * chassis (position considered), but not launcher (velocity only).
      */
     talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
-  }
-
-  /**
-   * Initializes SmartDashboard data for PID tuning. Creates fields for gains and
-   * button for initiating PID configuration.
-   */
-  private void initializePIDValues()
-  {
-    /* Generate number fields on SmartDashboard for PID values to be input into. */
-    SmartDashboard.putNumber("F Value", 0.0);
-    SmartDashboard.putNumber("P Value", 0.0);
-    SmartDashboard.putNumber("I Value", 0.0);
-    SmartDashboard.putNumber("D Value", 0.0);
-
-    // SmartDashboard.putNumber("Cruise Velocity Value", 0);
-    // SmartDashboard.putNumber("Acceleration Value", 0);
-    
-    /**
-     * Create button for when pressed on SmartDashboard will configure the PID of
-     * the hard coded TalonSRX/TalonFX. Get TalonSRX/TalonFX with get method written
-     * in each subsystem for each TalonSRX/TalonFX. When desiring to set the PID
-     * values for another TalonSRX/TalonFX, you must hard code in the new parameters
-     * for the SetPIDValues command then re-deploy.
-     * 
-     * SetPIDValues Parameters: TalonSRX object (pass in null if configuring
-     * TalonFX). TalonFX object (pass in null if configuring TalonSRX). ControlMode
-     * boolean: if true, Motion Magic is being used, if false, Motion Magic is not
-     * being used.
-     */
-    // SmartDashboard.putData("Set PID Values", new SetPIDValues(null, m_chassis.getMotor(), false));
-  }
-
-  /**
-   * Method to spin color wheel four times with color inuput.
-   */
-  public void testColorSensing()
-  {
-    // SmartDashboard.putData("Color Wheel Spinning", new ControlPanelSpinFour());
   }
 
   /**

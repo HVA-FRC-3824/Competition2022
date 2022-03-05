@@ -55,8 +55,12 @@ public class InlineCommands {
 
   /* Limelight */
   public final Command m_toggleLimelight;
+
+  /* Swerve */
+  // public final Command m_driveWithJoystick;
   
   public InlineCommands()
+  
   {
 
 
@@ -126,5 +130,9 @@ public class InlineCommands {
 //       new RunCommand(() -> RobotContainer.m_LEDs.rainbow()); 
 //     m_neutral = 
 //       new RunCommand(() -> RobotContainer.m_LEDs.neutral());
+
+    /* Swerve */
+    // m_driveWithJoystick =
+      // new RunCommand(() -> RobotContainer.m_swerve.driveWithJoystick, RobotContainer.m_swerve);
    }
 }

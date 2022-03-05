@@ -71,12 +71,6 @@ public class Chassis extends SubsystemBase
     AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
 
     /**
-     * Autonomous path following objects
-     */
-
-    /* Used for tracking robot pose. */
-
-    /**
      * doubleious methods to call when chassis subsystem first starts up.
      */
     /* Reset encoders & gyro to ensure autonomous path following is correct. */
@@ -134,8 +128,6 @@ public class Chassis extends SubsystemBase
   @Override
   public void periodic()
   {
-    /* Update odometry/position tracking of robot. */
-    // this.updateOdometry();
 
     /* Update drivetrain information on SmartDashboard for testing. */
     // this.displayDrivetrainInfo();
