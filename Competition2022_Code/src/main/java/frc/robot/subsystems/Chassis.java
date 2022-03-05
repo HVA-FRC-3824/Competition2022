@@ -33,13 +33,10 @@ public class Chassis extends SubsystemBase
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
-  public CANCoder AbsEncoderFR = new CANCoder(Constants.ABS_ENCODER_FR_ID);
-  public CANCoder AbsEncoderFL = new CANCoder(Constants.ABS_ENCODER_FL_ID);
-  public CANCoder AbsEncoderBL = new CANCoder(Constants.ABS_ENCODER_BL_ID);
-  public CANCoder AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
-
-  // private SwerveDriveKinematics m_swerveDriveKinematics;
-  // private SwerveDriveOdometry m_swerveDriveOdometry;
+  public CANCoder AbsEncoderFR;
+  public CANCoder AbsEncoderFL;
+  public CANCoder AbsEncoderBL;
+  public CANCoder AbsEncoderBR;
 
   //{VX, VY, Speed, Angle, Previous Angle, Offset}
   public double [] frontRight = {0, 0, 0, 0, 0, 0};
@@ -68,16 +65,10 @@ public class Chassis extends SubsystemBase
       System.out.println("\nError instantiating navX-MXP:\n" + ex.getMessage() + "\n");
     }
 
-    /**
-     * Pneumatics objects
-     */
-    // m_compressor = new Compressor();
-
-    // m_gearShift = new DoubleSolenoid(Constants.CHASSIS_GEARSHIFT_PORT_A, Constants.CHASSIS_GEARSHIFT_PORT_B);
-
-    // m_swerveDriveKinematics = new SwerveDriveKinematics(Constants.FRONT_RIGHT_WHEEL_LOCATION, Constants.FRONT_LEFT_WHEEL_LOCATION, 
-    // Constants.BACK_LEFT_WHEEL_LOCATION, Constants.BACK_RIGHT_WHEEL_LOCATION);
-    // m_swerveDriveOdometry = new SwerveDriveOdometry(m_swerveDriveKinematics, Rotation2d.fromDegrees(this.getHeading()));
+    AbsEncoderFR = new CANCoder(Constants.ABS_ENCODER_FR_ID);
+    AbsEncoderFL = new CANCoder(Constants.ABS_ENCODER_FL_ID);
+    AbsEncoderBL = new CANCoder(Constants.ABS_ENCODER_BL_ID);
+    AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
 
     /**
      * Autonomous path following objects

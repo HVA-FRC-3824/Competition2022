@@ -187,6 +187,8 @@ public class Constants
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
   public static final double SWERVE_GEAR_RATIO                            = 0.0833333; //wheel spins per angle motor spin    
   public static final double SWERVE_TPR                                   = 2048 / SWERVE_GEAR_RATIO; //motors ticks per revolution of wheel
+
+  public static final double K_MAX_VELOCITY                               = 3.0; // m/s
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
   public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
 
@@ -200,8 +202,6 @@ public class Constants
   public static final double SWERVE_DRIVE_WHEEL_AXLE_WIDTH                = 48;
   public static final double SWERVE_DRIVE_WHEEL_AXLE_DIAGONAL             = 60;
   public static final double K_WHEEL_DIAMETER_METERS                      = 0.1524;
-
-  public static final double K_MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3.0;
 
   public static final boolean K_GYRO_REVERSED                             = true;
 
