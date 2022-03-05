@@ -247,7 +247,7 @@ public class RobotContainer
      * Reset/zero the TalonFX's sensor. Will be required for implementation into
      * chassis (position considered), but not launcher (velocity only).
      */
-    talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    // talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
   }
 
   /**

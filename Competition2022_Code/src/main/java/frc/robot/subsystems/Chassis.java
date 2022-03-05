@@ -299,10 +299,10 @@ public class Chassis extends SubsystemBase
 
   public void setMotorPosition()
   {
-    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
-    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
-    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
-    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360);
+    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
   }
   /**
    * Get heading of the robot (no domain).
