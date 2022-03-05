@@ -9,11 +9,11 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.SPI;
-
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class SwerveChassis {
+public class SwerveChassis extends SubsystemBase{
     // Declaring modules FR = Front Right
     private SwerveModule m_ModuleFR = new SwerveModule(Constants.FRONT_RIGHT_SPEED_MOTOR_ID, Constants.FRONT_RIGHT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_FR_ID);
     private SwerveModule m_ModuleFL = new SwerveModule(Constants.FRONT_LEFT_SPEED_MOTOR_ID, Constants.FRONT_LEFT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_FL_ID);

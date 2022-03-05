@@ -103,7 +103,7 @@ public class OI
     m_leftClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_moveLeftClimb);
     m_leftClimbBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLeftClimb);
     m_rightClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_moveRightClimb);
-    m_rightClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_stopRightClimb);
+    m_rightClimbBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopRightClimb);
 
     m_toggleClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleClimb);
 

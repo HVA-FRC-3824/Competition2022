@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -31,7 +32,7 @@ public class RobotContainer
   public static final Climb m_climb = new Climb();
   public static final Intake m_intake = new Intake();
   public static final Launcher m_launcher = new Launcher();
-  // public static final SwerveChassis m_swerve = new SwerveChassis();
+  // public static final SwerveChassis m_swerveChassis = new SwerveChassis();
 
   public static final Limelight m_limelight = Limelight.getInstance();
   public static final LEDs m_LEDs = new LEDs();
@@ -94,7 +95,7 @@ public class RobotContainer
   public static void initializeDefaultCommands()
   {
     m_chassis.setDefaultCommand(m_inlineCommands.m_driveWithJoystick);
-    // m_swerve.setDefaultCommand(m_inlineCommands.m_swerve);
+    // m_swerveChassis.setDefaultCommand(m_inlineCommands.m_driveWithJoystick);
   }
 
   /**
@@ -247,7 +248,7 @@ public class RobotContainer
      * Reset/zero the TalonFX's sensor. Will be required for implementation into
      * chassis (position considered), but not launcher (velocity only).
      */
-    // talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
   }
 
   /**

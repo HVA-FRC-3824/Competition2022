@@ -13,21 +13,20 @@ public class Constants
   ██       ██████  ██   ██    ██        ██ ██████  ███████ 
   */
 
-  public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 13; //0
-  public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 12; //1
+  public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 2; //0
+  public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 3; //1
 
   public static final int FRONT_LEFT_ANGLE_MOTOR_ID                       = 15; //2
-  public static final int FRONT_LEFT_SPEED_MOTOR_ID                       = 14; //3
+  public static final int FRONT_LEFT_SPEED_MOTOR_ID                       = 12; //3
 
-  public static final int BACK_LEFT_ANGLE_MOTOR_ID                        = 8; //4
-  public static final int BACK_LEFT_SPEED_MOTOR_ID                        = 9; //5
+  public static final int BACK_LEFT_ANGLE_MOTOR_ID                        = 14; //4
+  public static final int BACK_LEFT_SPEED_MOTOR_ID                        = 13; //5
 
-  public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 10; //6
-  public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 11; //7
+  public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 0; //6
+  public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 1; //7
 
   public static final int INTAKE_MOTOR_ID                                 = 20;
 
-  public static final int LAUNCHER_HOOD_ID                                = 0;
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
   public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
@@ -115,8 +114,9 @@ public class Constants
   public static final int LAUNCHER_INDEX_D                                = 0;  
   public static final int LAUNCHER_INDEX_F                                = 0;  
 
-  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.5;
+  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.4;
   public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.8;
+  public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;

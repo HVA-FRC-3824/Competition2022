@@ -31,7 +31,7 @@ public class InlineCommands {
   
 
   /* Chassis */
-  public final Command m_driveWithJoystick;
+  // public final Command m_driveWithJoystick;
   public final Command m_turnToTarget;
 
   /* Climb */
@@ -57,7 +57,7 @@ public class InlineCommands {
   public final Command m_toggleLimelight;
 
   /* Swerve */
-  // public final Command m_driveWithJoystick;
+  public final Command m_driveWithJoystick;
   
   public InlineCommands()
   
@@ -98,18 +98,18 @@ public class InlineCommands {
 
     /* Intake */
     m_startIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0.35));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.35));
     m_stopIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakeFrontPower(0));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
     
     /* Launcher */
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0.85)).alongWith(new InstantCommand(()
-      -> RobotContainer.m_launcher.setAcceleratorRPM(0.5)));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0.85)).alongWith(new InstantCommand(()
+      -> RobotContainer.m_launcher.setAcceleratorPower(0.5)));
 
     m_stopLaunchSequence =
-      new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherRPM(0)).alongWith(new InstantCommand(() 
-      -> RobotContainer.m_launcher.setAcceleratorRPM(0))));
+      new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0)).alongWith(new InstantCommand(() 
+      -> RobotContainer.m_launcher.setAcceleratorPower(0))));
 
     m_startLaunchIndex = 
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.4));
@@ -133,6 +133,7 @@ public class InlineCommands {
 
     /* Swerve */
     // m_driveWithJoystick =
-      // new RunCommand(() -> RobotContainer.m_swerve.driveWithJoystick, RobotContainer.m_swerve);
+    //   new RunCommand(() -> RobotContainer.m_swerveChassis.driveWithJoystick(RobotContainer.m_OI.getDriverJoystick().getRawAxis(0), 
+    //                        RobotContainer.m_OI.getDriverJoystick().getRawAxis(1), RobotContainer.m_OI.getDriverJoystick().getRawAxis(4), true), RobotContainer.m_swerveChassis);
    }
 }

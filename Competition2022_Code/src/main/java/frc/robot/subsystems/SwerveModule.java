@@ -11,10 +11,11 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class SwerveModule {
+public class SwerveModule extends SubsystemBase{
     private WPI_TalonFX m_driveMotor;
     private WPI_TalonFX m_turnMotor;
 
@@ -62,7 +63,7 @@ public class SwerveModule {
         // Calculate turning motor output from turning PID Controller
         double turnOutput = m_turningPIDController.calculate(m_turnMotor.getSelectedSensorPosition(), state.angle.getRadians());
         double turnFeedforward = m_turnFeedforward.calculate(m_turningPIDController.getSetpoint().velocity);
-
+        
         m_driveMotor.setVoltage(driveOutput + driveFeedforward);
         m_turnMotor.setVoltage(turnOutput + turnFeedforward);
     }

@@ -11,6 +11,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 public class Chassis extends SubsystemBase
@@ -105,21 +106,6 @@ public class Chassis extends SubsystemBase
     RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
     this.setMotorPosition();
-    // frontRight[3] = AbsEncoder1.getAbsolutePosition();
-    // frontLeft[3] = AbsEncoder2.getAbsolutePosition();
-    // backRight[3] = AbsEncoder3.getAbsolutePosition();
-    // backLeft[3] = AbsEncoder4.getAbsolutePosition();
-
-    // frontRight[3] = AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // frontLeft[3] = AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // // backLeft[3] = AbsEncoder3.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // backRight[3] = AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-
-    // frontRight[4] = AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // frontLeft[4] = AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // // backLeft[3] = AbsEncoder3.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-    // backRight[4] = AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360;
-
     }
 
     /**
@@ -130,12 +116,10 @@ public class Chassis extends SubsystemBase
   {
 
     /* Update drivetrain information on SmartDashboard for testing. */
-    // this.displayDrivetrainInfo();
-
     SmartDashboard.putNumber("FR Angle Motor Pos in Rel Degrees", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
-    SmartDashboard.putNumber("FL Angle Motor Pos", m_angleMotorFrontLeft.getSelectedSensorPosition());
-    SmartDashboard.putNumber("BR Angle Motor Pos", m_angleMotorBackRight.getSelectedSensorPosition());
-    SmartDashboard.putNumber("BL Angle Motor Pos", m_angleMotorBackLeft.getSelectedSensorPosition());
+    SmartDashboard.putNumber("FL Angle Motor Pos in Rel Degrees", m_angleMotorFrontLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
+    SmartDashboard.putNumber("BR Angle Motor Pos in Rel Degrees", m_angleMotorBackRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
+    SmartDashboard.putNumber("BL Angle Motor Pos in Rel Degrees", m_angleMotorBackLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
 
     SmartDashboard.putNumber("Encoder FR Pos", AbsEncoderFR.getPosition());
     SmartDashboard.putNumber("Absolute Encoder FR Pos", AbsEncoderFR.getAbsolutePosition());
@@ -145,7 +129,6 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("Absolute Encoder BL Pos", AbsEncoderBL.getAbsolutePosition());
     SmartDashboard.putNumber("Encoder BR Pos", AbsEncoderBR.getPosition());
     SmartDashboard.putNumber("Abs Encoder BR Pos", AbsEncoderBR.getAbsolutePosition());
-
   }
 
   public WPI_TalonFX getMotorFR ()
@@ -277,7 +260,7 @@ public class Chassis extends SubsystemBase
 
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
   {
-    speedMotor.set(speed); //speed*0.75
+    speedMotor.set(speed * 0.65); //speed*0.75
 
     double setpoint = angle * (Constants.SWERVE_DRIVE_MAX_VOLTAGE * 1.5);
     
@@ -297,12 +280,28 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("Angle", angle);
   }
 
+  public void autoDrive(double power)
+  {
+    m_speedMotorBackLeft.set(ControlMode.PercentOutput, power);
+    m_speedMotorBackRight.set(ControlMode.PercentOutput, power);
+    m_speedMotorFrontLeft.set(ControlMode.PercentOutput, power);
+    m_speedMotorFrontRight.set(ControlMode.PercentOutput, power);
+  }
+
+  public void stopChassis()
+  {
+    m_speedMotorFrontRight.set(ControlMode.PercentOutput, 0.0);
+    m_speedMotorFrontLeft.set(ControlMode.PercentOutput, 0.0);
+    m_speedMotorBackRight.set(ControlMode.PercentOutput, 0.0);
+    m_speedMotorBackLeft.set(ControlMode.PercentOutput, 0.0);
+  }
+
   public void setMotorPosition()
   {
-    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
-    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
-    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
-    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    // m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    // m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    // m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
+    // m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
   }
   /**
    * Get heading of the robot (no domain).
