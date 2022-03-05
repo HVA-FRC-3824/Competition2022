@@ -124,11 +124,6 @@ public class Constants
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
 
-  /* Limelight */
-  public static final double ROBOT_ANGLE_THRESHOLD                        = 0.3;
-  public static final double ROBOT_TURN_OUTPUT                            = 0.2;
-
-
   
 
 

@@ -346,15 +346,6 @@ public class Chassis extends SubsystemBase
   {
     m_ahrs.setAngleAdjustment(heading);
   }
-
-  public void setMotorPosition()
-  {
-    m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
-    m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
-    m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
-    m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION/ 360);
-
-  }
   /**
    * Get the distance the left and right sides of the robot have driven with encoder feedback.
    * Convert position (units) to distance (meters).
