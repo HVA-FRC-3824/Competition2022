@@ -33,9 +33,9 @@ public class Constants
   public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
   public static final int ABS_ENCODER_FR_ID                               = 1;
-  public static final int ABS_ENCODER_FL_ID                               = 2;
+  public static final int ABS_ENCODER_FL_ID                               = 4;
   public static final int ABS_ENCODER_BL_ID                               = 3;
-  public static final int ABS_ENCODER_BR_ID                               = 4;
+  public static final int ABS_ENCODER_BR_ID                               = 2;
 
   public static final int CLIMB_LEFT_ID                                   = 18;
   public static final int CLIMB_RIGHT_ID                                  = 17;  
@@ -191,6 +191,8 @@ public class Constants
   public static final double K_MAX_VELOCITY                               = 3.0; // m/s
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
   public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
+
+  public static final int K_ABSOLUTE_ENCODER_UPR                          = 4096; //units per rotation
 
   /* Wheel Specs */
   public static final Translation2d BACK_LEFT_WHEEL_LOCATION              = new Translation2d(-12.5 , 10.75);

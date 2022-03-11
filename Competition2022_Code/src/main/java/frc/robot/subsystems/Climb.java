@@ -19,12 +19,12 @@ public class Climb {
         m_toggleExtend = 1;
 
         m_climbRight = new WPI_TalonFX(Constants.CLIMB_RIGHT_ID);
-        RobotContainer.configureTalonFX(m_climbRight, true, false, 0.0, 0.0, 0.0, 0.0);
+        RobotContainer.configureTalonFX(m_climbRight, true, false, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbRight.setNeutralMode(NeutralMode.Brake);
 
         m_climbLeft = new WPI_TalonFX(Constants.CLIMB_LEFT_ID);
-        RobotContainer.configureTalonFX(m_climbLeft, true, false, 0.0, 0.0, 0.0, 0.0);
+        RobotContainer.configureTalonFX(m_climbLeft, true, false, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbLeft.setNeutralMode(NeutralMode.Brake);
         

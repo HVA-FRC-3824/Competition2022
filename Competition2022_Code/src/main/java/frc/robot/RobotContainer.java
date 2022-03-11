@@ -5,8 +5,11 @@ import frc.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -211,15 +214,18 @@ public class RobotContainer
    * is not required. (PIDController with Gyro/Vision or ControlMode.Velocity will
    * be used instead).
    */
-  public static void configureTalonFX(WPI_TalonFX talonFX, boolean setInverted, boolean setSensorPhase, double kF,
+  public static void configureTalonFX(WPI_TalonFX talonFX, boolean setInverted, boolean setSensorPhase, boolean isAngleMotor, double kF,
       double kP, double kI, double kD) 
   {
+    if(!isAngleMotor)
+    {
     /* Factory default to reset TalonFX and prevent unexpected behavior. */
     talonFX.configFactoryDefault();
 
     /* Configure Sensor Source for Primary PID. */
     talonFX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.K_PID_LOOP_IDX,
-        Constants.K_TIMEOUT_MS);
+    Constants.K_TIMEOUT_MS);
+    }
 
     /* Configure TalonFX to drive forward when LED is green. */
     talonFX.setInverted(setInverted);
@@ -287,5 +293,11 @@ public class RobotContainer
   {
     /* (RPM * TPR Units/Revolution / 600 100ms/min) */
     return rpm * tpr / 600;
+  }
+
+  public static void setRemoteSensor (TalonFX motor, CANCoder sensor)
+  {
+    motor.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor0);
+    motor.configRemoteFeedbackFilter(sensor, 0);
   }
 }
