@@ -84,9 +84,9 @@ public class InlineCommands {
   
     /* Climb */
     m_moveLeftClimb =
-      new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(-0.5));
+      new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(-0.6));
     m_moveRightClimb =
-      new InstantCommand(() -> RobotContainer.m_climb.setRightClimbPower(-0.5));
+      new InstantCommand(() -> RobotContainer.m_climb.setRightClimbPower(-0.6));
 
     m_stopLeftClimb = 
       new InstantCommand(() -> this.m_moveLeftClimb.cancel()).andThen(new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(0)));
@@ -98,14 +98,14 @@ public class InlineCommands {
 
     /* Intake */
     m_startIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.35));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.4));
     m_stopIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
     
     /* Launcher */
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0.85)).alongWith(new InstantCommand(()
-      -> RobotContainer.m_launcher.setAcceleratorPower(0.5)));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0.8)).alongWith(new InstantCommand(()
+      -> RobotContainer.m_launcher.setAcceleratorPower(0.4)));
 
     m_stopLaunchSequence =
       new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0)).alongWith(new InstantCommand(() 

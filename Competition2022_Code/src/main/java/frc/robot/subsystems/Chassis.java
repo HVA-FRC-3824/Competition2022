@@ -260,7 +260,7 @@ public class Chassis extends SubsystemBase
 
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
   {
-    speedMotor.set(speed * 0.65); //speed*0.75
+    speedMotor.set(speed * 0.85); //speed*0.75
 
     double setpoint = angle * (Constants.SWERVE_DRIVE_MAX_VOLTAGE * 1.5);
     
@@ -286,14 +286,6 @@ public class Chassis extends SubsystemBase
     m_speedMotorBackRight.set(ControlMode.PercentOutput, power);
     m_speedMotorFrontLeft.set(ControlMode.PercentOutput, power);
     m_speedMotorFrontRight.set(ControlMode.PercentOutput, power);
-  }
-
-  public void stopChassis()
-  {
-    m_speedMotorFrontRight.set(ControlMode.PercentOutput, 0.0);
-    m_speedMotorFrontLeft.set(ControlMode.PercentOutput, 0.0);
-    m_speedMotorBackRight.set(ControlMode.PercentOutput, 0.0);
-    m_speedMotorBackLeft.set(ControlMode.PercentOutput, 0.0);
   }
 
   public void setMotorPosition()
