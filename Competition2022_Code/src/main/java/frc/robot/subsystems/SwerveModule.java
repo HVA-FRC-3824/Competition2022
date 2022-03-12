@@ -33,10 +33,10 @@ public class SwerveModule extends SubsystemBase{
             m_absoluteEncoder = new CANCoder(absoluteEncoderId);
 
             m_driveMotor = new WPI_TalonFX(driveMotorId);
-            RobotContainer.configureTalonFX(m_driveMotor, false, false, false, 0, 0, 0, 0);
+            RobotContainer.configureTalonFX(m_driveMotor, false, false, 0, 0, 0, 0);
 
             m_turnMotor = new WPI_TalonFX(turningMotorId);
-            RobotContainer.configureTalonFX(m_turnMotor, false, false, true, 0, 0, 0, 0);
+            RobotContainer.configureTalonFX(m_turnMotor, false, false, 0, 0, 0, 0);
 
             m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI); 
         }

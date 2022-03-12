@@ -45,6 +45,7 @@ public class InlineCommands {
 
   /* Intake */
   public final Command m_startIntake;
+  public final Command m_reverseIntake;
   public final Command m_stopIntake;
    
   /* Launch */
@@ -84,9 +85,9 @@ public class InlineCommands {
   
     /* Climb */
     m_moveLeftClimb =
-      new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(-0.6));
+      new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(-0.67));
     m_moveRightClimb =
-      new InstantCommand(() -> RobotContainer.m_climb.setRightClimbPower(-0.6));
+      new InstantCommand(() -> RobotContainer.m_climb.setRightClimbPower(-0.67));
 
     m_stopLeftClimb = 
       new InstantCommand(() -> this.m_moveLeftClimb.cancel()).andThen(new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(0)));
@@ -99,6 +100,8 @@ public class InlineCommands {
     /* Intake */
     m_startIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0.4));
+    m_reverseIntake =
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(-0.4)).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.4)));
     m_stopIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
     

@@ -114,6 +114,7 @@ public class RobotContainer
     m_autoChooser.setDefaultOption("DEFAULT COMMAND NAME HERE", "default");
     // m_autoChooser.addOption("TEST", "test");
     m_autoChooser.addOption("ONE BALL", "one_Ball");
+    m_autoChooser.addOption("ONE BALL RIGHT", "one_Ball_Right");
 
     /*
      * Display chooser on SmartDashboard for operators to select which autonomous
@@ -135,6 +136,8 @@ public class RobotContainer
         return null;
       case "one_Ball":
         return new AutonomousOneBall();
+      case "one_Ball_Right":
+        return new AutonomousRight();
       default:
         System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
         return null;
@@ -214,18 +217,18 @@ public class RobotContainer
    * is not required. (PIDController with Gyro/Vision or ControlMode.Velocity will
    * be used instead).
    */
-  public static void configureTalonFX(WPI_TalonFX talonFX, boolean setInverted, boolean setSensorPhase, boolean isAngleMotor, double kF,
+  public static void configureTalonFX(WPI_TalonFX talonFX, boolean setInverted, boolean setSensorPhase, double kF,
       double kP, double kI, double kD) 
   {
-    if(!isAngleMotor)
-    {
+    // if(!isAngleMotor)
+    // {
     /* Factory default to reset TalonFX and prevent unexpected behavior. */
     talonFX.configFactoryDefault();
 
     /* Configure Sensor Source for Primary PID. */
     talonFX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.K_PID_LOOP_IDX,
     Constants.K_TIMEOUT_MS);
-    }
+    // }
 
     /* Configure TalonFX to drive forward when LED is green. */
     talonFX.setInverted(setInverted);

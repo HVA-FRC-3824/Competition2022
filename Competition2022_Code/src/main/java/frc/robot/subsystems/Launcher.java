@@ -22,11 +22,11 @@ public class Launcher extends SubsystemBase
   public Launcher()
   {
     m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_LAUNCH_ID);
-    RobotContainer.configureTalonFX(m_launcherLaunch, false, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P,
+    RobotContainer.configureTalonFX(m_launcherLaunch, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P,
                                     Constants.LAUNCHER_LAUNCH_I, Constants.LAUNCHER_LAUNCH_D);
     
     m_launcherAccelerate = new WPI_TalonFX(Constants.LAUNCHER_ACCELERATE_ID);
-    RobotContainer.configureTalonFX(m_launcherAccelerate, false, false, false, Constants.LAUNCHER_ACCELERATE_F, Constants.LAUNCHER_ACCELERATE_P,
+    RobotContainer.configureTalonFX(m_launcherAccelerate, false, false, Constants.LAUNCHER_ACCELERATE_F, Constants.LAUNCHER_ACCELERATE_P,
                                     Constants.LAUNCHER_ACCELERATE_I, Constants.LAUNCHER_ACCELERATE_D);
 
 

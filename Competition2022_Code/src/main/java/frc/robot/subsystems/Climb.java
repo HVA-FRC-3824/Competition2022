@@ -11,20 +11,20 @@ public class Climb {
     
     private WPI_TalonFX m_climbRight;
     private WPI_TalonFX m_climbLeft;
-    private int m_toggleExtend;
+    private double m_toggleExtend;
 
 
     public Climb() 
     {
-        m_toggleExtend = 1;
+        m_toggleExtend = 1.12655;
 
         m_climbRight = new WPI_TalonFX(Constants.CLIMB_RIGHT_ID);
-        RobotContainer.configureTalonFX(m_climbRight, true, false, false, 0.0, 0.0, 0.0, 0.0);
+        RobotContainer.configureTalonFX(m_climbRight, true, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbRight.setNeutralMode(NeutralMode.Brake);
 
         m_climbLeft = new WPI_TalonFX(Constants.CLIMB_LEFT_ID);
-        RobotContainer.configureTalonFX(m_climbLeft, true, false, false, 0.0, 0.0, 0.0, 0.0);
+        RobotContainer.configureTalonFX(m_climbLeft, true, false, 0.0, 0.0, 0.0, 0.0);
         /* Set brake mode to prevent the robot from falling after the match ends. */
         m_climbLeft.setNeutralMode(NeutralMode.Brake);
         
@@ -56,13 +56,13 @@ public class Climb {
 
     public void toggleClimb()
     {
-        if(m_toggleExtend == 1)
+        if(m_toggleExtend == -1)
         {
-            m_toggleExtend = -1;
+            m_toggleExtend = 1.12;
         }
         else
         {
-            m_toggleExtend = 1;
+            m_toggleExtend = -1;
         }
     }
 

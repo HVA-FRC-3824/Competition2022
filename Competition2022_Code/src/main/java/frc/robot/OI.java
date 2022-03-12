@@ -24,6 +24,7 @@ public class OI
 
   /* Intake */
   private static JoystickButton m_startIntakeBtn;
+  // private static JoystickButton m_reverseIntakeBtn;
 
   /* Climb */
   public static JoystickButton m_leftClimbBtn;
@@ -62,6 +63,7 @@ public class OI
 
     /* Intake */
     m_startIntakeBtn                  = new JoystickButton(m_operatorJoystick, Constants.INTAKE_BTN_ID);
+    // m_reverseIntakeBtn                  = new JoystickButton(m_operatorJoystick, Constants.INTAKE_REVERSE_BTN_ID);
 
     /* Climb */
     m_leftClimbBtn  = new JoystickButton(m_operatorJoystick, Constants.LEFT_CLIMB_BTN_ID);
@@ -96,6 +98,8 @@ public class OI
 
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
+    // m_reverseIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_reverseIntake);
+    // m_reverseIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake.alongWith(RobotContainer.m_inlineCommands.m_stopLaunchIndex));
 
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
     m_indexLauncherBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchIndex);

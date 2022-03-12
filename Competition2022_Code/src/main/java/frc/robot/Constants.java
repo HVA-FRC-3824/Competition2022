@@ -114,8 +114,8 @@ public class Constants
   public static final int LAUNCHER_INDEX_D                                = 0;  
   public static final int LAUNCHER_INDEX_F                                = 0;  
 
-  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.4;
-  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.8;
+  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
+  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
   public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
  
   /* LEDS */
@@ -149,9 +149,9 @@ public class Constants
 
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int LAUNCHER_INDEX_BTN_ID                           = 1;
-  public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
-  public static final int INTAKE_BTN_ID                                   = 3;
+  public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
+  public static final int INTAKE_REVERSE_BTN_ID                           = 3;
+  public static final int INTAKE_BTN_ID                                   = 1;
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
