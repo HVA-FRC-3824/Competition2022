@@ -147,9 +147,10 @@ public class Chassis extends SubsystemBase
     return m_angleMotorBackRight;
   }
 
+  //(x1 joystick input movement, y1 joystick input movement, x2 joystick input turn)
   public void convertSwerveValues (double x1, double y1, double x2)
   {
-      //width and length
+      //width and length between center of wheels
       double w = 21.5;
       double l = 25;
       
@@ -157,7 +158,7 @@ public class Chassis extends SubsystemBase
       double wr;
       double lr;
 
-      // Input velocities and turn
+      //Input velocities and turn
       double vX = 0;
       double vY = 0;
       double turn = 0;
@@ -173,19 +174,25 @@ public class Chassis extends SubsystemBase
       if (Math.abs(x2) > 0.2) {turn = x2 *0.7;}    
 
       //similar triangle to chassis with radius 1 for turn vectors
+      //turn_angle gets the tan of length and width (in radians)
+      //wr and lr are the lenth and width ratios (wr,x,cos|lr,y,sin)
+      //ask trey, erik dum dont know
       double turn_angle = Math.atan2(l, w);
       wr = Math.cos(turn_angle);
       lr = Math.sin(turn_angle);
 
-      //input velocities deadzone
+      //input velocities deadzone, and inverts y input because control inputs numbers werid
       if (Math.abs(x1) > 0.15) {vX = x1;}
       if (Math.abs(y1) > 0.15) {vY = -y1;}
 
       //Swerve Gyro Difference Establishing
-      // double gyro_current = m_ahrs.getPitch();  
+      //double gyro_current = m_ahrs.getPitch();
+      //sets the gyro to 0  
       double gyro_current = m_ahrs.getYaw();
       //adjust strafe vector so that moving forward goes in the set direction and not towards where the robot is facing
+      //setting r = magnitude, square root of x^2 * y^2
       double r = Math.sqrt(vX * vX + vY * vY);
+      //strafe_angle is the angle in heading
       double strafe_angle = Math.atan2(vY, vX);
 
       strafe_angle += (gyro_current) / 360 * 2 * Math.PI;
