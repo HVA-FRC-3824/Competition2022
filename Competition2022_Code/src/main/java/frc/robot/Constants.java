@@ -29,7 +29,8 @@ public class Constants
 
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
-  public static final int LAUNCHER_INDEX_ID                               = 0;
+  public static final int LAUNCHER_INDEX_TOP_ID                           = 0;
+  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 100;
 
   public static final int ABS_ENCODER_FR_ID                               = 1;
   public static final int ABS_ENCODER_FL_ID                               = 4;
@@ -109,7 +110,8 @@ public class Constants
 
   public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
   public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
-  public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
+  public static final double AUTO_LAUNCHER_TARMAC_INDEX_TOP_POWER         = -0.4;
+  public static final double AUTO_LAUNCHER_TARMAC_INDEX_BOTTOM_POWER      = -0.4;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
@@ -148,6 +150,8 @@ public class Constants
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
+  public static final int TURN_TO_TARGET_BTN_ID                           = 2004;
+  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 213;
 
 
 
@@ -182,6 +186,9 @@ public class Constants
   public static final double K_MAX_VELOCITY                               = 3.0; // m/s
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
   public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
+  public static final double K_MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3.0; 
+ 
+
 
   public static final int K_ABSOLUTE_ENCODER_UPR                          = 4096; //units per rotation
 
@@ -205,9 +212,6 @@ public class Constants
           
                                                                             (double) K_ENCODER_TICKS_PER_REVOLUTION;
 
-
-  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER              = 0;
-  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER          = 0;
 
   /* Use robot characterization tool for these values. */
   public static final double K_STATIC_VOLT                                = 0.372; // volts
