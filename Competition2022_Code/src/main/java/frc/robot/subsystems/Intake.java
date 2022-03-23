@@ -33,7 +33,7 @@ public class Intake extends SubsystemBase
       return m_intake;
   }
 
-  public void setIntakeFrontPower(double power)
+  public void setIntakePower(double power)
   {
       m_intake.set(ControlMode.PercentOutput, power);
   }

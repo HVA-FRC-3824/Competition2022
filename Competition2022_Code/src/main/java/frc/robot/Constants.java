@@ -13,29 +13,28 @@ public class Constants
   ██       ██████  ██   ██    ██        ██ ██████  ███████ 
   */
 
-  public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 13; //0
-  public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 12; //1
+  public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 2; //0
+  public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 3; //1
 
   public static final int FRONT_LEFT_ANGLE_MOTOR_ID                       = 15; //2
-  public static final int FRONT_LEFT_SPEED_MOTOR_ID                       = 14; //3
+  public static final int FRONT_LEFT_SPEED_MOTOR_ID                       = 12; //3
 
-  public static final int BACK_LEFT_ANGLE_MOTOR_ID                        = 8; //4
-  public static final int BACK_LEFT_SPEED_MOTOR_ID                        = 9; //5
+  public static final int BACK_LEFT_ANGLE_MOTOR_ID                        = 14; //4
+  public static final int BACK_LEFT_SPEED_MOTOR_ID                        = 13; //5
 
-  public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 10; //6
-  public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 11; //7
+  public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 0; //6
+  public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 1; //7
 
   public static final int INTAKE_MOTOR_ID                                 = 0;
 
-  public static final int LAUNCHER_HOOD_ID                                = 0;
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
   public static final int LAUNCHER_INDEX_ID                               = 0;
 
-  public static final int ABS_ENCODER_1_ID                                = 1;
-  public static final int ABS_ENCODER_2_ID                                = 2;
-  public static final int ABS_ENCODER_3_ID                                = 3;
-  public static final int ABS_ENCODER_4_ID                                = 4;
+  public static final int ABS_ENCODER_FR_ID                               = 1;
+  public static final int ABS_ENCODER_FL_ID                               = 4;
+  public static final int ABS_ENCODER_BL_ID                               = 3;
+  public static final int ABS_ENCODER_BR_ID                               = 2;
 
 
 
@@ -93,35 +92,30 @@ public class Constants
 
 
   /* Launcher */
-  public static final int LAUNCHER_HOOD_P                                 = 0;  
-  public static final int LAUNCHER_HOOD_I                                 = 0;  
-  public static final int LAUNCHER_HOOD_D                                 = 0;  
-  public static final int LAUNCHER_HOOD_F                                 = 0;  
-
-  public static final int LAUNCHER_LAUNCH_P                               = 0;  
-  public static final int LAUNCHER_LAUNCH_I                               = 0;  
-  public static final int LAUNCHER_LAUNCH_D                               = 0;  
-  public static final int LAUNCHER_LAUNCH_F                               = 0;  
+  public static final double LAUNCHER_LAUNCH_P                            = 0;  
+  public static final double LAUNCHER_LAUNCH_I                            = 0.01;  
+  public static final double LAUNCHER_LAUNCH_D                            = 0.0001;  
+  public static final double LAUNCHER_LAUNCH_F                            = 0;  
   
-  public static final int LAUNCHER_ACCELERATE_P                           = 0;  
-  public static final int LAUNCHER_ACCELERATE_I                           = 0;  
-  public static final int LAUNCHER_ACCELERATE_D                           = 0;  
-  public static final int LAUNCHER_ACCELERATE_F                           = 0;  
+  public static final double LAUNCHER_ACCELERATE_P                        = 0;  
+  public static final double LAUNCHER_ACCELERATE_I                        = 0.01;  
+  public static final double LAUNCHER_ACCELERATE_D                        = 0.0001;  
+  public static final double LAUNCHER_ACCELERATE_F                        = 0;  
 
-  public static final int LAUNCHER_INDEX_P                                = 0;  
-  public static final int LAUNCHER_INDEX_I                                = 0;  
-  public static final int LAUNCHER_INDEX_D                                = 0;  
-  public static final int LAUNCHER_INDEX_F                                = 0;  
+  public static final double LAUNCHER_INDEX_P                             = 0;  
+  public static final double LAUNCHER_INDEX_I                             = 0.1;  
+  public static final double LAUNCHER_INDEX_D                             = 0.001;  
+  public static final double LAUNCHER_INDEX_F                             = 0;  
 
-  public static final int LAUNCHER_AUTO_TARMAC_ACCELERATE_RPM             = 0;
-  public static final int LAUNCHER_AUTO_TARMAC_LAUNCH_RPM                 = 0;
+  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
+  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
+  public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
-
 
   
 
@@ -148,9 +142,9 @@ public class Constants
 
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int LAUNCHER_INDEX__BTN_ID                          = 1;
-  public static final int LAUNCHER_ACCELERATE_BTN_ID                      = 5;
-  public static final int INTAKE_BTN_ID                                   = 3;
+  public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
+  public static final int INTAKE_REVERSE_BTN_ID                           = 3;
+  public static final int INTAKE_BTN_ID                                   = 1;
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
@@ -185,6 +179,12 @@ public class Constants
   public static final double SWERVE_GEAR_RATIO                            = 0.0833333; //wheel spins per angle motor spin    
   public static final double SWERVE_TPR                                   = 2048 / SWERVE_GEAR_RATIO; //motors ticks per revolution of wheel
 
+  public static final double K_MAX_VELOCITY                               = 3.0; // m/s
+  public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
+  public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
+
+  public static final int K_ABSOLUTE_ENCODER_UPR                          = 4096; //units per rotation
+
   /* Wheel Specs */
   public static final Translation2d BACK_LEFT_WHEEL_LOCATION              = new Translation2d(-12.5 , 10.75);
   public static final Translation2d BACK_RIGHT_WHEEL_LOCATION             = new Translation2d(-12.5 , -10.75);
@@ -195,8 +195,6 @@ public class Constants
   public static final double SWERVE_DRIVE_WHEEL_AXLE_WIDTH                = 48;
   public static final double SWERVE_DRIVE_WHEEL_AXLE_DIAGONAL             = 60;
   public static final double K_WHEEL_DIAMETER_METERS                      = 0.1524;
-
-  public static final double K_MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3.0;
 
   public static final boolean K_GYRO_REVERSED                             = true;
 
