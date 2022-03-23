@@ -39,6 +39,12 @@ public class Launcher extends SubsystemBase
     RobotContainer.configureTalonSRX(m_launcherIndexTop, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
                                     Constants.INTAKE_F, Constants.INTAKE_P,
                                     Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
+
+    SmartDashboard.putNumber("Launch Motor Pos", m_launcherLaunch.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Accel Motor Pos", m_launcherAccelerate.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Index Bot Motor Pos", m_launcherIndexBottom.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Index Top Motor Pos", m_launcherIndexTop.getSelectedSensorPosition());
+
  }
 
  public void setLauncherPower(double power)
