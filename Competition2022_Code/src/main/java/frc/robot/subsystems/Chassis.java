@@ -15,11 +15,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
-public class Chassis extends SubsystemBase
-{
- /**
-   * Declaring objects for the drivetrain
-   */
+public class Chassis extends SubsystemBase{
+  //Declaring objects for the drivetrain
 
   private AHRS m_ahrs;
 
@@ -50,8 +47,7 @@ public class Chassis extends SubsystemBase
    * Declaring objects for autonomous path following.
    */
 
-    public Chassis()
-    {
+    public Chassis(){
     /**
      * Instantiating drivetrain objects
      */
@@ -59,11 +55,9 @@ public class Chassis extends SubsystemBase
      /**
      * Try to instantiate the navx gyro with exception catch
      */
-    try 
-    {
+    try{
       m_ahrs = new AHRS(SPI.Port.kMXP);
-    } catch (RuntimeException ex) 
-    {
+    }catch (RuntimeException ex){
       System.out.println("\nError instantiating navX-MXP:\n" + ex.getMessage() + "\n");
     }
 
@@ -79,29 +73,25 @@ public class Chassis extends SubsystemBase
     // this.zeroHeading();
 
     m_angleMotorFrontRight = new WPI_TalonFX(Constants.FRONT_RIGHT_ANGLE_MOTOR_ID);
-    RobotContainer.configureTalonFX(m_angleMotorFrontRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, 
-    Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D);
+    RobotContainer.configureTalonFX(m_angleMotorFrontRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D);
 
     m_speedMotorFrontRight = new WPI_TalonFX(Constants.FRONT_RIGHT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorFrontRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
     m_angleMotorFrontLeft = new WPI_TalonFX(Constants.FRONT_LEFT_ANGLE_MOTOR_ID);
-    RobotContainer.configureTalonFX(m_angleMotorFrontLeft, false, false, 0.0, Constants.K_CHASSIS_LEFT_ANGLE_P, 
-    Constants.K_CHASSIS_LEFT_ANGLE_I, Constants.K_CHASSIS_LEFT_ANGLE_D);
+    RobotContainer.configureTalonFX(m_angleMotorFrontLeft, false, false, 0.0, Constants.K_CHASSIS_LEFT_ANGLE_P, Constants.K_CHASSIS_LEFT_ANGLE_I, Constants.K_CHASSIS_LEFT_ANGLE_D);
 
     m_speedMotorFrontLeft = new WPI_TalonFX(Constants.FRONT_LEFT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorFrontLeft, false, false, 0.0, 0.0, 0.0, 0.0);
     
     m_angleMotorBackLeft = new WPI_TalonFX(Constants.BACK_LEFT_ANGLE_MOTOR_ID);
-    RobotContainer.configureTalonFX(m_angleMotorBackLeft, false, false, 0.0, Constants.K_CHASSIS_LEFT_ANGLE_P, 
-    Constants.K_CHASSIS_LEFT_ANGLE_I, Constants.K_CHASSIS_LEFT_ANGLE_D);
+    RobotContainer.configureTalonFX(m_angleMotorBackLeft, false, false, 0.0, Constants.K_CHASSIS_LEFT_ANGLE_P, Constants.K_CHASSIS_LEFT_ANGLE_I, Constants.K_CHASSIS_LEFT_ANGLE_D);
 
     m_speedMotorBackLeft = new WPI_TalonFX(Constants.BACK_LEFT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorBackLeft, false, false, 0.0, 0.0, 0.0, 0.0);
 
     m_angleMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_ANGLE_MOTOR_ID);
-    RobotContainer.configureTalonFX(m_angleMotorBackRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, 
-    Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D);
+    RobotContainer.configureTalonFX(m_angleMotorBackRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D);
 
     m_speedMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_SPEED_MOTOR_ID);
     RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
@@ -111,10 +101,9 @@ public class Chassis extends SubsystemBase
    * This method will be called once per scheduler run.
    */
   @Override
-  public void periodic()
-  {
+  public void periodic(){
 
-    /* Update drivetrain information on SmartDashboard for testing. */
+    // Update drivetrain information on SmartDashboard for testing.
     SmartDashboard.putNumber("FR Angle Motor Pos in Rel Degrees", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
     SmartDashboard.putNumber("FL Angle Motor Pos in Rel Degrees", m_angleMotorFrontLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
     SmartDashboard.putNumber("BR Angle Motor Pos in Rel Degrees", m_angleMotorBackRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
@@ -130,26 +119,21 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("Abs Encoder BR Pos", AbsEncoderBR.getAbsolutePosition());
   }
 
-  public WPI_TalonFX getMotorFR ()
-  {
+  public WPI_TalonFX getMotorFR (){
     return m_angleMotorFrontRight;
   }
-  public WPI_TalonFX getMotorFL ()
-  {
+  public WPI_TalonFX getMotorFL (){
     return m_angleMotorFrontLeft;
   }
-  public WPI_TalonFX getMotorBL ()
-  {
+  public WPI_TalonFX getMotorBL (){
     return m_angleMotorBackLeft;
   }
-  public WPI_TalonFX getMotorBR ()
-  {
+  public WPI_TalonFX getMotorBR (){
     return m_angleMotorBackRight;
   }
 
   //(x1 joystick input movement, y1 joystick input movement, x2 joystick input turn)
-  public void convertSwerveValues (double x1, double y1, double x2)
-  {
+  public void convertSwerveValues (double x1, double y1, double x2){
       //width and length between center of wheels
       double w = 21.5;
       double l = 25;
@@ -170,37 +154,46 @@ public class Chassis extends SubsystemBase
       double d;
 
 
-      //setting deadzone
-      if (Math.abs(x2) > 0.2) {turn = x2 *0.7;}    
+      //setting deadzone, also setting turn equal to the raw imput
+      if (Math.abs(x2) > 0.2){
+        turn = x2 *0.7;}    
 
       //similar triangle to chassis with radius 1 for turn vectors
       //turn_angle gets the tan of length and width (in radians)
       //wr and lr are the lenth and width ratios (wr,x,cos|lr,y,sin)
-      //ask trey, erik dum dont know
+      //radius proportional to the length/width of the circle
       double turn_angle = Math.atan2(l, w);
       wr = Math.cos(turn_angle);
       lr = Math.sin(turn_angle);
 
       //input velocities deadzone, and inverts y input because control inputs numbers werid
-      if (Math.abs(x1) > 0.15) {vX = x1;}
-      if (Math.abs(y1) > 0.15) {vY = -y1;}
+      if (Math.abs(x1) > 0.15){
+        vX = x1;}
+      if (Math.abs(y1) > 0.15){
+        vY = -y1;}
 
       //Swerve Gyro Difference Establishing
       //double gyro_current = m_ahrs.getPitch();
       //sets the gyro to 0  
       double gyro_current = m_ahrs.getYaw();
       //adjust strafe vector so that moving forward goes in the set direction and not towards where the robot is facing
-      //setting r = magnitude, square root of x^2 * y^2
+      //setting (input) r = magnitude, square root of x^2 * y^2
       double r = Math.sqrt(vX * vX + vY * vY);
-      //strafe_angle is the angle in heading
+      //strafe_angle is the angle of heading
       double strafe_angle = Math.atan2(vY, vX);
 
+
+      //setting strafe_angle to active heading by adding gyro current converted to radians to the strafe_angle
       strafe_angle += (gyro_current) / 360 * 2 * Math.PI;
+      //setting vX (x velocity) = to where you want to head times the cos of where you are currently heading (you get the overall magnitude of where you want to go)
       vX = r * Math.cos(strafe_angle);
       vY = r * Math.sin(strafe_angle);
 
 
       //simplification for adding strafe and turn vectors for each wheel
+      //used later to ajust for each individual wheel
+      //b front wheels, c left wheels, a back wheels, d right wheels
+      //a & b x vectors, c & d y vectors
       a = vX - turn * lr;
       b = vX + turn * lr;
       c = vY - turn * wr;
@@ -208,6 +201,7 @@ public class Chassis extends SubsystemBase
 
       //X and Y velocities for each wheel (not sent to wheels)
       //[vx, vy, speed, angle, last angle, offset];
+      //[0] = .5, [1]=0
       frontRight[0] = b;
       frontRight[1] = c;
       frontLeft[0] = b;
@@ -217,66 +211,76 @@ public class Chassis extends SubsystemBase
       backRight[0] = a;
       backRight[1] = c;
 
-      // finding speed of each wheel based off their x and y velocities
+      //finding and setting speed of each wheel based off their x and y velocities
       frontRight[2] = Math.sqrt(Math.abs(b * b + c * c));
       frontLeft[2] = Math.sqrt(Math.abs(b * b + d * d));
       backLeft[2] = Math.sqrt(Math.abs(a * a + d * d));
       backRight[2] = Math.sqrt(Math.abs(a * a + c * c));
 
       //adjust for exceeding max speed of wheels
+      //setting them all to the same speed, and making not go over 100%
       double highestSpeed = Math.max(Math.max(Math.max(frontRight[2], frontLeft[2]), backLeft[2]), backRight[2]);
-      if (highestSpeed > 1) {
+      if (highestSpeed > 1){
           frontRight[2] = frontRight[2] / highestSpeed;
           frontLeft[2] = frontLeft[2] / highestSpeed;
           backLeft[2] = backLeft[2] / highestSpeed;
           backRight[2] = backRight[2] / highestSpeed;
       }
 
-      // Update last angle
+      //Update last angle
+      //saves current angle as previous angle for offeset creation
       frontRight[4] = frontRight[3];
       frontLeft[4] = frontLeft[3];
       backLeft[4] = backLeft[3];
       backRight[4] = backRight[3];
 
-      // Set new angles
-      if (!(vX == 0 && vY == 0 && turn == 0)) {
-          // Find angle of each wheel based on velocities
-          frontRight[3] = Math.atan2(c, b) - Math.PI / 2;
-          frontLeft[3] = Math.atan2(d, b) - Math.PI / 2;
-          backLeft[3] = Math.atan2(d, a) - Math.PI / 2;
-          backRight[3] = Math.atan2(c, a) - Math.PI / 2;
+      //Set new angles
+      if (!(vX == 0 && vY == 0 && turn == 0)){
+        // Find angle of each wheel based on velocities
+        frontRight[3] = Math.atan2(c, b) - Math.PI / 2;
+        frontLeft[3] = Math.atan2(d, b) - Math.PI / 2;
+        backLeft[3] = Math.atan2(d, a) - Math.PI / 2;
+        backRight[3] = Math.atan2(c, a) - Math.PI / 2;
       }
 
       //when a wheel moves more than PI in one direction, offset so it goes the other way around
-      if (Math.abs(frontRight[4] - frontRight[3]) > Math.PI && frontRight[4] < frontRight[3]) {frontRight[5] -= 2 * Math.PI;}
-      if (Math.abs(frontRight[4] - frontRight[3]) > Math.PI && frontRight[4] > frontRight[3]) {frontRight[5] += 2 * Math.PI;}
-      if (Math.abs(frontLeft[4] - frontLeft[3]) > Math.PI && frontLeft[4] < frontLeft[3]) {frontLeft[5] -= 2 * Math.PI;}
-      if (Math.abs(frontLeft[4] - frontLeft[3]) > Math.PI && frontLeft[4] > frontLeft[3]) {frontLeft[5] += 2 * Math.PI;}
+      if (Math.abs(frontRight[4] - frontRight[3]) > Math.PI && frontRight[4] < frontRight[3]){
+        frontRight[5] -= 2 * Math.PI;}
+      if (Math.abs(frontRight[4] - frontRight[3]) > Math.PI && frontRight[4] > frontRight[3]){
+        frontRight[5] += 2 * Math.PI;}
+      if (Math.abs(frontLeft[4] - frontLeft[3]) > Math.PI && frontLeft[4] < frontLeft[3]){
+        frontLeft[5] -= 2 * Math.PI;}
+      if (Math.abs(frontLeft[4] - frontLeft[3]) > Math.PI && frontLeft[4] > frontLeft[3]){
+        frontLeft[5] += 2 * Math.PI;}
 
-      if (Math.abs(backLeft[4] - backLeft[3]) > Math.PI && backLeft[4] < backLeft[3]) {backLeft[5] -= 2 * Math.PI;}
-      if (Math.abs(backLeft[4] - backLeft[3]) > Math.PI && backLeft[4] > backLeft[3]) {backLeft[5] += 2 * Math.PI;}
-      if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] < backRight[3]) {backRight[5] -= 2 * Math.PI;}
-      if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] > backRight[3]) {backRight[5] += 2 * Math.PI;}
+      if (Math.abs(backLeft[4] - backLeft[3]) > Math.PI && backLeft[4] < backLeft[3]){
+        backLeft[5] -= 2 * Math.PI;}
+      if (Math.abs(backLeft[4] - backLeft[3]) > Math.PI && backLeft[4] > backLeft[3]){
+        backLeft[5] += 2 * Math.PI;}
+      if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] < backRight[3]){
+        backRight[5] -= 2 * Math.PI;}
+      if (Math.abs(backRight[4] - backRight[3]) > Math.PI && backRight[4] > backRight[3]){
+        backRight[5] += 2 * Math.PI;}
 
+      //angle variable math is percentage circle
       drive(m_speedMotorFrontRight, m_angleMotorFrontRight, -frontRight[2], -(frontRight[3] + frontRight[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorFrontLeft, m_angleMotorFrontLeft, frontLeft[2], -(frontLeft[3] + frontLeft[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackLeft, m_angleMotorBackLeft, backLeft[2], -(backLeft[3] + backLeft[5])  / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
       drive(m_speedMotorBackRight, m_angleMotorBackRight, backRight[2], -(backRight[3] + backRight[5]) / (Math.PI * 2) * Constants.WHEEL_MOTOR_TICKS_PER_REVOLUTION);
     }
 
-  public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
-  {
+
+  //setpoint stuff doesn't do anything| anglemotor setting + printing values
+  public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle){
     speedMotor.set(speed * 0.8); //speed*0.85
 
     double setpoint = angle * (Constants.SWERVE_DRIVE_MAX_VOLTAGE * 1.5);
     
-    if (setpoint < 0) 
-    {
+    if (setpoint < 0){
       setpoint += Constants.SWERVE_DRIVE_MAX_VOLTAGE;
     }
 
-    if (setpoint > Constants.SWERVE_DRIVE_MAX_VOLTAGE)
-    {
+    if (setpoint > Constants.SWERVE_DRIVE_MAX_VOLTAGE){
       setpoint -= setpoint;
     }
 
@@ -286,46 +290,41 @@ public class Chassis extends SubsystemBase
     SmartDashboard.putNumber("Angle", angle);
   }
 
-  public void autoDrive(double power)
-  {
+  //Not used: work in progress 3/24
+  public void autoDrive(double power){
     m_speedMotorBackLeft.set(ControlMode.PercentOutput, power);
     m_speedMotorBackRight.set(ControlMode.PercentOutput, power);
     m_speedMotorFrontLeft.set(ControlMode.PercentOutput, power);
     m_speedMotorFrontRight.set(ControlMode.PercentOutput, power);
   }
 
-  public void setMotorPosition()
-  {
+  //Not used: work in progress 3/24
+  public void setMotorPosition(){
     // m_angleMotorFrontRight.setSelectedSensorPosition(AbsEncoderFR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
     // m_angleMotorFrontLeft.setSelectedSensorPosition(AbsEncoderFL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
     // m_angleMotorBackLeft.setSelectedSensorPosition(AbsEncoderBL.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
     // m_angleMotorBackRight.setSelectedSensorPosition(AbsEncoderBR.getAbsolutePosition() * Constants.K_ENCODER_TICKS_PER_REVOLUTION / 360, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
   }
+
   /**
    * Get heading of the robot (no domain).
    * @return the angle of the gyro in degrees.
    */
-  public double getAngle()
-  {
+  public double getAngle(){
     return m_ahrs.getAngle();
   }
 
-  /**
-   * Reset gyro to zero the heading of the robot.
-   */
-  public void zeroHeading()
-  {
+  //Reset gyro to zero the heading of the robot.
+  public void zeroHeading(){
     m_ahrs.reset();
     m_ahrs.setAngleAdjustment(0.0);
   }
 
-  /**
-   * Set gyro to a certain heading.
-   */
-  public void setHeading(double heading)
-  {
+  //Set gyro to a certain heading.
+  public void setHeading(double heading){
     m_ahrs.setAngleAdjustment(heading);
   }
+
   /**
    * Get the distance the left and right sides of the robot have driven with encoder feedback.
    * Convert position (units) to distance (meters).
