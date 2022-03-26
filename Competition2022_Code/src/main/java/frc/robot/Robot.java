@@ -86,9 +86,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic()
   {
-    SmartDashboard.putNumber("Limelight X", RobotContainer.m_limelight.getTargetOffsetX());
-    SmartDashboard.putNumber("Limelight Y", RobotContainer.m_limelight.getTargetOffsetY());
-    SmartDashboard.putNumber("Limelight Area", RobotContainer.m_limelight.getTargetArea());
+    // SmartDashboard.putNumber("Limelight X", RobotContainer.m_limelight.getTargetOffsetX());
+    // SmartDashboard.putNumber("Limelight Y", RobotContainer.m_limelight.getTargetOffsetY());
+    // SmartDashboard.putNumber("Limelight Area", RobotContainer.m_limelight.getTargetArea());
+
+    SmartDashboard.putNumber("Launch Current Vel", RobotContainer.m_launcher.getLaunchVel());
+    SmartDashboard.putNumber("Accel Current Vel", RobotContainer.m_launcher.getAcceleratorVel());
   }
 
   /** This function is called once when the robot is disabled. */

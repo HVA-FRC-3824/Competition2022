@@ -25,12 +25,15 @@ public class Constants
   public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 0; //6
   public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 1; //7
 
-  public static final int INTAKE_MOTOR_ID                                 = 0;
+  public static final int CLIMB_LEFT_ID                                   = 18;
+  public static final int CLIMB_RIGHT_ID                                  = 17;   
+
+  public static final int INTAKE_MOTOR_ID                                 = 20;
 
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
   public static final int LAUNCHER_ACCELERATE_ID                          = 6;
-  public static final int LAUNCHER_INDEX_TOP_ID                           = 0;
-  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 100;
+  public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
+  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
   public static final int ABS_ENCODER_FR_ID                               = 1;
   public static final int ABS_ENCODER_FL_ID                               = 4;
@@ -57,9 +60,9 @@ public class Constants
 
 
   /* Climber */
-  public static final int CLIMB_LEFT_ID                                   = 18;
-  public static final int CLIMB_RIGHT_ID                                  = 17;   
 
+
+  public static final double CLIMB_POWER                               = -0.67;
 
   /* Chassis */
   public static final double CHASSIS_MAX_POWER                            = 0.7;
@@ -89,7 +92,8 @@ public class Constants
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
-  public static final int AUTO_INTAKE_WHEEL_POWER                         = 3000;
+  public static final double INTAKE_WHEEL_POWER                           = 0.5;
+  public static final int AUTO_INTAKE_WHEEL_POS                           = 3000;
 
 
   /* Launcher */
@@ -111,6 +115,9 @@ public class Constants
   public static final double LAUNCHER_LAUNCH_POWER                        = 0.7;
   public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
   public static final double LAUNCHER_INDEX_POWER                         = -0.5;
+
+  public static final int LAUNCHER_LAUNCH_RPM                             = 4100; //3750
+  public static final int LAUNCHER_ACCEL_RPM                              = 3300; //3500
 
   public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
   public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
@@ -180,6 +187,7 @@ public class Constants
   public static final int K_PID_LOOP_IDX                                  = 0;
   public static final int K_SLOT_IDX                                      = 0;
   public static final int K_TIMEOUT_MS                                    = 30;
+  public static final int TALON_FX_TPR                                    = 2048; //motor ticks per revolution for Talon FX (no gear)
 
   /* Swerve */
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;

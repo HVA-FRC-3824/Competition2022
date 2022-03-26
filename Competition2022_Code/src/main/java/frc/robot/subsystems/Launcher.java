@@ -40,11 +40,24 @@ public class Launcher extends SubsystemBase
                                     Constants.INTAKE_F, Constants.INTAKE_P,
                                     Constants.INTAKE_I, Constants.INTAKE_D, 0, 0, false);
 
-    SmartDashboard.putNumber("Launch Motor Pos", m_launcherLaunch.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Accel Motor Pos", m_launcherAccelerate.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Index Bot Motor Pos", m_launcherIndexBottom.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Index Top Motor Pos", m_launcherIndexTop.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Launch Motor Pos", m_launcherLaunch.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Accel Motor Pos", m_launcherAccelerate.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Index Bot Motor Pos", m_launcherIndexBottom.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Index Top Motor Pos", m_launcherIndexTop.getSelectedSensorPosition());
 
+
+
+
+ }
+
+ public double getLaunchVel()
+ {
+   return m_launcherLaunch.getSelectedSensorVelocity();
+ }
+
+ public double getAcceleratorVel()
+ {
+   return m_launcherAccelerate.getSelectedSensorVelocity();
  }
 
  public void setLauncherPower(double power)
@@ -57,6 +70,18 @@ public class Launcher extends SubsystemBase
  {
    m_launcherAccelerate.set(ControlMode.PercentOutput, power);
    SmartDashboard.putNumber("Accelerate", power);
+ }
+
+ public void setLauncherVelocity(int rpm)
+ {
+   m_launcherLaunch.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
+   SmartDashboard.putNumber("Launch Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
+ }
+
+ public void setAcceleratorVelocity(int rpm)
+ {
+   m_launcherAccelerate.set(ControlMode.Velocity,  RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
+   SmartDashboard.putNumber("Accelerator Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
  }
 
  public void setIndexSpeed(double power)
