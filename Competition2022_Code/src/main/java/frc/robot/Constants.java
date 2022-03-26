@@ -93,25 +93,28 @@ public class Constants
 
 
   /* Launcher */
-  public static final double LAUNCHER_LAUNCH_P                            = 0;  
-  public static final double LAUNCHER_LAUNCH_I                            = 0.01;  
-  public static final double LAUNCHER_LAUNCH_D                            = 0.0001;  
+  public static final double LAUNCHER_LAUNCH_P                            = 0.01;  
+  public static final double LAUNCHER_LAUNCH_I                            = 0.0001;  
+  public static final double LAUNCHER_LAUNCH_D                            = 0;  
   public static final double LAUNCHER_LAUNCH_F                            = 0;  
   
-  public static final double LAUNCHER_ACCELERATE_P                        = 0;  
-  public static final double LAUNCHER_ACCELERATE_I                        = 0.01;  
-  public static final double LAUNCHER_ACCELERATE_D                        = 0.0001;  
+  public static final double LAUNCHER_ACCELERATE_P                        = 0.01;  
+  public static final double LAUNCHER_ACCELERATE_I                        = 0.0001;  
+  public static final double LAUNCHER_ACCELERATE_D                        = 0;  
   public static final double LAUNCHER_ACCELERATE_F                        = 0;  
 
-  public static final double LAUNCHER_INDEX_P                             = 0;  
-  public static final double LAUNCHER_INDEX_I                             = 0.1;  
-  public static final double LAUNCHER_INDEX_D                             = 0.001;  
+  public static final double LAUNCHER_INDEX_P                             = 0.01;  
+  public static final double LAUNCHER_INDEX_I                             = 0.0001;  
+  public static final double LAUNCHER_INDEX_D                             = 0;  
   public static final double LAUNCHER_INDEX_F                             = 0;  
+
+  public static final double LAUNCHER_LAUNCH_POWER                        = 0.7;
+  public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
+  public static final double LAUNCHER_INDEX_POWER                         = -0.5;
 
   public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
   public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
-  public static final double AUTO_LAUNCHER_TARMAC_INDEX_TOP_POWER         = -0.4;
-  public static final double AUTO_LAUNCHER_TARMAC_INDEX_BOTTOM_POWER      = -0.4;
+  public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
  
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;

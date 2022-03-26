@@ -23,7 +23,7 @@ public class AutonomousRight extends SequentialCommandGroup {
 
         //start launcher and index
         new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER, Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)).alongWith(
-                                 new WaitCommand(0.8)).andThen(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.4))),
+                                 new WaitCommand(0.8)).andThen(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(Constants.AUTO_LAUNCHER_TARMAC_INDEX_POWER))),
 
         //wait for launch
         new WaitCommand(1),

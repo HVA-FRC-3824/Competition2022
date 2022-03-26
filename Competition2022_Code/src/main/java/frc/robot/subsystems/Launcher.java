@@ -70,5 +70,10 @@ public class Launcher extends SubsystemBase
     this.setLauncherPower(launchPower);
     this.setAcceleratorPower(acceleratePower);
  }
+
+ public void setLaunchPosition (int pos)
+ {
+    m_launcherLaunch.set(ControlMode.Position, pos);
+ }
  
 }

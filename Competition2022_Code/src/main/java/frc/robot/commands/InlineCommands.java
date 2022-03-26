@@ -59,6 +59,12 @@ public class InlineCommands {
 
   /* Swerve */
   public final Command m_driveWithJoystick;
+
+  /* Testing */
+  public final Command m_launcherSetPos;
+  // public final Command m_accelSetPos;
+  // public final Command m_indexTopSetPos;
+  // public final Command m_indexBottomSetPos;
   
   public InlineCommands()
   
@@ -107,8 +113,8 @@ public class InlineCommands {
     
     /* Launcher */
     m_startLaunchSequence = 
-      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0.8)).alongWith(new InstantCommand(()
-      -> RobotContainer.m_launcher.setAcceleratorPower(0.4)));
+      new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0.7)).alongWith(new InstantCommand(()
+      -> RobotContainer.m_launcher.setAcceleratorPower(0.38)));
 
     m_stopLaunchSequence =
       new InstantCommand(() -> this.m_startLaunchSequence.cancel()).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setLauncherPower(0)).alongWith(new InstantCommand(() 
@@ -138,5 +144,9 @@ public class InlineCommands {
     // m_driveWithJoystick =
     //   new RunCommand(() -> RobotContainer.m_swerveChassis.driveWithJoystick(RobotContainer.m_OI.getDriverJoystick().getRawAxis(0), 
     //                        RobotContainer.m_OI.getDriverJoystick().getRawAxis(1), RobotContainer.m_OI.getDriverJoystick().getRawAxis(4), true), RobotContainer.m_swerveChassis);
+
+    /* Testing */
+    m_launcherSetPos =
+      new InstantCommand(() -> RobotContainer.m_launcher.setLaunchPosition(3000));
    }
 }
