@@ -92,6 +92,7 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Launch Current Vel", RobotContainer.m_launcher.getLaunchVel());
     SmartDashboard.putNumber("Accel Current Vel", RobotContainer.m_launcher.getAcceleratorVel());
+    SmartDashboard.putNumber("Intake Current Vel", RobotContainer.m_intake.getIntakeVel());
   }
 
   /** This function is called once when the robot is disabled. */

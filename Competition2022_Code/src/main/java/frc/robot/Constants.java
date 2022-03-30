@@ -87,12 +87,13 @@ public class Constants
 
 
   /* Intake */
-  public static final int INTAKE_P                                        = 0;
-  public static final int INTAKE_I                                        = 0;
+  public static final double INTAKE_P                                     = 0.4;
+  public static final double INTAKE_I                                     = 0;
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
-  public static final double INTAKE_WHEEL_POWER                           = 0.5;
+  public static final double INTAKE_WHEEL_POWER                           = 0.8;
+  public static final int INTAKE_WHEEL_RPM                                = 4000;
   public static final int AUTO_INTAKE_WHEEL_POS                           = 3000;
 
 
@@ -188,6 +189,7 @@ public class Constants
   public static final int K_SLOT_IDX                                      = 0;
   public static final int K_TIMEOUT_MS                                    = 30;
   public static final int TALON_FX_TPR                                    = 2048; //motor ticks per revolution for Talon FX (no gear)
+  public static final int INTAKE_TPR                                      = 4300;
 
   /* Swerve */
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
