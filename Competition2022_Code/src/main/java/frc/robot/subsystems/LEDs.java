@@ -13,7 +13,7 @@ public class LEDs extends SubsystemBase{
  //#region LED Indentities
 
     private static AddressableLED m_launcherLEDs; 
-    private static AddressableLEDBuffer m_LEDLength;
+    private static AddressableLEDBuffer m_LEDLength; 
 
     //launching LEDs
 

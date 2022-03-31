@@ -18,8 +18,18 @@ public class AutonomousOneBall extends SequentialCommandGroup{
     public AutonomousOneBall(){
         addCommands(
 
+        // //start launcher and index
+        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER, Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)).alongWith(
+                                 new WaitCommand(1)).andThen(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(-0.4))),
+
+        // //wait for launch
+        new WaitCommand(1),
+
+        // //stop launcher
+        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(0.0, 0.0)).alongWith(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(0.0))),
+
         //follow path off Tarmac
-        new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(-0.12, 0.4, 0.0)), //0.45
+        new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.12, 0.4, 0.0)), //0.45
 
         //wait for path following
         new WaitCommand(1.1),
