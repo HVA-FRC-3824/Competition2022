@@ -87,25 +87,25 @@ public class Constants
 
 
   /* Intake */
-  public static final double INTAKE_P                                     = 0.4;
-  public static final double INTAKE_I                                     = 0;
+  public static final double INTAKE_P                                     = 0.3; //0.4
+  public static final double INTAKE_I                                     = 0.00015; //0.0003
   public static final int INTAKE_D                                        = 0;
   public static final int INTAKE_F                                        = 0;
 
   public static final double INTAKE_WHEEL_POWER                           = 0.8;
-  public static final int INTAKE_WHEEL_RPM                                = 4000;
+  public static final int INTAKE_WHEEL_RPM                                = 2000;
   public static final int AUTO_INTAKE_WHEEL_POS                           = 3000;
 
 
   /* Launcher */
-  public static final double LAUNCHER_LAUNCH_P                            = 0.01;  
-  public static final double LAUNCHER_LAUNCH_I                            = 0.0001;  
-  public static final double LAUNCHER_LAUNCH_D                            = 0;  
+  public static final double LAUNCHER_LAUNCH_P                            = 0.008; //0.0085
+  public static final double LAUNCHER_LAUNCH_I                            = 0.000111;  //0.000115
+  public static final double LAUNCHER_LAUNCH_D                            = 0.000005;  
   public static final double LAUNCHER_LAUNCH_F                            = 0;  
   
-  public static final double LAUNCHER_ACCELERATE_P                        = 0.01;  
-  public static final double LAUNCHER_ACCELERATE_I                        = 0.0001;  
-  public static final double LAUNCHER_ACCELERATE_D                        = 0;  
+  public static final double LAUNCHER_ACCELERATE_P                        = 0.009;  //0.0105
+  public static final double LAUNCHER_ACCELERATE_I                        = 0.000108;  //0.000105
+  public static final double LAUNCHER_ACCELERATE_D                        = 0.000005;  
   public static final double LAUNCHER_ACCELERATE_F                        = 0;  
 
   public static final double LAUNCHER_INDEX_P                             = 0.01;  
@@ -117,7 +117,7 @@ public class Constants
   public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
   public static final double LAUNCHER_INDEX_POWER                         = -0.5;
 
-  public static final int LAUNCHER_LAUNCH_RPM                             = 4100; //3750
+  public static final int LAUNCHER_LAUNCH_RPM                             = 4400; //4100
   public static final int LAUNCHER_ACCEL_RPM                              = 3300; //3500
 
   public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45

@@ -50,4 +50,9 @@ public class Intake extends SubsystemBase
       return m_intake.getSelectedSensorVelocity();
   }
 
+  public double getIntakeTemp()
+  {
+      return m_intake.getTemperature();
+  }
+
 }

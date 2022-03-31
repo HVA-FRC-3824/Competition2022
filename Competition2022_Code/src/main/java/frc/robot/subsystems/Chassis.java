@@ -10,9 +10,8 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
-import com.ctre.phoenix.sensors.CANCoder;
+// import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 public class Chassis extends SubsystemBase{
@@ -32,10 +31,10 @@ public class Chassis extends SubsystemBase{
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
-  public CANCoder AbsEncoderFR;
-  public CANCoder AbsEncoderFL;
-  public CANCoder AbsEncoderBL;
-  public CANCoder AbsEncoderBR;
+  // public CANCoder AbsEncoderFR;
+  // public CANCoder AbsEncoderFL;
+  // public CANCoder AbsEncoderBL;
+  // public CANCoder AbsEncoderBR;
 
   //{VX, VY, Speed, Angle, Previous Angle, Offset}
   public double [] frontRight = {0, 0, 0, 0, 0, 0};
@@ -61,10 +60,10 @@ public class Chassis extends SubsystemBase{
       System.out.println("\nError instantiating navX-MXP:\n" + ex.getMessage() + "\n");
     }
 
-    AbsEncoderFR = new CANCoder(Constants.ABS_ENCODER_FR_ID);
-    AbsEncoderFL = new CANCoder(Constants.ABS_ENCODER_FL_ID);
-    AbsEncoderBL = new CANCoder(Constants.ABS_ENCODER_BL_ID);
-    AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
+    // AbsEncoderFR = new CANCoder(Constants.ABS_ENCODER_FR_ID);
+    // AbsEncoderFL = new CANCoder(Constants.ABS_ENCODER_FL_ID);
+    // AbsEncoderBL = new CANCoder(Constants.ABS_ENCODER_BL_ID);
+    // AbsEncoderBR = new CANCoder(Constants.ABS_ENCODER_BR_ID);
 
     /**
      * doubleious methods to call when chassis subsystem first starts up.
@@ -109,14 +108,14 @@ public class Chassis extends SubsystemBase{
     SmartDashboard.putNumber("BR Angle Motor Pos in Rel Degrees", m_angleMotorBackRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
     SmartDashboard.putNumber("BL Angle Motor Pos in Rel Degrees", m_angleMotorBackLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
 
-    SmartDashboard.putNumber("Encoder FR Pos", AbsEncoderFR.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder FR Pos", AbsEncoderFR.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder FL Pos", AbsEncoderFL.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder FL Pos", AbsEncoderFL.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder BL Pos", AbsEncoderBL.getPosition());
-    SmartDashboard.putNumber("Absolute Encoder BL Pos", AbsEncoderBL.getAbsolutePosition());
-    SmartDashboard.putNumber("Encoder BR Pos", AbsEncoderBR.getPosition());
-    SmartDashboard.putNumber("Abs Encoder BR Pos", AbsEncoderBR.getAbsolutePosition());
+    // SmartDashboard.putNumber("Encoder FR Pos", AbsEncoderFR.getPosition());
+    // SmartDashboard.putNumber("Absolute Encoder FR Pos", AbsEncoderFR.getAbsolutePosition());
+    // SmartDashboard.putNumber("Encoder FL Pos", AbsEncoderFL.getPosition());
+    // SmartDashboard.putNumber("Absolute Encoder FL Pos", AbsEncoderFL.getAbsolutePosition());
+    // SmartDashboard.putNumber("Encoder BL Pos", AbsEncoderBL.getPosition());
+    // SmartDashboard.putNumber("Absolute Encoder BL Pos", AbsEncoderBL.getAbsolutePosition());
+    // SmartDashboard.putNumber("Encoder BR Pos", AbsEncoderBR.getPosition());
+    // SmartDashboard.putNumber("Abs Encoder BR Pos", AbsEncoderBR.getAbsolutePosition());
   }
 
   public WPI_TalonFX getMotorFR (){

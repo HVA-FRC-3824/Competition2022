@@ -22,14 +22,14 @@ public class AutonomousRight extends SequentialCommandGroup {
         new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)),
 
         //start launcher and index
-        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER, Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)).alongWith(
+        new InstantCommand(() -> RobotContainer.m_launcher.setPresetPos(Constants.AUTO_LAUNCHER_TARMAC_LAUNCH_POWER, Constants.AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER)).alongWith(
                                  new WaitCommand(0.8)).andThen(new InstantCommand(() -> RobotContainer.m_launcher.setIndexSpeed(Constants.AUTO_LAUNCHER_TARMAC_INDEX_POWER))),
 
         //wait for launch
         new WaitCommand(1),
 
         //stop launcher
-        new InstantCommand(() -> RobotContainer.m_launcher.setPreset(0.0, 0.0))   
+        new InstantCommand(() -> RobotContainer.m_launcher.setPresetPos(0.0, 0.0))   
         );
     }
 }

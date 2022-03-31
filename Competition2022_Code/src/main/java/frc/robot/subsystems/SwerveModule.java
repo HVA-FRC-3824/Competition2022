@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.sensors.CANCoder;
+// import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -9,8 +9,6 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -19,7 +17,7 @@ public class SwerveModule extends SubsystemBase{
     private WPI_TalonFX m_driveMotor;
     private WPI_TalonFX m_turnMotor;
 
-    private CANCoder m_absoluteEncoder;
+    // private CANCoder m_absoluteEncoder;
 
     private PIDController m_drivePIDController = new PIDController(Constants.K_CHASSIS_TURN_P, Constants.K_CHASSIS_TURN_I, Constants.K_CHASSIS_TURN_D);
     private ProfiledPIDController m_turningPIDController = new ProfiledPIDController(Constants.K_CHASSIS_RIGHT_ANGLE_P, Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D, 
@@ -30,7 +28,7 @@ public class SwerveModule extends SubsystemBase{
 
     public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, int absoluteEncoderId)
         {
-            m_absoluteEncoder = new CANCoder(absoluteEncoderId);
+            // m_absoluteEncoder = new CANCoder(absoluteEncoderId);
 
             m_driveMotor = new WPI_TalonFX(driveMotorId);
             RobotContainer.configureTalonFX(m_driveMotor, false, false, 0, 0, 0, 0);

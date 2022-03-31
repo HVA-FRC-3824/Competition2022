@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -93,6 +92,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Launch Current Vel", RobotContainer.m_launcher.getLaunchVel());
     SmartDashboard.putNumber("Accel Current Vel", RobotContainer.m_launcher.getAcceleratorVel());
     SmartDashboard.putNumber("Intake Current Vel", RobotContainer.m_intake.getIntakeVel());
+    SmartDashboard.putNumber("Intake Temp", RobotContainer.m_intake.getIntakeTemp());    
   }
 
   /** This function is called once when the robot is disabled. */

@@ -1,11 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -104,8 +100,8 @@ public class InlineCommands {
 
     /* Intake */
     m_startIntake =
-      // new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(Constants.INTAKE_WHEEL_RPM));
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(Constants.INTAKE_WHEEL_POWER));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(Constants.INTAKE_WHEEL_RPM));
+      // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(Constants.INTAKE_WHEEL_POWER));
 
     m_stopIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));

@@ -1,17 +1,13 @@
 package frc.robot.subsystems;
 
-import javax.xml.xpath.XPathExpression;
-
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 
 public class SwerveChassis extends SubsystemBase{
     // Declaring modules FR = Front Right

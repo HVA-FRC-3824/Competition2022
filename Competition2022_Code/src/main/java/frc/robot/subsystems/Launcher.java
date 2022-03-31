@@ -90,10 +90,16 @@ public class Launcher extends SubsystemBase
    m_launcherIndexBottom.set(ControlMode.PercentOutput, -power);
  }
 
- public void setPreset(double launchPower, double acceleratePower)
+ public void setPresetPos(double launchPower, double acceleratePower)
  {
     this.setLauncherPower(launchPower);
     this.setAcceleratorPower(acceleratePower);
+ }
+
+ public void setPresetVel(int launchRPM, int accelRPM)
+ {
+    this.setLauncherVelocity(launchRPM);
+    this.setAcceleratorVelocity(accelRPM);
  }
 
  public void setLaunchPosition (int pos)

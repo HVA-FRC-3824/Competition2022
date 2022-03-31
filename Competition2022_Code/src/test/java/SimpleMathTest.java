@@ -1,6 +1,4 @@
-import static org.junit.Assert.*;
-
-import java.io.Console;
+import static org.junit.Assert.assertEquals;
 
 import frc.robot.SimpleMath;
 import org.junit.*;
