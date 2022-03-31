@@ -101,7 +101,11 @@ public class InlineCommands {
     /* Intake */
     m_startIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(Constants.INTAKE_WHEEL_RPM));
+<<<<<<< HEAD
       // new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(Constants.INTAKE_WHEEL_POWER));
+=======
+      //new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(Constants.INTAKE_WHEEL_POWER));
+>>>>>>> master
 
     m_stopIntake =
       new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
