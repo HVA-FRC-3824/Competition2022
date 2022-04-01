@@ -33,26 +33,13 @@ public class RobotContainer
   public static final LEDs m_LEDs = new LEDs();
 
   /**
-   * Instantiate OI & inline commands.
-   * The OI class requires the inline commands class to be instantiated when binding 
-   * commands to joystick buttons. The inline commands class requires the OI class when
-   * retrieiving joystick values. To avoid null pointer exceptions, the OI class is
-   * instantiated first without binding commands to joystick buttons, but creating the
-   * joystick object. Then, the inline commands class is instantiated. Finally, in the
-   * RobotContainer constructor, the method in the OI class to bind commands to joystick
-   * buttons is called.
+   * Instantiate inline commands before OI because OI requires commands before binding to buttons
+   * Inline commands requires OI when retrieving joystick values. 
    */
   public static final InlineCommands m_inlineCommands = new InlineCommands();
   public static final OI m_OI = new OI();
   
-  /**
-   * Instantiation of other commands.
-   */
-
-  /**
-   * Instantiation of autonomous chooser.
-   * Allows operators to preselect which autonomous command to run during autonomous period.
-   */
+  /* Instantiate autonomous chooser for selection of auto mode before match starts */
   private final SendableChooser<String> m_autoChooser = new SendableChooser<>();
 
   /**
@@ -60,13 +47,13 @@ public class RobotContainer
    */
   public RobotContainer() 
   {
-    /* Bind commands to joystick buttons. */
+    /* Bind commands to joystick buttons */
     m_OI.configureButtonBindings();
 
     /* Initialize various systems on robotInit. */
     this.initializeStartup();
 
-    /* Initialize autonomous command chooser and display on the SmartDashboard. */
+    /* Initialize autonomous command chooser & display on the SmartDashboard. */
     this.initializeAutoChooser();
   }
 
@@ -84,8 +71,7 @@ public class RobotContainer
   /**
    * Set default command for subsystems. Default commands are commands that run
    * automatically whenever a subsystem is not being used by another command. If
-   * default command is set to null, there will be no default command for the
-   * subsystem.
+   * default command is set to null, there will be no default command for the subsystem.
    */
   public static void initializeDefaultCommands()
   {
@@ -94,30 +80,25 @@ public class RobotContainer
   }
 
   /**
-   * Set options for autonomous command chooser and display them for selection on
-   * the SmartDashboard. Using string chooser rather than command chooser because
-   * if using a command chooser, will instantiate all the autonomous commands.
-   * This may cause problems (e.g. initial trajectory position is from a different
-   * command's path).
+   * Set auto options & display them on SmartDashboard. 
+   * 
+   * Using string chooser rather than command chooser because if using a command chooser, 
+   * will instantiate all the autonomous commands. May cause mix ups between commands.
    */
   private void initializeAutoChooser()
   {
     /* Add options (which autonomous commands can be selected) to chooser. */
     m_autoChooser.setDefaultOption("DEFAULT COMMAND NAME HERE", "default");
-    // m_autoChooser.addOption("TEST", "test");
     m_autoChooser.addOption("ONE BALL", "one_Ball");
     m_autoChooser.addOption("ONE BALL RIGHT", "one_Ball_Right");
 
-    /*
-     * Display chooser on SmartDashboard for operators to select which autonomous
-     * command to run during the auto period.
-     */
+    /* Display chooser on SmartDashboard */
     SmartDashboard.putData("Autonomous Command", m_autoChooser);
   }
 
   /**
    * This method is used to pass the autonomous command to the main Robot class.
-   * 
+   * Add new case for new command path
    * @return the command to run during the autonomous period.
    */
   public Command getAutonomousCommand()
@@ -134,21 +115,19 @@ public class RobotContainer
         System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
         return null;
     }
-    
   }
 
   /**
    * Configures TalonSRX objects with passed in parameters.
-   * 
    * @param controlMode If true, configure with Motion Magic. If false, configure
    *                    without Motion Magic. (Motion Magic not required for
    *                    TalonSRXs that will set with ControlMode.Velocity).
    */
   public static void configureTalonSRX(WPI_TalonSRX talonSRX, boolean controlMode, FeedbackDevice feedbackDevice,
-      boolean setInverted, boolean setSensorPhase, double kF, double kP, double kI, double kD, int kCruiseVelocity,
-      int kAcceleration, boolean resetPos)
+    boolean setInverted, boolean setSensorPhase, double kF, double kP, double kI, double kD, int kCruiseVelocity,
+    int kAcceleration, boolean resetPos)
   {
-    /* Factory default to reset TalonSRX and prevent unexpected behavior. */
+    /* Reset TalonSRX to prevent unexpected behavior. */
     talonSRX.configFactoryDefault();
 
     /* Configure Sensor Source for Primary PID. */
@@ -163,19 +142,16 @@ public class RobotContainer
     // Determine if the internal PID is being used
     if (controlMode)
     {
-      /*
-       * Set relevant frame periods (Base_PIDF0 and MotionMagic) to periodic rate
-       * (10ms).
-       */
+      /* Set relevant frame periods (Base_PIDF0 and MotionMagic) to periodic rate (10ms). */
       talonSRX.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.K_TIMEOUT_MS);
       talonSRX.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.K_TIMEOUT_MS);
     }
 
     /**
-     * Configure the nominal and peak output forward/reverse.
+     * Configure nominal and peak output forward/reverse.
      * 
-     * Nominal Output: minimal/weakest motor output allowed during closed-loop. Peak
-     * Output: maximal/strongest motor output allowed during closed-loop.
+     * Nominal Output: minimum motor output allowed during closed-loop. 
+     * Peak Output: maximum motor output allowed during closed-loop.
      */
     talonSRX.configNominalOutputForward(0, Constants.K_TIMEOUT_MS);
     talonSRX.configNominalOutputReverse(0, Constants.K_TIMEOUT_MS);
@@ -197,42 +173,37 @@ public class RobotContainer
       talonSRX.configMotionAcceleration(kAcceleration, Constants.K_TIMEOUT_MS);
     }
 
-    /* Reset/zero the TalonSRX's sensor. */
-    if (resetPos)
-    {
+    /* Reset the TalonSRX's sensor. */
+    if (resetPos){
       talonSRX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
     }
   }
 
   /**
-   * Configures TalonFX (Falcon 500) objects with passed in parameters. Falcon
-   * 500s will be used for the chassis and launcher wheels only, thus Motion Magic
-   * is not required. (PIDController with Gyro/Vision or ControlMode.Velocity will
-   * be used instead).
+   * Configures TalonFX (Falcon 500) objects with passed in parameters. 
+   * Motion Magic not required for launch/chassis TalonFXs due to 
+   * having PIDController with Gyro/Vision or ControlMode.Velocity
    */
   public static void configureTalonFX(WPI_TalonFX talonFX, boolean setInverted, boolean setSensorPhase, double kF,
-      double kP, double kI, double kD) 
+    double kP, double kI, double kD) 
   {
-    // if(!isAngleMotor)
-    // {
     /* Factory default to reset TalonFX and prevent unexpected behavior. */
     talonFX.configFactoryDefault();
 
     /* Configure Sensor Source for Primary PID. */
-    talonFX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.K_PID_LOOP_IDX,
-    Constants.K_TIMEOUT_MS);
-    // }
+    talonFX.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
 
     /* Configure TalonFX to drive forward when LED is green. */
     talonFX.setInverted(setInverted);
+
     /* Configure TalonFX's sensor to increment its value as it moves forward. */
     talonFX.setSensorPhase(setSensorPhase);
     
     /**
      * Configure the nominal and peak output forward/reverse.
      * 
-     * Nominal Output: minimal/weakest motor output allowed during closed-loop. Peak
-     * Output: maximal/strongest motor output allowed during closed-loop.
+     * Nominal Output: minimum motor output allowed during closed-loop. 
+     * Peak Output: maximum motor output allowed during closed-loop.
      */
     talonFX.configNominalOutputForward(0, Constants.K_TIMEOUT_MS);
     talonFX.configNominalOutputReverse(0, Constants.K_TIMEOUT_MS);
@@ -247,7 +218,7 @@ public class RobotContainer
     talonFX.config_kD(Constants.K_SLOT_IDX, kD, Constants.K_TIMEOUT_MS);
 
     /**
-     * Reset/zero the TalonFX's sensor. Will be required for implementation into
+     * Reset the TalonFX's sensor. Will be required for implementation into
      * chassis (position considered), but not launcher (velocity only).
      */
     talonFX.setSelectedSensorPosition(0, Constants.K_PID_LOOP_IDX, Constants.K_TIMEOUT_MS);
@@ -287,13 +258,7 @@ public class RobotContainer
    */
   public static double convertRPMToVelocity(int rpm, int tpr)
   {
-    /* (RPM * TPR Units/Revolution / 600 100ms/min) */
+    /* (RPM * TPR Units/Revolution / 600 ms/min) */
     return rpm * tpr / 600;
-  }
-
-  public static void setRemoteSensor (TalonFX motor, CANCoder sensor)
-  {
-    motor.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor0);
-    motor.configRemoteFeedbackFilter(sensor, 0);
   }
 }
