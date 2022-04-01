@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+//TODO: Comment correctly
+
 public class SwerveChassis extends SubsystemBase{
     // Declaring modules FR = Front Right
     private SwerveModule m_ModuleFR = new SwerveModule(Constants.FRONT_RIGHT_SPEED_MOTOR_ID, Constants.FRONT_RIGHT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_FR_ID);

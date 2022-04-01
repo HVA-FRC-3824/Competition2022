@@ -26,5 +26,7 @@
     },
   ],
   "java.test.defaultConfig": "WPIlibUnitTests",
-  "wpilib.skipTests": true
+  "wpilib.skipTests": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }

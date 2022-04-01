@@ -7,63 +7,58 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnToTarget extends CommandBase
 {
-    private double m_turnOutput;
-    private double m_turnError;
+  private double m_turnOutput; //Value to give turn motors
+  private double m_turnError; //Offset
 
-    public TurnToTarget()
-    {
-        /**
-     * Require launcher to takeover all launcher input.
-     * This will allow this command to set the launcher angle and wheel speeds based on vision.
-     */
-        addRequirements(RobotContainer.m_chassis);
-    }
-
-    /**
-   * Called when the command is initially scheduled.
+  public TurnToTarget()
+  {
+  /**
+   * Require chassis to take over all chassi input.
+   * Allows command to set chassis angle based on vision.
    */
-    @Override
-    public void initialize()
-    {
-        m_turnOutput = 0.0;
-        m_turnError = 0.0;
+    addRequirements(RobotContainer.m_chassis);
+  }
 
-        RobotContainer.m_limelight.setModeVision();
-    }
+  /**
+ * Called when the command is initially scheduled.
+ */
+  @Override
+  public void initialize()
+  {
+    m_turnOutput = 0.0;
+    m_turnError = 0.0;
 
-    /**
-   * Called every time the scheduler runs while the command is scheduled.
-   */
-    @Override
-    public void execute()
-    {
-    /* Start by getting the position of the limelight vision */
+    RobotContainer.m_limelight.setModeVision();
+  }
+
+  /**
+  * Called every time the scheduler runs while the command is scheduled.
+  */
+  @Override
+  public void execute(){
+    //Get position of limelight vision
     m_turnError = RobotContainer.m_limelight.getTargetOffsetX();
 
-    /* Use limelight output to designate how to drive the motors*/
-    if (m_turnError >= Constants.CHASSIS_TURN_ERROR_THRESHOLD)
-    {
-        m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
+    //Use limelight output to designate adjust turn value
+    if (m_turnError >= Constants.CHASSIS_TURN_ERROR_THRESHOLD){
+      m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
     }
-    else if (m_turnError <= Constants.CHASSIS_TURN_ERROR_THRESHOLD)
-    {
-        m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
+    else if (m_turnError <= Constants.CHASSIS_TURN_ERROR_THRESHOLD){
+      m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
     }
-    else
-    {
-        m_turnOutput = 0.0;
+    else{
+      m_turnOutput = 0.0;
     }
 
-    /* Give the robot the turn value */
+    //Give robot turn value
     RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput);
-    }
+  }
 
-   /**
-   * Returns true when the command should end.
-   */
-    @Override
-    public boolean isFinished()
-    {
-        return false;
-    }
+  /**
+  * Returns true when the command should end.
+  */
+  @Override
+  public boolean isFinished(){
+    return false;
+  }
 }
