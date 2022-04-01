@@ -247,19 +247,7 @@ public class Chassis extends SubsystemBase
     //Set speed motor position
     speedMotor.set(speed * 0.8); //speed*0.85
 
-    //TODO: remove setpoint
-    //Setpoint stuff doesn't do anything | anglemotor set + print values
-    double setpoint = angle * (Constants.SWERVE_DRIVE_MAX_VOLTAGE * 1.5);
-    
-    if (setpoint < 0){
-      setpoint += Constants.SWERVE_DRIVE_MAX_VOLTAGE;
-    }
-
-    if (setpoint > Constants.SWERVE_DRIVE_MAX_VOLTAGE){
-      setpoint -= setpoint;
-    }
-
-    //Set angle motor position
+    //Set angle motor position + print values
     angleMotor.set(TalonFXControlMode.Position, angle); //0
 
     System.out.println("Speed" + speed);
@@ -295,4 +283,3 @@ public class Chassis extends SubsystemBase
     return Math.IEEEremainder(m_ahrs.getAngle(), 360) * (Constants.K_GYRO_REVERSED ? -1.0 : 1.0);
   }
 }
-

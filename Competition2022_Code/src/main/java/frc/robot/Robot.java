@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-
+public class Robot extends TimedRobot
+{
   private Command m_autonomousCommand;
   public static RobotContainer m_robotContainer;
 
@@ -45,7 +45,8 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  /**
+  //TODO: Maybe move this to robotcontainer
+  /**TIP:
    * This autonomous (along with the chooser code above) shows how to select between different
    * autonomous modes using the dashboard. The sendable chooser code works with the Java
    * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
@@ -67,18 +68,17 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() 
   {
-    // RobotContainer.m_swerve.updateOdometry();
+    // RobotContainer.m_swerveChassis.updateOdometry();
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() 
   {
-    // Cancels auto at start of teleop, initialize other commands, and set Limelight to Vision Mode
+    //Cancels auto at start of teleop, initialize teleop commands, & set Limelight to Vision Mode
     if (m_autonomousCommand != null) m_autonomousCommand.cancel();
     RobotContainer.initializeDefaultCommands();
     RobotContainer.m_limelight.setModeVision();
-
   }
 
   /** This function is called periodically during operator control. */

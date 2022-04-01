@@ -53,5 +53,4 @@ public class Intake extends SubsystemBase
   public double getIntakeTemp(){
     return m_intake.getTemperature();
   }
-
 }

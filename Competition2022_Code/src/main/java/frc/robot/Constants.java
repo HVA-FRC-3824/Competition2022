@@ -4,7 +4,6 @@ import edu.wpi.first.math.geometry.Translation2d;
 
 public class Constants
 {
-
   /*
   ██████   ██████  ██████  ████████     ██ ██████  ███████ 
   ██   ██ ██    ██ ██   ██    ██        ██ ██   ██ ██      
@@ -13,6 +12,7 @@ public class Constants
   ██       ██████  ██   ██    ██        ██ ██████  ███████ 
   */
 
+  /* Chassis */
   public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 2; //0
   public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 3; //1
 
@@ -24,45 +24,39 @@ public class Constants
 
   public static final int BACK_RIGHT_ANGLE_MOTOR_ID                       = 0; //6
   public static final int BACK_RIGHT_SPEED_MOTOR_ID                       = 1; //7
-
-  public static final int CLIMB_LEFT_ID                                   = 18;
-  public static final int CLIMB_RIGHT_ID                                  = 17;   
-
-  public static final int INTAKE_MOTOR_ID                                 = 20;
-
-  public static final int LAUNCHER_LAUNCH_ID                              = 5;
-  public static final int LAUNCHER_ACCEL_ID                               = 6;
-  public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
-  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
-
+  
   public static final int ABS_ENCODER_FR_ID                               = 1;
   public static final int ABS_ENCODER_FL_ID                               = 4;
   public static final int ABS_ENCODER_BL_ID                               = 3;
   public static final int ABS_ENCODER_BR_ID                               = 2;
 
+  /* Climber */
+  public static final int CLIMB_LEFT_ID                                   = 18;
+  public static final int CLIMB_RIGHT_ID                                  = 17;   
 
+  /* Intake */
+  public static final int INTAKE_MOTOR_ID                                 = 20;
+
+  /* Launch */
+  public static final int LAUNCHER_LAUNCH_ID                              = 5;
+  public static final int LAUNCHER_ACCEL_ID                               = 6;
+  public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
+  public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
   /*
-███████ ██    ██ ██████  ███████ ██    ██ ███████ ████████ ███████ ███    ███ 
-██      ██    ██ ██   ██ ██       ██  ██  ██         ██    ██      ████  ████ 
-███████ ██    ██ ██████  ███████   ████   ███████    ██    █████   ██ ████ ██ 
-     ██ ██    ██ ██   ██      ██    ██         ██    ██    ██      ██  ██  ██ 
-███████  ██████  ██████  ███████    ██    ███████    ██    ███████ ██      ██ 
-                                                                              
-                                                                              
-██    ██  █████  ██      ██    ██ ███████ ███████                             
-██    ██ ██   ██ ██      ██    ██ ██      ██                                  
-██    ██ ███████ ██      ██    ██ █████   ███████                             
- ██  ██  ██   ██ ██      ██    ██ ██           ██                             
-  ████   ██   ██ ███████  ██████  ███████ ███████ 
+  ███████ ██    ██ ██████  ███████ ██    ██ ███████ ████████ ███████ ███    ███ 
+  ██      ██    ██ ██   ██ ██       ██  ██  ██         ██    ██      ████  ████   
+  ███████ ██    ██ ██████  ███████   ████   ███████    ██    █████   ██ ████ ██ 
+       ██ ██    ██ ██   ██      ██    ██         ██    ██    ██      ██  ██  ██ 
+  ███████  ██████  ██████  ███████    ██    ███████    ██    ███████ ██      ██ 
+                                                                                
+                                                                                
+  ██    ██  █████  ██      ██    ██ ███████ ███████                             
+  ██    ██ ██   ██ ██      ██    ██ ██      ██                                  
+  ██    ██ ███████ ██      ██    ██ █████   ███████                             
+   ██  ██  ██   ██ ██      ██    ██ ██           ██                             
+    ████   ██   ██ ███████  ██████  ███████ ███████ 
   */
-
-
-
-  /* Climber */
-
-
-  public static final double CLIMB_POWER                               = -0.67;
 
   /* Chassis */
   public static final double CHASSIS_MAX_POWER                            = 0.7;
@@ -85,26 +79,18 @@ public class Constants
   public static final double K_CHASSIS_RIGHT_ANGLE_I                      = 0.0000185; //previous: 0.0002
   public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
 
+  /* Climber */
+  public static final double CLIMB_POWER                                  = -0.67;
 
   /* Intake */
-<<<<<<< HEAD
   public static final double INTAKE_P                                     = 0.3; //0.4
   public static final double INTAKE_I                                     = 0.00015; //0.0003
-=======
-  public static final double INTAKE_P                                     = 0.3; //0.3
-  public static final double INTAKE_I                                     = 0.00015; //0.00015
->>>>>>> master
-  public static final int INTAKE_D                                        = 0;
-  public static final int INTAKE_F                                        = 0;
+  public static final double INTAKE_D                                     = 0;
+  public static final double INTAKE_F                                     = 0;
 
   public static final double INTAKE_WHEEL_POWER                           = 0.8;
-<<<<<<< HEAD
-  public static final int INTAKE_WHEEL_RPM                                = 2000;
-=======
   public static final int INTAKE_WHEEL_RPM                                = 8000;
->>>>>>> master
   public static final int AUTO_INTAKE_WHEEL_POS                           = 3000;
-
 
   /* Launcher */
   public static final double LAUNCHER_LAUNCH_P                            = 0.008; //0.0085
@@ -128,18 +114,14 @@ public class Constants
 
   public static final int LAUNCHER_LAUNCH_RPM                             = 4400; //4100
   public static final int LAUNCHER_ACCEL_RPM                              = 3300; //3500
+  public static final int LAUNCHER_AUTO_RPM                               = 4800; //4400
 
-  public static final double AUTO_LAUNCHER_TARMAC_ACCELERATE_POWER        = 0.42; //0.45
-  public static final double AUTO_LAUNCHER_TARMAC_LAUNCH_POWER            = 0.9;
-  public static final double AUTO_LAUNCHER_TARMAC_INDEX_POWER             = -0.4;
- 
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
   public static final int LEDS_ID                                         = 0;
+  public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LEDS_LENGTH                                     = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
-  
-
 
   /*
        ██  ██████  ██    ██ ███████ ████████ ██  ██████ ██   ██ 
@@ -155,8 +137,6 @@ public class Constants
   ██████   ██████     ██       ██     ██████  ██   ████ ███████
   */
 
-
-
   /* Joysticks */
   public static final int DRIVER_JOYSTICK_PORT                            = 0;
   public static final int OPERATOR_JOYSTICK_PORT                          = 1;
@@ -164,7 +144,6 @@ public class Constants
   /* Buttons */
   public static final int LAUNCH_BTN_ID                                   = 6;
   public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
-  public static final int INTAKE_REVERSE_BTN_ID                           = 3;
   public static final int INTAKE_BTN_ID                                   = 1;
   public static final int LEFT_CLIMB_BTN_ID                               = 4;
   public static final int RIGHT_CLIMB_BTN_ID                              = 2;
@@ -174,12 +153,14 @@ public class Constants
 
 
 
+
   /*
   ███████ ██      ███████  ██████ ████████ ██████   ██████  ███    ██ ██  ██████ ███████ 
   ██      ██      ██      ██         ██    ██   ██ ██    ██ ████   ██ ██ ██      ██      
   █████   ██      █████   ██         ██    ██████  ██    ██ ██ ██  ██ ██ ██      ███████ 
   ██      ██      ██      ██         ██    ██   ██ ██    ██ ██  ██ ██ ██ ██           ██ 
-  ███████ ███████ ███████  ██████    ██    ██   ██  ██████  ██   ████ ██  ██████ ███████                                                                                         
+  ███████ ███████ ███████  ██████    ██    ██   ██  ██████  ██   ████ ██  ██████ ███████ 
+                                                                                        
                                                                                         
   ███████ ██████  ███████  ██████ ███████                                                
   ██      ██   ██ ██      ██      ██                                                     
@@ -195,7 +176,7 @@ public class Constants
   public static final int K_SLOT_IDX                                      = 0;
   public static final int K_TIMEOUT_MS                                    = 30;
   public static final int TALON_FX_TPR                                    = 2048; //motor ticks per revolution for Talon FX (no gear)
-  public static final int INTAKE_TPR                                      = 4200;
+  public static final int INTAKE_TPR                                      = 4200; //talonSRX + gearbox
 
   /* Swerve */
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
@@ -206,37 +187,29 @@ public class Constants
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
   public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
   public static final double K_MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3.0; 
-
+ 
   public static final int K_ABSOLUTE_ENCODER_UPR                          = 4096; //units per rotation
 
-  /* Wheel Specs */
+  /* Chassis Specs */
   public static final Translation2d BACK_LEFT_WHEEL_LOCATION              = new Translation2d(-12.5 , 10.75);
   public static final Translation2d BACK_RIGHT_WHEEL_LOCATION             = new Translation2d(-12.5 , -10.75);
   public static final Translation2d FRONT_LEFT_WHEEL_LOCATION             = new Translation2d(12.5 , 10.75);        
   public static final Translation2d FRONT_RIGHT_WHEEL_LOCATION            = new Translation2d(12.5 , -10.75);
 
+  public static final double K_WHEEL_DIAMETER_METERS                      = 0.1524;
   public static final double SWERVE_DRIVE_WHEEL_AXLE_LENGTH               = 36;
   public static final double SWERVE_DRIVE_WHEEL_AXLE_WIDTH                = 48;
   public static final double SWERVE_DRIVE_WHEEL_AXLE_DIAGONAL             = 60;
-  public static final double K_WHEEL_DIAMETER_METERS                      = 0.1524;
 
   public static final boolean K_GYRO_REVERSED                             = true;
 
   public static final double WHEEL_MOTOR_TICKS_PER_REVOLUTION             = 2048 * 12; //kSensorUnitsPerRotation / kGearRatio;
 
   public static final int K_ENCODER_TICKS_PER_REVOLUTION                  = 28300;
-  public static final double K_ENCODER_DISTANCE_PER_PULSE                 = (K_WHEEL_DIAMETER_METERS * Math.PI) / (double) K_ENCODER_TICKS_PER_REVOLUTION; //TODO: What does the (double) mean?
+  public static final double K_ENCODER_DISTANCE_PER_PULSE                 = (K_WHEEL_DIAMETER_METERS * Math.PI) / (double) K_ENCODER_TICKS_PER_REVOLUTION;
 
   /* Use robot characterization tool for these values. */
   public static final double K_STATIC_VOLT                                = 0.372; // volts
   public static final double K_VELOCITY_VOLT                              = 3.09; // volt seconds / meter
   public static final double K_ACCELERATION_VOLT                          = 0.154; // volt seconds ^2/meter
-  // public static final double K_P_DRIVE_VEL                                = 0.00425;
-  // public static final double K_TRACK_WIDTH_METERS                         = 0.774;
-
-  // public static final int K_MAX_VOLTAGE                                   = 10;   // Maximum voltage is 10V rather than nominal battery voltage 
-  //                                                                                 // of 12V for "headroom" in dealing with voltage sag." */
-
-  // public static final double K_RAMSETE_B                                  = 2;  //TODO check these out
-  // public static final double K_RAMSETE_ZETA                               = 0.7;
 }

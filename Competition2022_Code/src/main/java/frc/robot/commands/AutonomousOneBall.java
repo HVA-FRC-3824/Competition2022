@@ -1,7 +1,10 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+//import frc.robot.Robot;
 import frc.robot.RobotContainer;
+
+//import java.time.Instant;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -12,25 +15,33 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 */
 public class AutonomousOneBall extends SequentialCommandGroup{
   public AutonomousOneBall(){
-    addCommands(
-      //follow path off Tarmac
-      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.4, 0.0)), //0.45
+    addCommands
+    (
+      //Get launcher to target RPM
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.LAUNCHER_AUTO_RPM, Constants.LAUNCHER_ACCEL_RPM)),
 
-      //wait for path following
-      new WaitCommand(1.3), //1.1, didn't get far enough
+      //Follow path off tarmac
+      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.4, 0.0)),
 
-      //stop chassis
-      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)),
-          
-      //start launcher
-      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.LAUNCHER_LAUNCH_RPM, Constants.LAUNCHER_ACCEL_RPM)).alongWith(
-        new WaitCommand(2.05)).andThen(new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(Constants.AUTO_LAUNCHER_TARMAC_INDEX_POWER))),
+      //Wait for path to finish
+      new WaitCommand(1.4),
 
-      //stop launcher
+      //Stop chassis
+      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0, 0, 0)),
+
+      //Buffer time
+      new WaitCommand(2),
+
+      //Set index to target output
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(Constants.LAUNCHER_INDEX_POWER)),
+
+      new WaitCommand(1.3),
+
+      //Stop launcher
       new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(0, 0)),
 
-      //stop index
+      //Stop index
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(0.0))
-    );
+      );
   }
 }

@@ -21,12 +21,12 @@ public class Launcher extends SubsystemBase
 
   public Launcher()
   {
+    //Configure launch motors
     m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_LAUNCH_ID);
       RobotContainer.configureTalonFX(m_launcherLaunch, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P, Constants.LAUNCHER_LAUNCH_I, Constants.LAUNCHER_LAUNCH_D);
     
     m_launcherAccel = new WPI_TalonFX(Constants.LAUNCHER_ACCEL_ID);
-    RobotContainer.configureTalonFX(m_launcherAccel, false, false, Constants.LAUNCHER_ACCEL_F, Constants.LAUNCHER_ACCEL_P, Constants.LAUNCHER_ACCEL_I, Constants.LAUNCHER_ACCEL_D);
-
+      RobotContainer.configureTalonFX(m_launcherAccel, false, false, Constants.LAUNCHER_ACCEL_F, Constants.LAUNCHER_ACCEL_P, Constants.LAUNCHER_ACCEL_I, Constants.LAUNCHER_ACCEL_D);
 
     m_launcherIndexTop = new WPI_TalonSRX(Constants.LAUNCHER_INDEX_TOP_ID);
       RobotContainer.configureTalonSRX(m_launcherIndexTop, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, Constants.INTAKE_F, 
@@ -49,12 +49,10 @@ public class Launcher extends SubsystemBase
   public void setLauncherPower(double power)
   {
     m_launcherLaunch.set(ControlMode.PercentOutput, power);
-    SmartDashboard.putNumber("Launcher", power);
   }
   public void setAcceleratorPower(double power)
   {
     m_launcherAccel.set(ControlMode.PercentOutput, power);
-    SmartDashboard.putNumber("Accelerate", power);
   }
   public void setIndexPower(double power)
   {

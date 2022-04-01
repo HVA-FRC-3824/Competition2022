@@ -15,20 +15,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a "declarative" paradigm, very little robot logic should
- * actually be handled in the periodic methods (other than the scheduler calls).
- * Instead, the structure of the robot (including subsystems, commands, and
- * button mappings) should be declared here.
+ * Declare robot structure (subsystems, commands, button mapping) here.
+ * 
+ * Since Command-based is a "declarative" paradigm, very little robot logic should
+ * be handled in periodic methods (other than scheduler calls).
  */
 public class RobotContainer
 {
-  /**
-   * Instantiation of subsystems.
-   * Subsystems were not made to be private as recommended in the documentation because they are 
-   * practically being used in every class. Making them private would create the need 
-   * to pass in the subsystem to each individual class which is more work than just making them public.
-   */
+  /* Instantiate subsystems for global usage */
   public static final Chassis m_chassis = new Chassis();
   public static final Climb m_climb = new Climb();
   public static final Intake m_intake = new Intake();
@@ -39,7 +33,7 @@ public class RobotContainer
   public static final LEDs m_LEDs = new LEDs();
 
   /**
-   * Instantiation of OI and inline commands.
+   * Instantiate OI & inline commands.
    * The OI class requires the inline commands class to be instantiated when binding 
    * commands to joystick buttons. The inline commands class requires the OI class when
    * retrieiving joystick values. To avoid null pointer exceptions, the OI class is
@@ -83,7 +77,7 @@ public class RobotContainer
    */
   private void initializeStartup()
   {
-    /* Turn off Limelight LED when first started up so it doesn't blind drive team. */
+    /* Turn off Limelight LED when first started up */
     m_limelight.turnOffLED();
   }
 
@@ -131,7 +125,7 @@ public class RobotContainer
     switch (m_autoChooser.getSelected())
     {
       case "default":
-        return null;
+        return new AutonomousOneBall();
       case "one_Ball":
         return new AutonomousOneBall();
       case "one_Ball_Right":

@@ -3,11 +3,8 @@
 
 // import frc.robot.subsystems.Chassis;
 
-
-
 // public class SwerveTest {
 //     private Chassis m_chassis;
-    
 
 //     @Before
 //     public void setup()
@@ -18,7 +15,6 @@
 //     @After
 //     public void shutdown() throws Exception
 //     {
-
 //     }
 
 //     @Test
@@ -66,11 +62,9 @@
 //         System.out.println("Actual3: " + backRightAngle);
 //         System.out.println("Actual4: " + backLeftAngle);
 
-
 //         assertEquals(6144, frontRightAngle, 10.0);
 //         assertEquals(6144, frontLeftAngle, 10.0);
 //         assertEquals(6144, backRightAngle, 10.0);
 //         assertEquals(6144, backLeftAngle, 10.0);
 //     }
-
 // }
