@@ -24,7 +24,7 @@ public class AutonomousOneBall extends SequentialCommandGroup{
       new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.4, 0.0)),
 
       //Wait for path to finish
-      new WaitCommand(1.4),
+      new WaitCommand(2.25), //1.4
 
       //Stop chassis
       new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0, 0, 0.21)),

@@ -116,12 +116,13 @@ public class Constants
   public static final int LAUNCHER_ACCEL_RPM                              = 3300; //3500
   public static final int LAUNCHER_AUTO_RPM                               = 4800; //4400
 
-  /* LEDS */
-  public static final int TOTAL_LEDS                                      = 0;
+  /* LEDs */
+  public static final int TOTAL_LEDS_COUNT                                  = 0;
+  public static final int SWIRL_LEDS_COUNT                                = 0;
+  public static final int TOP_LEDS_COUNT                                  = 0;
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LEDS_LENGTH                                     = 0;
-  public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
 
   /*
        ██  ██████  ██    ██ ███████ ████████ ██  ██████ ██   ██ 

@@ -1,47 +1,87 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import javax.lang.model.util.ElementScanner6;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class LEDs extends SubsystemBase
 {
   //Declare LED objects
   private static AddressableLED m_launcherLEDs; 
-  private static AddressableLEDBuffer m_LEDBuffer;
+  private static AddressableLEDBuffer m_LEDLength;
 
-  //launching LEDs status
-  private boolean m_isLaunching = false; //have strobe lights going outward
+  // Defense mode variables
+  private boolean m_defenseLEDs = false; 
+  private boolean m_isDefending = false;
+  private int m_periodicIteration = 0;
 
-  //Defense LEDs status
-  // private boolean m_defenseLEDs = false; 
-  // private boolean m_isDefending = false;
+  //Index Indicator
+  private int m_cargoHeld = 0;
 
-  //Index LEDs
-  private boolean m_oneLoadedLEDs = false;
-  private boolean m_twoLoadedLEDs = false;
+  //Launching Sequence
+  private int m_launchFirstPixelHue;
+  private boolean m_isLaunching = false;
 
-  //Neutral LED color
-  private int m_neutralColor = 0;
+  //Neutral LED Sequence
+  private int m_neutralStepValue = 0; //Step G blue, B red, R purple
+  private int m_neutralPixelToChange = 0;
+  private boolean m_neutralChasingDirection = false; //default inwards; true outwards
+
+  private class color
+  {
+    public int H;
+    public int S;
+    public int V;
+
+    public color(int h, int s, int v)
+    {
+      int H = h;
+      int S = s;
+      int V = v;
+    }
+  }
 
   public LEDs()
   {
     m_launcherLEDs = new AddressableLED(Constants.LEDS_ID);
-    m_LEDBuffer = new AddressableLEDBuffer(Constants.LEDS_LENGTH);
-    m_launcherLEDs.setLength(m_LEDBuffer.getLength());
+    m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT);
+
+    m_launcherLEDs.setLength(m_LEDLength.getLength());
+
+    //Set output data & start LEDs
+    m_launcherLEDs.setData(m_LEDLength);
+    m_launcherLEDs.start();
   }
 
   /*
-  * Runs periodically
+  * This method will be called once per scheduler run
   */
   @Override
-  public void periodic(){
+  public void periodic()
+  {
     if(m_isLaunching){
-      this.strobeOutward();
-    } //I do not know what to put here since the github has defense
+      // this.windUp(true);
+    }
+    else if (m_periodicIteration >= 3 && m_isDefending)
+    {
+      // this.defenseMode();
+      m_periodicIteration = 0;
+    }
+    else if (m_isDefending == false){
+      this.neutral();
+    }
+
+    m_launcherLEDs.setData(m_LEDLength);
+    m_periodicIteration++;
   }
 
+  public void resetSequences(){
+    m_isLaunching = false;
+  }
   // public void defenseModeLEDs()
   // {
   //   if(m_defenseLEDs){
@@ -56,41 +96,95 @@ public class LEDs extends SubsystemBase
   //   }
   // }
 
-  public void resetSequences(){
-    m_isLaunching = false;}
-
-  public void strobeOutward()
+  private void neutral()
   {
-    for(int i = (Constants.LAUNCHER_NUM_OF_LEDS / 2); i >= 0; i--) // The reason for the total over 2 is because both sides are counting toward the total
-    {
-      if(i == m_neutralColor){
-        m_LEDBuffer.setHSV(i, 255, 0, 255);
-      }        
+    //Set swirl LEDs color
+    if (m_neutralChasingDirection){
+      this.chaseOutward();
     }
-    if(m_neutralColor > 0){
-      m_neutralColor--;}
-    else{
-      m_neutralColor = Constants.LAUNCHER_NUM_OF_LEDS;
+    else if (!m_neutralChasingDirection){
+      this.chaseInward();
+    }
+
+    //Set top LEDs color based on alliance
+    for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i += 3)
+    {
+      if (DriverStation.getAlliance() == DriverStation.Alliance.Blue){
+        m_LEDLength.setRGB(i, 0, 101, 180); //FRC blue
+      }
+      else if (DriverStation.getAlliance() == DriverStation.Alliance.Red){
+        m_LEDLength.setRGB(i, 236, 26, 35); //FRC red
+      }
+      else{
+        m_LEDLength.setRGB(i, 118, 63, 108); //neutral 
+      }
     }
   }
 
-  public void toggleableLauncherLEDS()
+  //Gradually change swirl colors in inward sequence
+  public void chaseInward()
   {
-    if(m_twoLoadedLEDs){
-      for(int i = 0; i < Constants.TOTAL_LEDS; i++){
-        m_LEDBuffer.setRGB(i, 0, 255, 0);}
-      m_twoLoadedLEDs = true;
+    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i += 2)
+    {
+      if (i == m_neutralPixelToChange){
+        m_LEDLength.setRGB(i, 0, m_neutralStepValue, 255); //dark to light blue
+        m_LEDLength.setRGB(i+1, 0, m_neutralStepValue + 10, 255); //dark to light blue
+      }
     }
-    else if(m_oneLoadedLEDs){
-      for(int i = 0; i < Constants.TOTAL_LEDS; i++){
-        m_LEDBuffer.setRGB(i, 255, 255, 0);}
-      m_oneLoadedLEDs = true;
+
+    if (m_neutralPixelToChange < 230){
+      m_neutralPixelToChange += 20;
     }
     else{
-      for(int i = 0; i < Constants.TOTAL_LEDS; i++){
-        m_LEDBuffer.setRGB(i, 0, 0, 0);}
+      m_neutralChasingDirection = true; //change to outwards
+      m_neutralStepValue = 255;
     }
-    for(var LED = 0; LED < m_LEDBuffer.getLength(); LED++){
-      m_LEDBuffer.setHSV(LED, 0, 0, 0);}
+  }
+
+  //Gradually change swirl colors in outward sequence
+  public void chaseOutward()
+  {
+    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i -= 2)
+    {
+      if (i == m_neutralPixelToChange){
+        m_LEDLength.setRGB(i, 0, m_neutralStepValue, 255); //dark to light blue
+        m_LEDLength.setRGB(i - 1, 0, m_neutralStepValue - 10, 255); //dark to light blue
+      }
+    }
+
+    if (m_neutralPixelToChange >= 20){
+      m_neutralPixelToChange -= 20;
+    }
+    else{
+      m_neutralChasingDirection = false; //change to outwards
+      m_neutralStepValue = 0;
+    }
+  }
+
+  //Change LED colors in rainbow for launch
+  private void windUp()
+  {
+    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i++)
+    {
+      final var hue = (m_launchFirstPixelHue + (i * 180 / Constants.SWIRL_LEDS_COUNT)) % 180;
+      m_LEDLength.setHSV(i, hue, 225, 225);
+      m_LEDLength.setHSV((Constants.TOTAL_LEDS_COUNT - 1) - i, hue, 255, 255);
+    }
+
+    // Set top LEDs based on # of cargo in robot
+    if (m_cargoHeld == 2)
+    {
+      for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i++)
+      {
+        m_LEDLength.setRGB(i, 0, 255, 0); //green
+      }
+    }
+    else if (m_cargoHeld == 1)
+    {
+      for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + (Constants.TOP_LEDS_COUNT /2); i++)
+      {
+        m_LEDLength.setRGB(i, 0, 255, 0); //green
+      }
+    }
   }
 }
