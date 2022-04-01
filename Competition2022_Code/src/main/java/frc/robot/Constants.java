@@ -31,7 +31,7 @@ public class Constants
   public static final int INTAKE_MOTOR_ID                                 = 20;
 
   public static final int LAUNCHER_LAUNCH_ID                              = 5;
-  public static final int LAUNCHER_ACCELERATE_ID                          = 6;
+  public static final int LAUNCHER_ACCEL_ID                               = 6;
   public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
   public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
 
@@ -112,10 +112,10 @@ public class Constants
   public static final double LAUNCHER_LAUNCH_D                            = 0.000005;  
   public static final double LAUNCHER_LAUNCH_F                            = 0;  
   
-  public static final double LAUNCHER_ACCELERATE_P                        = 0.009;  //0.0105
-  public static final double LAUNCHER_ACCELERATE_I                        = 0.000108;  //0.000105
-  public static final double LAUNCHER_ACCELERATE_D                        = 0.000005;  
-  public static final double LAUNCHER_ACCELERATE_F                        = 0;  
+  public static final double LAUNCHER_ACCEL_P                             = 0.009;  //0.0105
+  public static final double LAUNCHER_ACCEL_I                             = 0.000108;  //0.000105
+  public static final double LAUNCHER_ACCEL_D                             = 0.000005;  
+  public static final double LAUNCHER_ACCEL_F                             = 0;  
 
   public static final double LAUNCHER_INDEX_P                             = 0.01;  
   public static final double LAUNCHER_INDEX_I                             = 0.0001;  
@@ -136,9 +136,8 @@ public class Constants
   /* LEDS */
   public static final int TOTAL_LEDS                                      = 0;
   public static final int LEDS_ID                                         = 0;
-  public static final int LEDS_BUFFER_ID                                  = 0;
+  public static final int LEDS_LENGTH                                     = 0;
   public static final int LAUNCHER_NUM_OF_LEDS                            = 0;
-
   
 
 
@@ -175,14 +174,12 @@ public class Constants
 
 
 
-
   /*
   ███████ ██      ███████  ██████ ████████ ██████   ██████  ███    ██ ██  ██████ ███████ 
   ██      ██      ██      ██         ██    ██   ██ ██    ██ ████   ██ ██ ██      ██      
   █████   ██      █████   ██         ██    ██████  ██    ██ ██ ██  ██ ██ ██      ███████ 
   ██      ██      ██      ██         ██    ██   ██ ██    ██ ██  ██ ██ ██ ██           ██ 
-  ███████ ███████ ███████  ██████    ██    ██   ██  ██████  ██   ████ ██  ██████ ███████ 
-                                                                                        
+  ███████ ███████ ███████  ██████    ██    ██   ██  ██████  ██   ████ ██  ██████ ███████                                                                                         
                                                                                         
   ███████ ██████  ███████  ██████ ███████                                                
   ██      ██   ██ ██      ██      ██                                                     
@@ -209,8 +206,6 @@ public class Constants
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
   public static final double K_MODULE_MAX_ANGULAR_ACCELERATION            = 2 * Math.PI; //radians/sec^2
   public static final double K_MAX_ACCELERATION_METERS_PER_SECOND_SQUARED = 3.0; 
- 
-
 
   public static final int K_ABSOLUTE_ENCODER_UPR                          = 4096; //units per rotation
 
@@ -230,10 +225,7 @@ public class Constants
   public static final double WHEEL_MOTOR_TICKS_PER_REVOLUTION             = 2048 * 12; //kSensorUnitsPerRotation / kGearRatio;
 
   public static final int K_ENCODER_TICKS_PER_REVOLUTION                  = 28300;
-  public static final double K_ENCODER_DISTANCE_PER_PULSE                 = (K_WHEEL_DIAMETER_METERS * Math.PI) / 
-          
-                                                                            (double) K_ENCODER_TICKS_PER_REVOLUTION;
-
+  public static final double K_ENCODER_DISTANCE_PER_PULSE                 = (K_WHEEL_DIAMETER_METERS * Math.PI) / (double) K_ENCODER_TICKS_PER_REVOLUTION; //TODO: What does the (double) mean?
 
   /* Use robot characterization tool for these values. */
   public static final double K_STATIC_VOLT                                = 0.372; // volts
@@ -242,12 +234,9 @@ public class Constants
   // public static final double K_P_DRIVE_VEL                                = 0.00425;
   // public static final double K_TRACK_WIDTH_METERS                         = 0.774;
 
-
   // public static final int K_MAX_VOLTAGE                                   = 10;   // Maximum voltage is 10V rather than nominal battery voltage 
   //                                                                                 // of 12V for "headroom" in dealing with voltage sag." */
 
   // public static final double K_RAMSETE_B                                  = 2;  //TODO check these out
   // public static final double K_RAMSETE_ZETA                               = 0.7;
-
-
 }
