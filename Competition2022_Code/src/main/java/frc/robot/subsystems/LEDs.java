@@ -107,24 +107,24 @@ public class LEDs extends SubsystemBase
     }
 
     //Set top LEDs color based on alliance
-    for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i += 3)
-    {
-      if (DriverStation.getAlliance() == DriverStation.Alliance.Blue){
-        m_LEDLength.setRGB(i, 0, 101, 180); //FRC blue
-      }
-      else if (DriverStation.getAlliance() == DriverStation.Alliance.Red){
-        m_LEDLength.setRGB(i, 236, 26, 35); //FRC red
-      }
-      else{
-        m_LEDLength.setRGB(i, 118, 63, 108); //neutral 
-      }
-    }
+    // for (var i = Constants.TOTAL_LEDS_COUNT; i < Constants.TOTAL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i += 3)
+    // {
+    //   if (DriverStation.getAlliance() == DriverStation.Alliance.Blue){
+    //     m_LEDLength.setRGB(i, 0, 101, 180); //FRC blue
+    //   }
+    //   else if (DriverStation.getAlliance() == DriverStation.Alliance.Red){
+    //     m_LEDLength.setRGB(i, 236, 26, 35); //FRC red
+    //   }
+    //   else{
+    //     m_LEDLength.setRGB(i, 118, 63, 108); //neutral 
+    //   }
+    // }
   }
 
   //Gradually change swirl colors in inward sequence
   public void chaseInward()
   {
-    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i += 2)
+    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT; i += 2)
     {
       if (i == m_neutralPixelToChange){
         m_LEDLength.setRGB(i, 0, m_neutralStepValue, 255); //dark to light blue
@@ -144,7 +144,7 @@ public class LEDs extends SubsystemBase
   //Gradually change swirl colors in outward sequence
   public void chaseOutward()
   {
-    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i -= 2)
+    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT; i -= 2)
     {
       if (i == m_neutralPixelToChange){
         m_LEDLength.setRGB(i, 0, m_neutralStepValue, 255); //dark to light blue
@@ -164,27 +164,34 @@ public class LEDs extends SubsystemBase
   //Change LED colors in rainbow for launch
   private void windUp()
   {
-    for (var i = 0; i < Constants.SWIRL_LEDS_COUNT; i++)
+    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT/2; i++)
     {
-      final var hue = (m_launchFirstPixelHue + (i * 180 / Constants.SWIRL_LEDS_COUNT)) % 180;
+      final var hue = (m_launchFirstPixelHue + (i * 180 / (Constants.TOTAL_LEDS_COUNT/2))) % 180;
       m_LEDLength.setHSV(i, hue, 225, 225);
-      m_LEDLength.setHSV((Constants.TOTAL_LEDS_COUNT - 1) - i, hue, 255, 255);
+      m_LEDLength.setHSV((Constants.TOTAL_LEDS_COUNT/2 - 1) - i, hue, 255, 255);
+    }
+
+    for (var i = Constants.TOTAL_LEDS_COUNT/2 + 1; i < Constants.TOTAL_LEDS_COUNT/2; i++)
+    {
+      final var hue = (m_launchFirstPixelHue + (i * 180 / (Constants.TOTAL_LEDS_COUNT/2))) % 180;
+      m_LEDLength.setHSV(i, hue, 225, 225);
+      m_LEDLength.setHSV((Constants.TOTAL_LEDS_COUNT/2 - 1) - i, hue, 255, 255);
     }
 
     // Set top LEDs based on # of cargo in robot
-    if (m_cargoHeld == 2)
-    {
-      for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i++)
-      {
-        m_LEDLength.setRGB(i, 0, 255, 0); //green
-      }
-    }
-    else if (m_cargoHeld == 1)
-    {
-      for (var i = Constants.SWIRL_LEDS_COUNT; i < Constants.SWIRL_LEDS_COUNT + (Constants.TOP_LEDS_COUNT /2); i++)
-      {
-        m_LEDLength.setRGB(i, 0, 255, 0); //green
-      }
-    }
+    // if (m_cargoHeld == 2)
+    // {
+    //   for (var i = Constants.TOTAL_LEDS_COUNT; i < Constants.TOTAL_LEDS_COUNT + Constants.TOP_LEDS_COUNT; i++)
+    //   {
+    //     m_LEDLength.setRGB(i, 0, 255, 0); //green
+    //   }
+    // }
+    // else if (m_cargoHeld == 1)
+    // {
+    //   for (var i = Constants.TOTAL_LEDS_COUNT; i < Constants.TOTAL_LEDS_COUNT + (Constants.TOP_LEDS_COUNT /2); i++)
+    //   {
+    //     m_LEDLength.setRGB(i, 0, 255, 0); //green
+    //   }
+    // }
   }
 }
