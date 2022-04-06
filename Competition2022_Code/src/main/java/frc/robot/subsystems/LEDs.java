@@ -43,7 +43,7 @@ public class LEDs extends SubsystemBase{
   }
 
   public LEDs(){
-    m_launcherLEDs = new AddressableLED(Constants.LEDS_PWM_PORT_ID);
+    m_launcherLEDs = new AddressableLED(Constants.LEDS_ID);
     m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT);
 
     m_launcherLEDs.setLength(m_LEDLength.getLength());
