@@ -245,7 +245,7 @@ public class Chassis extends SubsystemBase
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
   {
     //Set speed motor position
-    speedMotor.set(speed * 0.8); //speed*0.85
+    speedMotor.set(speed * 0.81); //speed*0.83
 
     //Set angle motor position + print values
     angleMotor.set(TalonFXControlMode.Position, angle); //0

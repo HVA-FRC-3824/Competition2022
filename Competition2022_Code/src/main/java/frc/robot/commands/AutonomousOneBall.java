@@ -41,7 +41,7 @@ public class AutonomousOneBall extends SequentialCommandGroup{
       //Set index to target output
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(Constants.LAUNCHER_INDEX_POWER)),
 
-      new WaitCommand(1.3),
+      new WaitCommand(4), //2.5
 
       //Stop launcher
       new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(0, 0)),
