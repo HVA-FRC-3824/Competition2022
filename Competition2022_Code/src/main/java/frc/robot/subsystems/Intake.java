@@ -44,6 +44,11 @@ public class Intake extends SubsystemBase
     SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.INTAKE_TPR));
   }
 
+  // Used for LEDs, idk what we are going to use to find the ammount of cargo held, I might make this a separate subsystem
+  // public int getCargoHeld(){
+  //   return 
+  // }
+
   //Get intake vel for continuous update
   public double getIntakeVel(){
     return m_intake.getSelectedSensorVelocity();
