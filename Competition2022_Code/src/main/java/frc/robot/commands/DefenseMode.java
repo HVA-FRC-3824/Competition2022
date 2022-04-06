@@ -5,16 +5,19 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class DefenseMode extends CommandBase{
-    public boolean isDefending = false;
+    public static boolean isDefending = false;
+    private double defenseSwervePower;
 
     public DefenseMode()
     {
-      RobotContainer.m_chassis.swervePower = 1.0;
+      defenseSwervePower = 0.9;
+      RobotContainer.m_chassis.swervePower = defenseSwervePower;
     }
 
     @Override
     public void initialize()
     {
+      isDefending = true;
     }
 
     @Override
@@ -31,6 +34,10 @@ public class DefenseMode extends CommandBase{
     public boolean isFinished()
     {
       RobotContainer.m_chassis.swervePower = Constants.SWERVE_POWER;
+      return isDefending;
+    }
+
+    public static boolean isDefending(){
       return isDefending;
     }
 }

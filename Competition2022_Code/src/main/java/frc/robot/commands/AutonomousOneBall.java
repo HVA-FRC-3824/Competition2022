@@ -18,7 +18,7 @@ public class AutonomousOneBall extends SequentialCommandGroup{
     addCommands
     (
       //Get launcher to target RPM
-      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.LAUNCHER_AUTO_RPM, Constants.LAUNCHER_ACCEL_RPM)),
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.LAUNCHER_AUTO_ONE_RPM, Constants.LAUNCHER_ACCEL_ONE_RPM)),
 
       //Follow path off tarmac
       new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.4, 0.0)),
@@ -26,7 +26,7 @@ public class AutonomousOneBall extends SequentialCommandGroup{
       //Wait for path to finish
       new WaitCommand(2.25), //1.4
 
-      //Stop chassis
+      //Stop chassis & center launcher
       new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0, 0, 0.21)),
 
       //Wait for turning to finish

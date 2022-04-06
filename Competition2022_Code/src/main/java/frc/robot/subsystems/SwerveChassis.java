@@ -9,8 +9,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class SwerveChassis extends SubsystemBase
-{
+public class SwerveChassis extends SubsystemBase{
   // Declaring swerve objects; module = speed + angle motor
   private SwerveModule m_moduleFR;
   private SwerveModule m_moduleFL;
@@ -22,17 +21,13 @@ public class SwerveChassis extends SubsystemBase
   private SwerveDriveKinematics m_kinematics;
   private SwerveDriveOdometry m_odometry;
 
-  public SwerveChassis()
-  {
+  public SwerveChassis(){
     /*
     * Try to instantiate NavX Gyro with exception catch
     */
-    try 
-    {
+    try{
         m_ahrs = new AHRS(SPI.Port.kMXP);
-    } 
-    catch (RuntimeException ex) 
-    {
+    }catch (RuntimeException ex){
         System.out.println("\nError instantiating navX-MXP:\n" + ex.getMessage() + "\n");
     }
 
@@ -51,8 +46,7 @@ public class SwerveChassis extends SubsystemBase
   }   
 
   //Give modules desired direction & magnitude from velocity
-  public void driveWithJoystick(double xSpeed, double ySpeed, double xTurn, boolean fieldRelative)
-  {
+  public void driveWithJoystick(double xSpeed, double ySpeed, double xTurn, boolean fieldRelative){
     var swerveModuleStates = m_kinematics.toSwerveModuleStates(fieldRelative
                             ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, xTurn, m_ahrs.getRotation2d())
                             : new ChassisSpeeds(xSpeed, ySpeed, xTurn));
@@ -65,8 +59,7 @@ public class SwerveChassis extends SubsystemBase
   }
 
   //Update robot field-relative position
-  public void updateOdometry()
-  {
+  public void updateOdometry(){
     m_odometry.update(m_ahrs.getRotation2d(), 
     m_moduleFR.getModuleState(), m_moduleFL.getModuleState(), 
     m_moduleBL.getModuleState(), m_moduleBR.getModuleState());

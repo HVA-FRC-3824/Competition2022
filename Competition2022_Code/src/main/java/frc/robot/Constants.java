@@ -2,8 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Translation2d;
 
-public class Constants
-{
+public class Constants{
   /*
   ██████   ██████  ██████  ████████     ██ ██████  ███████ 
   ██   ██ ██    ██ ██   ██    ██        ██ ██   ██ ██      
@@ -58,6 +57,13 @@ public class Constants
     ████   ██   ██ ███████  ██████  ███████ ███████ 
   */
 
+  /* Auto */
+  public static final int LAUNCHER_AUTO_ONE_RPM                           = 6000; //5000
+  public static final int LAUNCHER_ACCEL_ONE_RPM                          = 4300; //2300
+
+  public static final int LAUNCHER_AUTO_TWO_RPM                           = 6000; 
+  public static final int LAUNCHER_ACCEL_TWO_RPM                          = 4300;
+
   /* Chassis */
   public static final double CHASSIS_MAX_POWER                            = 0.7;
   public static final double K_CHASSIS_TURN_P                             = 0;
@@ -80,7 +86,7 @@ public class Constants
   public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
 
   /* Climber */
-  public static final double CLIMB_POWER                                  = -0.67;
+  public static final double CLIMB_POWER                                  = -0.8; //-0.67
 
   /* Intake */
   public static final double INTAKE_P                                     = 0.3; //0.4
@@ -114,7 +120,6 @@ public class Constants
 
   public static final int LAUNCHER_LAUNCH_RPM                             = 4400; //4100
   public static final int LAUNCHER_ACCEL_RPM                              = 4300; //2300
-  public static final int LAUNCHER_AUTO_RPM                               = 6000; //5000
 
   /* LEDs */
   public static final int TOTAL_LEDS_COUNT                                = 0;
@@ -144,11 +149,13 @@ public class Constants
   public static final int LAUNCH_BTN_ID                                   = 6;
   public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
   public static final int INTAKE_BTN_ID                                   = 1;
-  public static final int LEFT_CLIMB_BTN_ID                               = 4;
-  public static final int RIGHT_CLIMB_BTN_ID                              = 2;
-  public static final int TOGGLE_CLIMB_BTN_ID                             = 7;
-  public static final int TURN_TO_TARGET_BTN_ID                           = 2004;
-  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 213;
+  public static final int TOGGLE_SYSTEMS_BTN_ID                           = 7; //TODO: Map to button on joystick
+  public static final int LEFT_CLIMB_BTN_ID                               = 3;
+  public static final int RIGHT_CLIMB_BTN_ID                              = 4;
+  public static final int TOGGLE_CLIMB_BTN_ID                             = 8;
+  public static final int TURN_TO_TARGET_BTN_ID                           = 9;
+  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 10;
+  public static final int TOGGLE_DEFENSE_BTN_ID                           = 2;
 
 
 

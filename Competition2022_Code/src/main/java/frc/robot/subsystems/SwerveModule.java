@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
-public class SwerveModule extends SubsystemBase
-{
+public class SwerveModule extends SubsystemBase{
   //Declare module objects
   private WPI_TalonFX m_driveMotor;
   private WPI_TalonFX m_turnMotor;
@@ -27,8 +26,7 @@ public class SwerveModule extends SubsystemBase
   private SimpleMotorFeedforward m_driveFeedforward;
   private SimpleMotorFeedforward m_turnFeedforward;
 
-  public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, int absoluteEncoderId)
-  {
+  public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, int absoluteEncoderId){
     //TODO: add param for PIDs
     //Configure module objects
     m_driveMotor = new WPI_TalonFX(driveMotorId);
@@ -50,8 +48,7 @@ public class SwerveModule extends SubsystemBase
   }
 
   //Get current module state for use in commands
-  public SwerveModuleState getModuleState()
-  {
+  public SwerveModuleState getModuleState(){
     return new SwerveModuleState(m_driveMotor.getSelectedSensorVelocity() * Constants.K_ENCODER_DISTANCE_PER_PULSE * 1000, new Rotation2d(m_turnMotor.getSelectedSensorPosition() 
                                   * 2 * Math.PI/Constants.K_ENCODER_TICKS_PER_REVOLUTION));
   }
@@ -60,8 +57,7 @@ public class SwerveModule extends SubsystemBase
    * Sets and optimizes desired state for module
    * @param desiredState Desired ServeModuleState with speed and angle
    */
-  public void setDesiredState(SwerveModuleState desiredState)
-  {
+  public void setDesiredState(SwerveModuleState desiredState){
     // Optimize reference state to avoid spinning > 90 degrees
     SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(m_turnMotor.getSelectedSensorPosition()));
 

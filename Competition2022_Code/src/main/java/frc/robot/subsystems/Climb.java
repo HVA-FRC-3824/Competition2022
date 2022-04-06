@@ -7,15 +7,13 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class Climb 
-{
+public class Climb {
   //Declare climb objects
   private WPI_TalonFX m_climbRight;
   private WPI_TalonFX m_climbLeft;
   private double m_toggleExtend;
 
-  public Climb()
-  {
+  public Climb(){
     //Set extend up to be 12.655% faster than down
     m_toggleExtend = 1.12655;
 
@@ -47,12 +45,10 @@ public class Climb
   }
 
   //Toggles climb from up (+) to down(-) & vice versa
-  public void toggleClimb()
-  {
+  public void toggleClimb(){
     if(m_toggleExtend == -1){
       m_toggleExtend = 1.12655;
-    }
-    else{
+    }else{
       m_toggleExtend = -1;
     }
   }

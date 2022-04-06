@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj.SPI;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 // import com.ctre.phoenix.sensors.CANCoder; //Currently Unused
 
-public class Chassis extends SubsystemBase
-{
+public class Chassis extends SubsystemBase{
   //Declare chassis objects
   private AHRS m_ahrs;
 
@@ -30,7 +29,7 @@ public class Chassis extends SubsystemBase
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
-  public double swervePower = 0.80;
+  public double swervePower = Constants.SWERVE_POWER;
 
   // public CANCoder AbsEncoderFR;
   // public CANCoder AbsEncoderFL;
@@ -45,8 +44,7 @@ public class Chassis extends SubsystemBase
   public double [] backLeft = {0, 0, 0, 0, 0, 0};
   public double [] backRight = {0, 0, 0, 0, 0, 0};
 
-  public Chassis()
-  {   
+  public Chassis(){   
     // Instantiate chassis objects
     
     //Try to instantiate the NavX Gyro with exception catch
@@ -82,15 +80,14 @@ public class Chassis extends SubsystemBase
     m_speedMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_SPEED_MOTOR_ID);
       RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
-      swervePower = Constants.SWERVE_POWER;
+    swervePower = Constants.SWERVE_POWER;
   }
 
   /**
    * This method will be called once per scheduler run.
    */
   @Override
-  public void periodic()
-  {
+  public void periodic(){
     // Update drivetrain information on SmartDashboard for testing.
     SmartDashboard.putNumber("FR Angle Motor Pos in Rel Degrees", m_angleMotorFrontRight.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
     SmartDashboard.putNumber("FL Angle Motor Pos in Rel Degrees", m_angleMotorFrontLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
@@ -113,8 +110,7 @@ public class Chassis extends SubsystemBase
   }
 
   //(x1 joystick input left/right, y1 joystick input front/back, x2 joystick input turn)
-  public void convertSwerveValues (double x1, double y1, double x2)
-  {
+  public void convertSwerveValues (double x1, double y1, double x2){
     //Width and length between center of wheels
     double w = 21.5;
     double l = 25;
@@ -194,8 +190,7 @@ public class Chassis extends SubsystemBase
 
     //Adjust for motor max speed limit & set all wheels to same speed
     double highestSpeed = Math.max(Math.max(Math.max(frontRight[2], frontLeft[2]), backLeft[2]), backRight[2]);
-    if (highestSpeed > 1)
-    {
+    if (highestSpeed > 1){
       frontRight[2] = frontRight[2] / highestSpeed;
       frontLeft[2] = frontLeft[2] / highestSpeed;
       backLeft[2] = backLeft[2] / highestSpeed;
@@ -209,8 +204,7 @@ public class Chassis extends SubsystemBase
     backRight[4] = backRight[3];
 
     //Update current angle
-    if (!(vX == 0 && vY == 0 && turn == 0))
-    {
+    if (!(vX == 0 && vY == 0 && turn == 0)){
       // Find angle of each wheel based on velocities
       frontRight[3] = Math.atan2(c, b) - Math.PI / 2;
       frontLeft[3] = Math.atan2(d, b) - Math.PI / 2;
@@ -246,8 +240,7 @@ public class Chassis extends SubsystemBase
 
 
   //Moves each wheel (1 speed + 1 angle motor)
-  public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
-  {
+  public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle){
     //Set speed motor position
     speedMotor.set(speed * swervePower);
 

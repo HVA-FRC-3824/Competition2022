@@ -11,13 +11,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase
-{
+public class Intake extends SubsystemBase{
   //Declare intake objects
   public WPI_TalonSRX m_intake;
+  public int m_toggleIntake;
 
-  public Intake()
-  {
+  public Intake(){
+    //Set toggle intake to take cargo in
+    m_toggleIntake = 1;
     //Configure intake motor
     m_intake = new WPI_TalonSRX(Constants.INTAKE_MOTOR_ID);
       RobotContainer.configureTalonSRX(m_intake, false, FeedbackDevice.CTRE_MagEncoder_Relative, false, false, 
@@ -38,16 +39,18 @@ public class Intake extends SubsystemBase
   }
 
   //Set intake velocity & display desired vel on Dashboard
-  public void setIntakeVelocity(int rpm)
-  {
-    m_intake.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm, Constants.INTAKE_TPR));
+  public void setIntakeVelocity(int rpm){
+    m_intake.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
     SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.INTAKE_TPR));
   }
 
-  // Used for LEDs, idk what we are going to use to find the ammount of cargo held, I might make this a separate subsystem
-  // public int getCargoHeld(){
-  //   return 
-  // }
+  public void toggleIntake(){
+    if(m_toggleIntake == -1){
+      m_toggleIntake = 1;
+    }else{
+      m_toggleIntake = -1;
+    }
+  }
 
   //Get intake vel for continuous update
   public double getIntakeVel(){

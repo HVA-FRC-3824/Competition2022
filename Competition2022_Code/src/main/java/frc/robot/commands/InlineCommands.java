@@ -29,6 +29,7 @@ public class InlineCommands {
   /* Chassis */
   public final Command m_driveWithJoystick;
   public final Command m_turnToTarget;
+  public final Command m_toggleDefenseMode;
 
   /* Climb */
    public final Command m_moveLeftClimb;
@@ -48,6 +49,8 @@ public class InlineCommands {
   public final Command m_stopLaunchSequence;
   public final Command m_startLaunchIndex;
   public final Command m_stopLaunchIndex;
+
+  public final Command m_toggleSystems;
 
   /* Limelight */
   public final Command m_toggleLimelight;
@@ -77,6 +80,9 @@ public class InlineCommands {
 
     m_turnToTarget = 
       new TurnToTarget().andThen(new InstantCommand(() -> RobotContainer.m_limelight.setModeDriver()));
+
+    m_toggleDefenseMode =
+      new DefenseMode();
   
     /* Climb */
     m_moveLeftClimb =
@@ -97,7 +103,7 @@ public class InlineCommands {
       new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(Constants.INTAKE_WHEEL_RPM));
 
     m_stopIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(0));
     
     /* Launcher */
     m_startLaunchSequence = 
@@ -113,6 +119,9 @@ public class InlineCommands {
 
     m_stopLaunchIndex =
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(0));
+
+    m_toggleSystems =
+    new InstantCommand(() -> RobotContainer.m_launcher.toggleLauncher()).alongWith(new InstantCommand(() -> RobotContainer.m_intake.toggleIntake()));
 
     /* Limelight */
     m_toggleLimelight =

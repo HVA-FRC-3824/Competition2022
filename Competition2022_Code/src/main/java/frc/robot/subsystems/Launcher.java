@@ -11,16 +11,18 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Launcher extends SubsystemBase 
-{
+public class Launcher extends SubsystemBase{
   //Declare launcher objects
-  private WPI_TalonFX m_launcherLaunch;
+  private static WPI_TalonFX m_launcherLaunch;
   private WPI_TalonFX m_launcherAccel;
   private WPI_TalonSRX m_launcherIndexTop;
   private WPI_TalonSRX m_launcherIndexBottom;
+  private int m_toggleLaunch;
+  public static boolean isLaunching;
 
-  public Launcher()
-  {
+  public Launcher(){
+    //Set toggle launch to launch ball forward
+    m_toggleLaunch = 1;
     //Configure launch motors
     m_launcherLaunch = new WPI_TalonFX(Constants.LAUNCHER_LAUNCH_ID);
       RobotContainer.configureTalonFX(m_launcherLaunch, false, false, Constants.LAUNCHER_LAUNCH_F, Constants.LAUNCHER_LAUNCH_P, Constants.LAUNCHER_LAUNCH_I, Constants.LAUNCHER_LAUNCH_D);
@@ -46,43 +48,55 @@ public class Launcher extends SubsystemBase
   }
 
   //Set motor power
-  public void setLauncherPower(double power)
-  {
+  public void setLauncherPower(double power){
     m_launcherLaunch.set(ControlMode.PercentOutput, power);
   }
-  public void setAcceleratorPower(double power)
-  {
+  public void setAcceleratorPower(double power){
     m_launcherAccel.set(ControlMode.PercentOutput, power);
   }
-  public void setIndexPower(double power)
-  {
+  public void setIndexPower(double power){
     m_launcherIndexTop.set(ControlMode.PercentOutput, power);
     m_launcherIndexBottom.set(ControlMode.PercentOutput, -power);
   }
 
   //Set launch & accel velocity
-  public void setLauncherVelocity(int rpm)
-  {
-    m_launcherLaunch.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
-    SmartDashboard.putNumber("Launch Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
+  public void setLauncherVelocity(int rpm){
+    m_launcherLaunch.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch , Constants.TALON_FX_TPR));
+    SmartDashboard.putNumber("Launch Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
   }
-  public void setAcceleratorVelocity(int rpm)
-  {
-    m_launcherAccel.set(ControlMode.Velocity,  RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
-    SmartDashboard.putNumber("Accelerator Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.TALON_FX_TPR));
+  public void setAcceleratorVelocity(int rpm){
+    m_launcherAccel.set(ControlMode.Velocity,  RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
+    SmartDashboard.putNumber("Accelerator Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
   }
 
   //Set preset power for auto
-  public void setPresetPower(double launchPower, double acceleratePower)
-  {
+  public void setPresetPower(double launchPower, double acceleratePower){
     this.setLauncherPower(launchPower);
     this.setAcceleratorPower(acceleratePower);
   }
 
   //Set preset velocities for auto
-  public void setPresetVel(int launchRPM, int accelRPM)
-  {
+  public void setPresetVel(int launchRPM, int accelRPM){
     this.setLauncherVelocity(launchRPM);
     this.setAcceleratorVelocity(accelRPM);
+  }
+
+  public void toggleLauncher(){
+    if(m_toggleLaunch == -1){
+      m_toggleLaunch = 1;
+    }else{
+      m_toggleLaunch = -1;
+    }
+  }
+
+
+  //Check if the launcher is launching by acessing the launcher velocity
+  public static boolean isLaunching(){
+    if(m_launcherLaunch.getSelectedSensorVelocity() > 0.3){
+      isLaunching = true;
+    }else{
+      isLaunching = false;
+    }
+    return isLaunching;
   }
 }

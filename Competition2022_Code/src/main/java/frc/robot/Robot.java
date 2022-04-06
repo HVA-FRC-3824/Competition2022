@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot
-{
+public class Robot extends TimedRobot{
   private Command m_autonomousCommand;
   public static RobotContainer m_robotContainer;
 
@@ -40,8 +39,7 @@ public class Robot extends TimedRobot
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() 
-  {
+  public void robotPeriodic(){
     CommandScheduler.getInstance().run();
   }
 
@@ -57,8 +55,7 @@ public class Robot extends TimedRobot
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() 
-  {
+  public void autonomousInit(){
     // Runs auto if command isn't null
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     if (m_autonomousCommand != null) m_autonomousCommand.schedule();
@@ -66,15 +63,13 @@ public class Robot extends TimedRobot
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() 
-  {
+  public void autonomousPeriodic(){
     // RobotContainer.m_swerveChassis.updateOdometry();
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() 
-  {
+  public void teleopInit(){
     //Cancels auto at start of teleop, initialize teleop commands, & set Limelight to Vision Mode
     if (m_autonomousCommand != null) m_autonomousCommand.cancel();
     RobotContainer.initializeDefaultCommands();
@@ -83,8 +78,7 @@ public class Robot extends TimedRobot
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic()
-  {
+  public void teleopPeriodic(){
     // SmartDashboard.putNumber("Limelight X", RobotContainer.m_limelight.getTargetOffsetX());
     // SmartDashboard.putNumber("Limelight Y", RobotContainer.m_limelight.getTargetOffsetY());
     // SmartDashboard.putNumber("Limelight Area", RobotContainer.m_limelight.getTargetArea());
@@ -97,8 +91,7 @@ public class Robot extends TimedRobot
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit()
-  {
+  public void disabledInit(){
     RobotContainer.m_limelight.turnOffLED();
   }
 

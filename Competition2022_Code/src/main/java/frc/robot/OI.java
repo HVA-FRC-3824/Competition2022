@@ -3,8 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-public class OI
-{
+public class OI{
   //Joystick declaration
   private static Joystick       m_driverJoystick;
   private static Joystick       m_operatorJoystick;
@@ -22,12 +21,16 @@ public class OI
   private static JoystickButton m_launchSequenceBtn;
   private static JoystickButton m_indexLauncherBtn;
 
+  private static JoystickButton m_toggleSystemsBtn;
+
   /* Limelight */
   public static JoystickButton m_toggleLimelightBtn;
   public static JoystickButton m_turnToTargetBtn;
 
-  public OI() 
-  {
+  /* Defense Mode */
+  public static JoystickButton m_toggleDefenseModeBtn;
+
+  public OI(){
     //Instantiate joysticks
     m_driverJoystick     = new Joystick(Constants.DRIVER_JOYSTICK_PORT);
     m_operatorJoystick   = new Joystick(Constants.OPERATOR_JOYSTICK_PORT);
@@ -46,9 +49,14 @@ public class OI
     m_launchSequenceBtn  = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
     m_indexLauncherBtn   = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_INDEX_BTN_ID);
 
+    m_toggleSystemsBtn   = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_SYSTEMS_BTN_ID);
+
     /* Limelight */
     m_toggleLimelightBtn = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_LIMELIGHT_BTN_ID);
     m_turnToTargetBtn    = new JoystickButton(m_operatorJoystick, Constants.TURN_TO_TARGET_BTN_ID);
+
+    /* Defense Mode */
+    m_toggleDefenseModeBtn = new JoystickButton(m_driverJoystick, Constants.TOGGLE_DEFENSE_BTN_ID);
   }
 
   //Get driver joystick for use in commands
@@ -57,8 +65,7 @@ public class OI
   }
 
   //Bind commands to buttons
-  public void configureButtonBindings()
-  {
+  public void configureButtonBindings(){
     //Chassis
     m_turnToTargetBtn.whenPressed(RobotContainer.m_inlineCommands.m_turnToTarget);
     m_turnToTargetBtn.whenReleased(RobotContainer.m_inlineCommands.m_driveWithJoystick);
@@ -82,5 +89,10 @@ public class OI
 
     m_launchSequenceBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchSequence);
     m_launchSequenceBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
+
+    m_toggleSystemsBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleSystems);
+
+    //Defense
+    m_toggleDefenseModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDefenseMode);
   }
 }
