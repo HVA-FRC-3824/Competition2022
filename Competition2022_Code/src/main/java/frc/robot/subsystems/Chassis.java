@@ -30,6 +30,8 @@ public class Chassis extends SubsystemBase
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
+  public double swervePower = 0.80;
+
   // public CANCoder AbsEncoderFR;
   // public CANCoder AbsEncoderFL;
   // public CANCoder AbsEncoderBL;
@@ -79,6 +81,8 @@ public class Chassis extends SubsystemBase
       RobotContainer.configureTalonFX(m_angleMotorBackRight, false, false, 0.0, Constants.K_CHASSIS_RIGHT_ANGLE_P, Constants.K_CHASSIS_RIGHT_ANGLE_I, Constants.K_CHASSIS_RIGHT_ANGLE_D);
     m_speedMotorBackRight = new WPI_TalonFX(Constants.BACK_RIGHT_SPEED_MOTOR_ID);
       RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
+
+      swervePower = Constants.SWERVE_POWER;
   }
 
   /**
@@ -245,7 +249,7 @@ public class Chassis extends SubsystemBase
   public void drive (WPI_TalonFX speedMotor, WPI_TalonFX angleMotor, double speed, double angle)
   {
     //Set speed motor position
-    speedMotor.set(speed * 0.81); //speed*0.83
+    speedMotor.set(speed * swervePower);
 
     //Set angle motor position + print values
     angleMotor.set(TalonFXControlMode.Position, angle); //0

@@ -181,6 +181,7 @@ public class Constants
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;
   public static final double SWERVE_GEAR_RATIO                            = 0.0833333; //wheel spins per angle motor spin    
   public static final double SWERVE_TPR                                   = 2048 / SWERVE_GEAR_RATIO; //motors ticks per revolution of wheel
+  public static final double SWERVE_POWER                                 = 0.81; //0.83
 
   public static final double K_MAX_VELOCITY                               = 3.0; // m/s
   public static final double K_MODULE_MAX_ANGULAR_VELOCITY                = Math.PI; // 0.5 rotations/sec
