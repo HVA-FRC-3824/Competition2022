@@ -14,22 +14,19 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
  */
 public class InlineCommands {
 
-
-
   /*
   ██████  ███████  ██████ ██       █████  ██████  ███████    ██████  ██████  ███    ███ ███    ███  █████  ███    ██ ██████  ███████         
   ██   ██ ██      ██      ██      ██   ██ ██   ██ ██         ██      ██   ██ ████  ████ ████  ████ ██   ██ ████   ██ ██   ██ ██                 
   ██   ██ █████   ██      ██      ███████ ██████  █████      ██      ██   ██ ██ ████ ██ ██ ████ ██ ███████ ██ ██  ██ ██   ██ ███████          
   ██   ██ ██      ██      ██      ██   ██ ██   ██ ██         ██      ██   ██ ██  ██  ██ ██  ██  ██ ██   ██ ██  ██ ██ ██   ██      ██             
   ██████  ███████  ██████ ███████ ██   ██ ██   ██ ███████    ██████  ██████  ██      ██ ██      ██ ██   ██ ██   ████ ██████  ███████                                                                          
-  */
-    
-  
+  */  
 
   /* Chassis */
   public final Command m_driveWithJoystick;
   public final Command m_turnToTarget;
   public final Command m_toggleDefenseMode;
+  public final Command m_toggleDriveMode;
 
   /* Climb */
    public final Command m_moveLeftClimb;
@@ -58,10 +55,7 @@ public class InlineCommands {
   /* Swerve */
   // public final Command m_driveWithJoystick;
   
-  public InlineCommands()
-  {
-
-
+  public InlineCommands(){
 
     /**
     ██ ███    ██ ███████ ████████  █████  ███    ██ ████████ ██  █████  ████████ ███████ 
@@ -70,8 +64,6 @@ public class InlineCommands {
     ██ ██  ██ ██      ██    ██    ██   ██ ██  ██ ██    ██    ██ ██   ██    ██    ██      
     ██ ██   ████ ███████    ██    ██   ██ ██   ████    ██    ██ ██   ██    ██    ██████
     */
-
-
 
     /* Chassis */
     m_driveWithJoystick =
@@ -83,6 +75,9 @@ public class InlineCommands {
 
     m_toggleDefenseMode =
       new DefenseMode();
+
+    m_toggleDriveMode =
+      new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode());
   
     /* Climb */
     m_moveLeftClimb =

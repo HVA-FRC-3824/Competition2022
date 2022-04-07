@@ -14,7 +14,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 // import com.ctre.phoenix.sensors.CANCoder; //Currently Unused
 
 public class Chassis extends SubsystemBase{
-  //Declare chassis objects
+  //#region Declare chassis objects
   private AHRS m_ahrs;
 
   private WPI_TalonFX m_angleMotorFrontRight;
@@ -31,6 +31,8 @@ public class Chassis extends SubsystemBase{
 
   public double swervePower = Constants.SWERVE_POWER;
 
+  private boolean robotCentric = false;
+
   // public CANCoder AbsEncoderFR;
   // public CANCoder AbsEncoderFL;
   // public CANCoder AbsEncoderBL;
@@ -43,9 +45,10 @@ public class Chassis extends SubsystemBase{
   public double [] frontLeft = {0, 0, 0, 0, 0, 0};
   public double [] backLeft = {0, 0, 0, 0, 0, 0};
   public double [] backRight = {0, 0, 0, 0, 0, 0};
+  //#endregion
 
   public Chassis(){   
-    // Instantiate chassis objects
+    //#region Instantiate chassis objects
     
     //Try to instantiate the NavX Gyro with exception catch
     try{
@@ -81,6 +84,7 @@ public class Chassis extends SubsystemBase{
       RobotContainer.configureTalonFX(m_speedMotorBackRight, false, false, 0.0, 0.0, 0.0, 0.0);
 
     swervePower = Constants.SWERVE_POWER;
+    //#endregion
   }
 
   /**
@@ -95,7 +99,7 @@ public class Chassis extends SubsystemBase{
     SmartDashboard.putNumber("BL Angle Motor Pos in Rel Degrees", m_angleMotorBackLeft.getSelectedSensorPosition() * 360/ Constants.K_ENCODER_TICKS_PER_REVOLUTION);
   }
 
-  //Gets motors for use in commands
+  //#region Gets motors for use in commands
   public WPI_TalonFX getMotorFR (){
     return m_angleMotorFrontRight;
   }
@@ -108,6 +112,7 @@ public class Chassis extends SubsystemBase{
   public WPI_TalonFX getMotorBR (){
     return m_angleMotorBackRight;
   }
+  //#endregion
 
   //(x1 joystick input left/right, y1 joystick input front/back, x2 joystick input turn)
   public void convertSwerveValues (double x1, double y1, double x2){
@@ -157,7 +162,9 @@ public class Chassis extends SubsystemBase{
 
 
     //Set strafe_angle to NavX reported angle
-    strafe_angle += (gyro_current) / 360 * 2 * Math.PI;
+    if (robotCentric = false){
+      strafe_angle += (gyro_current) / 360 * 2 * Math.PI;
+    }
 
     //Set velocity to desired velocity (r) and direction (strafe_angle)
     vX = r * Math.cos(strafe_angle);
@@ -278,5 +285,10 @@ public class Chassis extends SubsystemBase{
    */
   public double getHeading(){
     return Math.IEEEremainder(m_ahrs.getAngle(), 360) * (Constants.K_GYRO_REVERSED ? -1.0 : 1.0);
+  }
+
+  //Toggle drive between field centric and robot centric
+  public void toggleDriveMode(){
+    robotCentric = !robotCentric;
   }
 }

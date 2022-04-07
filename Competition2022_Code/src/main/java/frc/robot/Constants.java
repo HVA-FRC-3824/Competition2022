@@ -3,14 +3,7 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Translation2d;
 
 public class Constants{
-  /*
-  ██████   ██████  ██████  ████████     ██ ██████  ███████ 
-  ██   ██ ██    ██ ██   ██    ██        ██ ██   ██ ██      
-  ██████  ██    ██ ██████     ██        ██ ██   ██ ███████ 
-  ██      ██    ██ ██   ██    ██        ██ ██   ██      ██ 
-  ██       ██████  ██   ██    ██        ██ ██████  ███████ 
-  */
-
+  //#region Port IDs
   /* Chassis */
   public static final int FRONT_RIGHT_ANGLE_MOTOR_ID                      = 2; //0
   public static final int FRONT_RIGHT_SPEED_MOTOR_ID                      = 3; //1
@@ -29,6 +22,8 @@ public class Constants{
   public static final int ABS_ENCODER_BL_ID                               = 3;
   public static final int ABS_ENCODER_BR_ID                               = 2;
 
+  public static final int TOGGLE_DRIVE_MODE_BTN_ID                        = 7; 
+
   /* Climber */
   public static final int CLIMB_LEFT_ID                                   = 18;
   public static final int CLIMB_RIGHT_ID                                  = 17;   
@@ -41,31 +36,19 @@ public class Constants{
   public static final int LAUNCHER_ACCEL_ID                               = 6;
   public static final int LAUNCHER_INDEX_TOP_ID                           = 21;
   public static final int LAUNCHER_INDEX_BOTTOM_ID                        = 19;
+  //#endregion
 
-  /*
-  ███████ ██    ██ ██████  ███████ ██    ██ ███████ ████████ ███████ ███    ███ 
-  ██      ██    ██ ██   ██ ██       ██  ██  ██         ██    ██      ████  ████   
-  ███████ ██    ██ ██████  ███████   ████   ███████    ██    █████   ██ ████ ██ 
-       ██ ██    ██ ██   ██      ██    ██         ██    ██    ██      ██  ██  ██ 
-  ███████  ██████  ██████  ███████    ██    ███████    ██    ███████ ██      ██ 
-                                                                                
-                                                                                
-  ██    ██  █████  ██      ██    ██ ███████ ███████                             
-  ██    ██ ██   ██ ██      ██    ██ ██      ██                                  
-  ██    ██ ███████ ██      ██    ██ █████   ███████                             
-   ██  ██  ██   ██ ██      ██    ██ ██           ██                             
-    ████   ██   ██ ███████  ██████  ███████ ███████ 
-  */
-
+  //#region Subsystem Constants
   /* Auto */
-  public static final int LAUNCHER_AUTO_ONE_RPM                           = 6000; //5000
-  public static final int LAUNCHER_ACCEL_ONE_RPM                          = 4300; //2300
+  public static final int AUTO_INTAKE_POS                                 = 3000;
 
-  public static final int LAUNCHER_AUTO_TWO_RPM                           = 6000; 
-  public static final int LAUNCHER_ACCEL_TWO_RPM                          = 4300;
+  public static final int AUTO_TARMAC_EDGE_LAUNCH_RPM                     = 6000; //5000
+  public static final int AUTO_TARMAC_EDGE_ACCEL_RPM                      = 4300; //2300
+
+  public static final int AUTO_HUB_LAUNCH_RPM                             = 6000; 
+  public static final int AUTO_HUB_ACCEL_RPM                              = 4300;
 
   /* Chassis */
-  public static final double CHASSIS_MAX_POWER                            = 0.7;
   public static final double K_CHASSIS_TURN_P                             = 0;
   public static final double K_CHASSIS_TURN_I                             = 0;
   public static final double K_CHASSIS_TURN_D                             = 0;
@@ -96,7 +79,6 @@ public class Constants{
 
   public static final double INTAKE_WHEEL_POWER                           = 0.8;
   public static final int INTAKE_WHEEL_RPM                                = 8000;
-  public static final int AUTO_INTAKE_WHEEL_POS                           = 3000;
 
   /* Launcher */
   public static final double LAUNCHER_LAUNCH_P                            = 0.008; //0.0085
@@ -126,21 +108,9 @@ public class Constants{
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LEDS_LENGTH                                     = 0;
-
-  /*
-       ██  ██████  ██    ██ ███████ ████████ ██  ██████ ██   ██ 
-       ██ ██    ██  ██  ██  ██         ██    ██ ██      ██  ██  
-       ██ ██    ██   ████   ███████    ██    ██ ██      █████   
-  ██   ██ ██    ██    ██         ██    ██    ██ ██      ██  ██ 
-   █████   ██████     ██    ███████    ██    ██  ██████ ██   ██ 
-                                                                
-  ██████  ██    ██ ████████ ████████  ██████  ███    ██ ███████ 
-  ██   ██ ██    ██    ██       ██    ██    ██ ████   ██ ██      
-  ██████  ██    ██    ██       ██    ██    ██ ██ ██  ██ ███████ 
-  ██   ██ ██    ██    ██       ██    ██    ██ ██  ██ ██      ██ 
-  ██████   ██████     ██       ██     ██████  ██   ████ ███████
-  */
-
+  //#endregion
+  
+  //#region Joystick Buttons
   /* Joysticks */
   public static final int DRIVER_JOYSTICK_PORT                            = 0;
   public static final int OPERATOR_JOYSTICK_PORT                          = 1;
@@ -156,27 +126,9 @@ public class Constants{
   public static final int TURN_TO_TARGET_BTN_ID                           = 9;
   public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 10;
   public static final int TOGGLE_DEFENSE_BTN_ID                           = 2;
+  //#endregion
 
-
-
-
-  /*
-  ███████ ██      ███████  ██████ ████████ ██████   ██████  ███    ██ ██  ██████ ███████ 
-  ██      ██      ██      ██         ██    ██   ██ ██    ██ ████   ██ ██ ██      ██      
-  █████   ██      █████   ██         ██    ██████  ██    ██ ██ ██  ██ ██ ██      ███████ 
-  ██      ██      ██      ██         ██    ██   ██ ██    ██ ██  ██ ██ ██ ██           ██ 
-  ███████ ███████ ███████  ██████    ██    ██   ██  ██████  ██   ████ ██  ██████ ███████ 
-                                                                                        
-                                                                                        
-  ███████ ██████  ███████  ██████ ███████                                                
-  ██      ██   ██ ██      ██      ██                                                     
-  ███████ ██████  █████   ██      ███████                                                
-       ██ ██      ██      ██           ██                                                  
-  ███████ ██      ███████  ██████ ███████                                              
-  */
-
-
-
+  //#region Electronic Specs
   /* Motor Configuration */
   public static final int K_PID_LOOP_IDX                                  = 0;
   public static final int K_SLOT_IDX                                      = 0;
@@ -219,4 +171,5 @@ public class Constants{
   public static final double K_STATIC_VOLT                                = 0.372; // volts
   public static final double K_VELOCITY_VOLT                              = 3.09; // volt seconds / meter
   public static final double K_ACCELERATION_VOLT                          = 0.154; // volt seconds ^2/meter
+  //#endregion
 }
