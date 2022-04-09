@@ -108,6 +108,13 @@ public class Constants{
   public static final int LEDS_ID                                         = 0;
   public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LEDS_LENGTH                                     = 0;
+
+  /* WPILIB Swerve */
+  public static final double SWERVE_TURN_F                                = 0;
+  public static final double SWERVE_TURN_P                                = 0;
+  public static final double SWERVE_TURN_I                                = 0;
+  public static final double SWERVE_TURN_D                                = 0;
+  
   //#endregion
   
   //#region Joystick Buttons

@@ -8,20 +8,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 /** Inline commands allow the creation of new commands without a new CommandBase file.
- *  Usage: single/double commands (Example: extending a piston)
+ * Usage: single/double commands (Example: extending a piston)
  * Can be used in other files (other commands or OI.java for binding commands to buttons).
  * For chains of commands (Example: ten-ball autonomous command sequence), create a separate CommandBase/CommandGroup file.
  */
 public class InlineCommands {
-
-  /*
-  ██████  ███████  ██████ ██       █████  ██████  ███████    ██████  ██████  ███    ███ ███    ███  █████  ███    ██ ██████  ███████         
-  ██   ██ ██      ██      ██      ██   ██ ██   ██ ██         ██      ██   ██ ████  ████ ████  ████ ██   ██ ████   ██ ██   ██ ██                 
-  ██   ██ █████   ██      ██      ███████ ██████  █████      ██      ██   ██ ██ ████ ██ ██ ████ ██ ███████ ██ ██  ██ ██   ██ ███████          
-  ██   ██ ██      ██      ██      ██   ██ ██   ██ ██         ██      ██   ██ ██  ██  ██ ██  ██  ██ ██   ██ ██  ██ ██ ██   ██      ██             
-  ██████  ███████  ██████ ███████ ██   ██ ██   ██ ███████    ██████  ██████  ██      ██ ██      ██ ██   ██ ██   ████ ██████  ███████                                                                          
-  */  
-
+  //#region Declare commands
   /* Chassis */
   public final Command m_driveWithJoystick;
   public final Command m_turnToTarget;
@@ -55,16 +47,21 @@ public class InlineCommands {
   /* Swerve */
   // public final Command m_driveWithJoystick;
   
+  /* LEDs */
+  public final Command m_launchLEDs;
+  public final Command m_defenseLEDs;
+  public final Command m_neutral;
+
+  /* Test */
+  // public final Command m_autoTurnChassis;
+  // public final Command m_autoOneLaunch;
+  // public final Command m_autoTwoLaunch;
+  // public final Command m_autoOnePath;
+  // public final Command m_autoTwoPath;
+  //#endregion
+  
   public InlineCommands(){
-
-    /**
-    ██ ███    ██ ███████ ████████  █████  ███    ██ ████████ ██  █████  ████████ ███████ 
-    ██ ████   ██ ██         ██    ██   ██ ████   ██    ██    ██ ██   ██    ██    ██      
-    ██ ██ ██  ██ ███████    ██    ███████ ██ ██  ██    ██    ██ ███████    ██    █████   
-    ██ ██  ██ ██      ██    ██    ██   ██ ██  ██ ██    ██    ██ ██   ██    ██    ██      
-    ██ ██   ████ ███████    ██    ██   ██ ██   ████    ██    ██ ██   ██    ██    ██████
-    */
-
+    //#region Instantiate commands    
     /* Chassis */
     m_driveWithJoystick =
       new RunCommand(() -> RobotContainer.m_chassis.convertSwerveValues(RobotContainer.m_OI.getDriverJoystick().getRawAxis(0), 
@@ -122,19 +119,31 @@ public class InlineCommands {
     m_toggleLimelight =
       new InstantCommand(() -> RobotContainer.m_limelight.toggleMode());
 
-    // /* LEDs Inline Command Instantiations */
+    /* LEDs Inline Command Instantiations */
     // m_chaseInwards =
     //   new RunCommand(() -> RobotContainer.m_LEDs.strobeOutward()); 
     // m_chaseOutwards =
     //   new RunCommand(() -> RobotContainer.m_LEDs.toggleableLauncherLEDS()()); 
-    // m_rainbow =
-    //   new RunCommand(() -> RobotContainer.m_LEDs.rainbow()); 
-    // m_neutral = 
-    //   new RunCommand(() -> RobotContainer.m_LEDs.neutral());
+    m_launchLEDs =
+      new RunCommand(() -> RobotContainer.m_LEDs.launchLEDs()); 
+    m_neutral = 
+      new RunCommand(() -> RobotContainer.m_LEDs.neutral());
+    m_defenseLEDs =
+      new RunCommand(() -> RobotContainer.m_LEDs.defenseModeLEDs());
 
     /* Swerve */
     // m_driveWithJoystick =
     //   new RunCommand(() -> RobotContainer.m_swerveChassis.driveWithJoystick(RobotContainer.m_OI.getDriverJoystick().getRawAxis(0), 
     //     RobotContainer.m_OI.getDriverJoystick().getRawAxis(1), RobotContainer.m_OI.getDriverJoystick().getRawAxis(4), true), RobotContainer.m_swerveChassis);
+
+    /* Test */
+    // // m_autoTurnChassis =
+    // //   new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.21)).alongWith(new WaitCommand(1.8).andThen(new InstantCommand (() -> 
+    //     RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)));
+    // public final Command m_autoOneLaunch;
+    // public final Command m_autoTwoLaunch;
+    // public final Command m_autoOnePath;
+    // public final Command m_autoTwoPath;
+    //#endregion
   }
 }

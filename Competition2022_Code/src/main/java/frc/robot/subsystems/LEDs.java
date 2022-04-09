@@ -68,7 +68,7 @@ public class LEDs extends SubsystemBase{
     }
   }
 
-  private void neutral(){
+  public void neutral(){
     //Set swirl LEDs color
     if (m_neutralChasingDirection){
       this.chaseOutward();
@@ -123,7 +123,7 @@ public class LEDs extends SubsystemBase{
   }
 
   //Change LED colors in rainbow for launch
-  private void launchLEDs(){
+  public void launchLEDs(){
     for (var i = 0; i < Constants.TOTAL_LEDS_COUNT/2; i++){
       final var hue = (m_launchFirstPixelHue + (i * 180 / (Constants.TOTAL_LEDS_COUNT/2))) % 180;
       m_LEDLength.setHSV(i, hue, 225, 225);

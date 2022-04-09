@@ -26,14 +26,15 @@ public class SwerveModule extends SubsystemBase{
   private SimpleMotorFeedforward m_driveFeedforward;
   private SimpleMotorFeedforward m_turnFeedforward;
 
-  public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, int absoluteEncoderId){
+  public SwerveModule(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed, 
+  int absoluteEncoderId, double kF, double kP, double kI, double kD){
     //TODO: add param for PIDs
     //Configure module objects
     m_driveMotor = new WPI_TalonFX(driveMotorId);
     RobotContainer.configureTalonFX(m_driveMotor, false, false, 0, 0, 0, 0);
 
     m_turnMotor = new WPI_TalonFX(turningMotorId);
-    RobotContainer.configureTalonFX(m_turnMotor, false, false, 0, 0, 0, 0);
+    RobotContainer.configureTalonFX(m_turnMotor, false, false, kF, kP, kI, kD);
 
     // m_absoluteEncoder = new CANCoder(absoluteEncoderId);
 

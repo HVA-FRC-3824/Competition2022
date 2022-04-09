@@ -51,7 +51,7 @@ public class TurnToTarget extends CommandBase
     }
 
     //Give robot turn value
-    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput);
+    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput * 1.5);
   }
 
   /**

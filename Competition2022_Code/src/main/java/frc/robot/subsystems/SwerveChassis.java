@@ -32,10 +32,18 @@ public class SwerveChassis extends SubsystemBase{
     }
 
     //Instantiate motors and controllers
-    m_moduleFR = new SwerveModule(Constants.FRONT_RIGHT_SPEED_MOTOR_ID, Constants.FRONT_RIGHT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_FR_ID);
-    m_moduleFL = new SwerveModule(Constants.FRONT_LEFT_SPEED_MOTOR_ID, Constants.FRONT_LEFT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_FL_ID);
-    m_moduleBL = new SwerveModule(Constants.BACK_LEFT_SPEED_MOTOR_ID, Constants.BACK_LEFT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_BL_ID);
-    m_moduleBR = new SwerveModule(Constants.BACK_RIGHT_SPEED_MOTOR_ID, Constants.BACK_RIGHT_ANGLE_MOTOR_ID, false, false, Constants.ABS_ENCODER_BR_ID);
+    m_moduleFR = new SwerveModule(Constants.FRONT_RIGHT_SPEED_MOTOR_ID, Constants.FRONT_RIGHT_ANGLE_MOTOR_ID, false, false,
+                                  Constants.ABS_ENCODER_FR_ID, Constants.SWERVE_TURN_F, Constants.SWERVE_TURN_P, Constants.SWERVE_TURN_I, 
+                                  Constants.SWERVE_TURN_D);
+    m_moduleFL = new SwerveModule(Constants.FRONT_LEFT_SPEED_MOTOR_ID, Constants.FRONT_LEFT_ANGLE_MOTOR_ID, false, false, 
+                                  Constants.ABS_ENCODER_FL_ID, Constants.SWERVE_TURN_F, Constants.SWERVE_TURN_P, Constants.SWERVE_TURN_I, 
+                                  Constants.SWERVE_TURN_D);
+    m_moduleBL = new SwerveModule(Constants.BACK_LEFT_SPEED_MOTOR_ID, Constants.BACK_LEFT_ANGLE_MOTOR_ID, false, false, 
+                                  Constants.ABS_ENCODER_BL_ID, Constants.SWERVE_TURN_F, Constants.SWERVE_TURN_P, Constants.SWERVE_TURN_I, 
+                                  Constants.SWERVE_TURN_D);
+    m_moduleBR = new SwerveModule(Constants.BACK_RIGHT_SPEED_MOTOR_ID, Constants.BACK_RIGHT_ANGLE_MOTOR_ID, false, false, 
+                                  Constants.ABS_ENCODER_BR_ID, Constants.SWERVE_TURN_F, Constants.SWERVE_TURN_P, Constants.SWERVE_TURN_I, 
+                                  Constants.SWERVE_TURN_D);
 
     m_kinematics = new SwerveDriveKinematics(Constants.FRONT_RIGHT_WHEEL_LOCATION, Constants.FRONT_LEFT_WHEEL_LOCATION, 
     Constants.BACK_LEFT_WHEEL_LOCATION, Constants.BACK_RIGHT_WHEEL_LOCATION);
