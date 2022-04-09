@@ -6,6 +6,7 @@ import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 /** Inline commands allow the creation of new commands without a new CommandBase file.
  * Usage: single/double commands (Example: extending a piston)
@@ -44,20 +45,20 @@ public class InlineCommands {
   /* Limelight */
   public final Command m_toggleLimelight;
 
-  /* Swerve */
-  // public final Command m_driveWithJoystick;
-  
   /* LEDs */
   public final Command m_launchLEDs;
   public final Command m_defenseLEDs;
   public final Command m_neutral;
 
+  /* Swerve */
+  // public final Command m_driveWithJoystick;
+
   /* Test */
-  // public final Command m_autoTurnChassis;
-  // public final Command m_autoOneLaunch;
-  // public final Command m_autoTwoLaunch;
-  // public final Command m_autoOnePath;
-  // public final Command m_autoTwoPath;
+  public final Command m_autoTurnChassis;
+  public final Command m_autoTarmacLaunch;
+  public final Command m_autoHubLaunch;
+  public final Command m_autoOnePath;
+  public final Command m_autoTwoPath;
   //#endregion
   
   public InlineCommands(){
@@ -74,7 +75,7 @@ public class InlineCommands {
       new DefenseMode();
 
     m_toggleDriveMode =
-      new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode());
+      new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode(RobotContainer.m_OI.getDriverJoystick().getRawAxis(3)));
   
     /* Climb */
     m_moveLeftClimb =
@@ -137,13 +138,21 @@ public class InlineCommands {
     //     RobotContainer.m_OI.getDriverJoystick().getRawAxis(1), RobotContainer.m_OI.getDriverJoystick().getRawAxis(4), true), RobotContainer.m_swerveChassis);
 
     /* Test */
-    // // m_autoTurnChassis =
-    // //   new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.21)).alongWith(new WaitCommand(1.8).andThen(new InstantCommand (() -> 
-    //     RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)));
-    // public final Command m_autoOneLaunch;
-    // public final Command m_autoTwoLaunch;
-    // public final Command m_autoOnePath;
-    // public final Command m_autoTwoPath;
+    m_autoTurnChassis =
+      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.21)).alongWith(new WaitCommand(1.8)).andThen(new InstantCommand (() -> 
+        RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)));
+
+    m_autoTarmacLaunch =
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.AUTO_TARMAC_EDGE_LAUNCH_RPM, Constants.AUTO_TARMAC_EDGE_ACCEL_RPM));
+    m_autoHubLaunch =
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.AUTO_HUB_LAUNCH_RPM, Constants.AUTO_HUB_ACCEL_RPM));
+    
+    m_autoOnePath =
+      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0 , 0.4, 0.0)).alongWith(new WaitCommand(2.25)).andThen(new InstantCommand(() -> 
+        RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)));
+    
+    m_autoTwoPath =
+    this.m_autoOnePath.andThen(this.m_autoTurnChassis);
     //#endregion
   }
 }

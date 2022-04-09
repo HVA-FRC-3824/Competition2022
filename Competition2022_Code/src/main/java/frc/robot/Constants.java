@@ -22,8 +22,6 @@ public class Constants{
   public static final int ABS_ENCODER_BL_ID                               = 3;
   public static final int ABS_ENCODER_BR_ID                               = 2;
 
-  public static final int TOGGLE_DRIVE_MODE_BTN_ID                        = 7; 
-
   /* Climber */
   public static final int CLIMB_LEFT_ID                                   = 18;
   public static final int CLIMB_RIGHT_ID                                  = 17;   
@@ -121,18 +119,32 @@ public class Constants{
   /* Joysticks */
   public static final int DRIVER_JOYSTICK_PORT                            = 0;
   public static final int OPERATOR_JOYSTICK_PORT                          = 1;
+  public static final int TEST_JOYSTICK_PORT                              = 5;
 
   /* Buttons */
+  //Driver
+  public static final int TOGGLE_DRIVE_MODE_BTN_ID                        = 6;
+
+  //Operator
   public static final int LAUNCH_BTN_ID                                   = 6;
   public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
   public static final int INTAKE_BTN_ID                                   = 1;
-  public static final int TOGGLE_SYSTEMS_BTN_ID                           = 7; //TODO: Map to button on joystick
+  public static final int TOGGLE_SYSTEMS_BTN_ID                           = 7; 
   public static final int LEFT_CLIMB_BTN_ID                               = 3;
   public static final int RIGHT_CLIMB_BTN_ID                              = 4;
   public static final int TOGGLE_CLIMB_BTN_ID                             = 8;
   public static final int TURN_TO_TARGET_BTN_ID                           = 9;
   public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 10;
   public static final int TOGGLE_DEFENSE_BTN_ID                           = 2;
+
+  //Test
+  public static final int  AUTO_TURN_CHASSIS_BTN_ID                       = 9;
+  public static final int  AUTO_TARMAC_LAUNCH_BTN_ID                      = 6;
+  public static final int  AUTO_HUB_LAUNCH_BTN_ID                         = 5;
+  public static final int  AUTO_ONE_PATH_BTN_ID                           = 11;
+  public static final int  AUTO_TWO_PATH_BTN_ID                           = 12;
+
+  public static final int INDEX_TEST_BTN_ID                               = 4;
   //#endregion
 
   //#region Electronic Specs

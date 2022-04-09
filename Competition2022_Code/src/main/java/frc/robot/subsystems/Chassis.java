@@ -29,7 +29,7 @@ public class Chassis extends SubsystemBase{
   private WPI_TalonFX m_angleMotorBackRight;
   private WPI_TalonFX m_speedMotorBackRight;
 
-  public double swervePower = Constants.SWERVE_POWER;
+  public double swervePower;
 
   private boolean robotCentric = false;
 
@@ -288,7 +288,11 @@ public class Chassis extends SubsystemBase{
   }
 
   //Toggle drive between field centric and robot centric
-  public void toggleDriveMode(){
-    robotCentric = !robotCentric;
+  public void toggleDriveMode(double triggerValue){
+    if (triggerValue >= 0.5 && robotCentric == false){
+      robotCentric = true;
+    } else{
+      robotCentric = false;
+    }
   }
 }

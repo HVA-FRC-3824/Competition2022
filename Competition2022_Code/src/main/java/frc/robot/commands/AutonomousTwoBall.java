@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 /*
-* Auto path for moving straight out of the tarmac and launch held cargo
+* Auto path for launching held cargo, then move to grab another and launch that one
 */
 public class AutonomousTwoBall extends SequentialCommandGroup{
   public AutonomousTwoBall(){

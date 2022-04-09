@@ -48,6 +48,6 @@ public class AutonomousOneBall extends SequentialCommandGroup{
 
       //Stop index
       new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(0.0))
-      );
+    );
   }
 }

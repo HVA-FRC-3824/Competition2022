@@ -40,7 +40,7 @@ public class LEDs extends SubsystemBase{
   */
   @Override
   public void periodic(){
-    m_isDefending = DefenseMode.isDefending();
+    m_isDefending = DefenseMode.getDefenseStatus();
     m_isLaunching = Launcher.isLaunching();
     if(m_isLaunching && m_isDefending == false){
       this.launchLEDs();

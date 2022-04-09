@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 //import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
+/**
+ * Auto path for moving off tarmac strafing right without launching held cargo
+ */
 public class AutonomousRight extends SequentialCommandGroup {
   public AutonomousRight(){
     addCommands(

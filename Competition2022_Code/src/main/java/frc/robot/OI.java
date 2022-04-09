@@ -8,6 +8,7 @@ public class OI{
   /* Joystick */
   private static Joystick       m_driverJoystick;
   private static Joystick       m_operatorJoystick;
+  private static Joystick       m_testJoystick;
 
   /* Button */
 
@@ -21,6 +22,9 @@ public class OI{
   public static JoystickButton m_rightClimbBtn;
   public static JoystickButton m_toggleClimbBtn;
 
+  //Defense mode
+  public static JoystickButton m_toggleDefenseModeBtn;
+
   //Intake
   private static JoystickButton m_startIntakeBtn;
 
@@ -30,8 +34,13 @@ public class OI{
 
   private static JoystickButton m_toggleSystemsBtn;
 
-  //Defense mode
-  public static JoystickButton m_toggleDefenseModeBtn;
+  //Test
+  private static JoystickButton m_autoTurnChassisBtn;
+  private static JoystickButton m_autoTarmacLaunchBtn;
+  private static JoystickButton m_autoHubLaunchBtn;
+  private static JoystickButton m_autoOnePathBtn;
+  private static JoystickButton m_autoTwoPathBtn;
+  private static JoystickButton m_indexTestBtn;
   //#endregion
 
   public OI(){
@@ -39,6 +48,7 @@ public class OI{
     /* Joysticks */
     m_driverJoystick     = new Joystick(Constants.DRIVER_JOYSTICK_PORT);
     m_operatorJoystick   = new Joystick(Constants.OPERATOR_JOYSTICK_PORT);
+    m_testJoystick       = new Joystick(Constants.TEST_JOYSTICK_PORT);
 
     /* Buttons */
 
@@ -52,17 +62,25 @@ public class OI{
     m_rightClimbBtn      = new JoystickButton(m_operatorJoystick, Constants.RIGHT_CLIMB_BTN_ID);
     m_toggleClimbBtn     = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_CLIMB_BTN_ID);  
 
-    //Intake
-    m_startIntakeBtn     = new JoystickButton(m_operatorJoystick, Constants.INTAKE_BTN_ID);
-
-    //Launcher
-    m_launchSequenceBtn  = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
-    m_indexLauncherBtn   = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_INDEX_BTN_ID);
-
-    m_toggleSystemsBtn   = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_SYSTEMS_BTN_ID);
-
     //Defense
     m_toggleDefenseModeBtn = new JoystickButton(m_driverJoystick, Constants.TOGGLE_DEFENSE_BTN_ID);
+
+    //Intake
+    m_startIntakeBtn       = new JoystickButton(m_operatorJoystick, Constants.INTAKE_BTN_ID);
+
+    //Launcher
+    m_launchSequenceBtn    = new JoystickButton(m_operatorJoystick, Constants.LAUNCH_BTN_ID);
+    m_indexLauncherBtn     = new JoystickButton(m_operatorJoystick, Constants.LAUNCHER_INDEX_BTN_ID);
+
+    m_toggleSystemsBtn     = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_SYSTEMS_BTN_ID);
+
+    //Test
+    m_autoTurnChassisBtn   = new JoystickButton(m_testJoystick, Constants.AUTO_TURN_CHASSIS_BTN_ID);
+    m_autoTarmacLaunchBtn  = new JoystickButton(m_testJoystick, Constants.AUTO_TARMAC_LAUNCH_BTN_ID);
+    m_autoHubLaunchBtn     = new JoystickButton(m_testJoystick, Constants.AUTO_HUB_LAUNCH_BTN_ID);
+    m_autoOnePathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_ONE_PATH_BTN_ID);
+    m_autoTwoPathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_TWO_PATH_BTN_ID);
+    m_indexTestBtn         = new JoystickButton(m_testJoystick, Constants.INDEX_TEST_BTN_ID);
     //#endregion
   }
 
@@ -87,6 +105,9 @@ public class OI{
 
     m_toggleClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleClimb);
 
+    //Defense
+    m_toggleDefenseModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDefenseMode);
+
     //Intake
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
@@ -100,7 +121,16 @@ public class OI{
 
     m_toggleSystemsBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleSystems);
 
-    //Defense
-    m_toggleDefenseModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDefenseMode);
+    //Test
+    m_autoTurnChassisBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTurnChassis);
+
+    m_autoTarmacLaunchBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTarmacLaunch);
+    m_autoHubLaunchBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoHubLaunch);
+
+    m_autoOnePathBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoOnePath);
+    m_autoTwoPathBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTwoPath);
+
+    m_indexTestBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
+    m_indexTestBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchIndex);
   }
 }
