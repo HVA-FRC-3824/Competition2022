@@ -216,17 +216,12 @@ public class Limelight{
     double currentDistance = this.findDistance(getTargetOffsetY());
     
     //Loops through the limelightdistance array to find the highest and lowest values to later calculate RPM from
-    for(int i = 0; i < limelightDistance.length; i++)
-    {
-
-      if(currentDistance < limelightDistance[i])
-      {
+    for(int i = 0; i < limelightDistance.length; i++){
+      if(currentDistance <= limelightDistance[i]){
         lowerDistance = limelightDistance[i];
         lowerInstance = i;
       }
-      
-      if(currentDistance > limelightDistance[i])
-      {
+      if(currentDistance >= limelightDistance[i]){
         higherDistance = limelightDistance[i];
         higherInstance = i;
         break;
@@ -239,17 +234,18 @@ public class Limelight{
       If you use the approach below, you will choose the values which are closest to currentDistance.
       
       ////// See lowerDistance and higherDistance declarations above
-      if limelightDistance[i] == currentDistance
-        lowerDistance = currentDistance
-        higherDistance = currentDistance
+      if(limelightDistance[i] == currentDistance){
+        lowerDistance = currentDistance;
+        higherDistance = currentDistance;
         lowerInstance = i;
         higherInstance = i;
-      else if (limelightDistance[i] > lowerDistance && limelightDistance[i] < currentDistance)
+      }else if(limelightDistance[i] > lowerDistance && limelightDistance[i] < currentDistance){
         lowerDistance = limelightDistance[i];
         lowerInstance = i;
-      else if (limelightDistance[i] < higherDistance && limelightDistance[i] > currentDistance)
+      }else if (limelightDistance[i] < higherDistance && limelightDistance[i] > currentDistance){
         higherDistance = limelightDistance[i];
         higherInstance = i;
+      }
       */
 
     }
