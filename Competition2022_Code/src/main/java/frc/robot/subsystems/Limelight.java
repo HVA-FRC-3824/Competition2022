@@ -206,8 +206,8 @@ public class Limelight{
   public double calculateDesiredRPM(){
     double [] limelightDistance = {0.0};
     double [] launcherRPM = {0.0};
-    double lowerDistance = 0.0;
-    double higherDistance = 0.0;
+    double lowerDistance = Double.NEGATIVE_INFINITY;  //////////////  <-----------------
+    double higherDistance = Double.POSITIVE_INFINITY;  //////////////  <-----------------
     int lowerInstance = 0;
     int higherInstance = 0;
     double rpmDivider;
@@ -218,6 +218,7 @@ public class Limelight{
     //Loops through the limelightdistance array to find the highest and lowest values to later calculate RPM from
     for(int i = 0; i < limelightDistance.length; i++)
     {
+
       if(currentDistance < limelightDistance[i])
       {
         lowerDistance = limelightDistance[i];
@@ -230,6 +231,27 @@ public class Limelight{
         higherInstance = i;
         break;
       }
+
+      /*  RHUBARB'S SUGGESTED EDITS
+      The approach above will replace lowerDistance and higherDistance with any value. This is probably fine assuming the table is
+      always sorted properly. The above approach also does not account for values that exactly match the table (unlikely situation, but possible).
+      
+      If you use the approach below, you will choose the values which are closest to currentDistance.
+      
+      ////// See lowerDistance and higherDistance declarations above
+      if limelightDistance[i] == currentDistance
+        lowerDistance = currentDistance
+        higherDistance = currentDistance
+        lowerInstance = i;
+        higherInstance = i;
+      else if (limelightDistance[i] > lowerDistance && limelightDistance[i] < currentDistance)
+        lowerDistance = limelightDistance[i];
+        lowerInstance = i;
+      else if (limelightDistance[i] < higherDistance && limelightDistance[i] > currentDistance)
+        higherDistance = limelightDistance[i];
+        higherInstance = i;
+      */
+
     }
     
     //Find the divider for finding the desired RPM
