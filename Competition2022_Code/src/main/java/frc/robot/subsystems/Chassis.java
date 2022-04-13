@@ -162,7 +162,7 @@ public class Chassis extends SubsystemBase{
 
 
     //Set strafe_angle to NavX reported angle
-    if (robotCentric = false){
+    if (robotCentric == false){
       strafe_angle += (gyro_current) / 360 * 2 * Math.PI;
     }
 
@@ -288,11 +288,7 @@ public class Chassis extends SubsystemBase{
   }
 
   //Toggle drive between field centric and robot centric
-  public void toggleDriveMode(double triggerValue){
-    if (triggerValue >= 0.5 && robotCentric == false){
-      robotCentric = true;
-    } else{
-      robotCentric = false;
-    }
+  public void toggleDriveMode(){
+    robotCentric = !robotCentric;
   }
 }

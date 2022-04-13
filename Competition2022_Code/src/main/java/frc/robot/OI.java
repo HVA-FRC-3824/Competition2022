@@ -15,6 +15,7 @@ public class OI{
   //Chassis
   public static JoystickButton m_toggleLimelightBtn;
   public static JoystickButton m_turnToTargetBtn;
+  public static JoystickButton m_toggleDriveModeBtn;
 
   //Climb
   public static JoystickButton m_leftClimbBtn;
@@ -54,6 +55,7 @@ public class OI{
     //Chassis
     m_toggleLimelightBtn = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_LIMELIGHT_BTN_ID);
     m_turnToTargetBtn    = new JoystickButton(m_operatorJoystick, Constants.TURN_TO_TARGET_BTN_ID);
+    m_toggleDriveModeBtn = new JoystickButton(m_driverJoystick, Constants.TOGGLE_DRIVE_MODE_BTN_ID);
 
     //Climb
     m_leftClimbBtn       = new JoystickButton(m_operatorJoystick, Constants.LEFT_CLIMB_BTN_ID);
@@ -93,6 +95,7 @@ public class OI{
     m_turnToTargetBtn.whenPressed(RobotContainer.m_inlineCommands.m_turnToTarget);
     m_turnToTargetBtn.whenReleased(RobotContainer.m_inlineCommands.m_driveWithJoystick);
     m_toggleLimelightBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleLimelight);  
+    m_toggleDriveModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDriveMode);
 
     //Climb
     m_leftClimbBtn.whenPressed(RobotContainer.m_inlineCommands.m_moveLeftClimb);

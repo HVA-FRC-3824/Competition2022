@@ -10,6 +10,7 @@ public class DefenseMode extends CommandBase{
 
   public DefenseMode(){
     defenseSwervePower = 0.9;
+    this.stopSubsystems();
   }
 
   @Override
@@ -37,5 +38,10 @@ public class DefenseMode extends CommandBase{
 
   public static boolean getDefenseStatus(){
     return isDefending;
+  }
+
+  public void stopSubsystems(){
+    RobotContainer.m_climb.getClimbLeft().stopMotor();
+    RobotContainer.m_climb.getClimbRight().stopMotor();
   }
 }

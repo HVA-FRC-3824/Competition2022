@@ -75,7 +75,7 @@ public class InlineCommands {
       new DefenseMode();
 
     m_toggleDriveMode =
-      new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode(RobotContainer.m_OI.getDriverJoystick().getRawAxis(3)));
+      new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode());
     
     /* Climb */
     m_moveLeftClimb =
