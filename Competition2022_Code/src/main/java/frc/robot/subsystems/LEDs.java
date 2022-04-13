@@ -8,7 +8,7 @@ import frc.robot.Constants;
 
 public class LEDs extends SubsystemBase{
   //Declare LED objects
-  private static AddressableLED m_launcherLEDs; 
+  private static AddressableLED m_LEDs; 
   private static AddressableLEDBuffer m_LEDLength;
 
   // Defense mode variables
@@ -19,20 +19,25 @@ public class LEDs extends SubsystemBase{
   private int m_launchFirstPixelHue;
   private boolean m_isLaunching;
 
+  //Climbing Sequence
+  private boolean m_isClimbing;
+
+  private boolean m_isIntaking;
+
   //Neutral LED Sequence
   private int m_neutralStepValue = 0; //Step G blue, B red, R purple
   private int m_neutralPixelToChange = 0;
   private boolean m_neutralChasingDirection = false; //default inwards; true outwards
 
   public LEDs(){
-    m_launcherLEDs = new AddressableLED(Constants.LEDS_ID);
+    m_LEDs = new AddressableLED(Constants.LEDS_ID);
     m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT);
 
-    m_launcherLEDs.setLength(m_LEDLength.getLength());
+    m_LEDs.setLength(m_LEDLength.getLength());
 
     //Set output data & start LEDs
-    m_launcherLEDs.setData(m_LEDLength);
-    m_launcherLEDs.start();
+    m_LEDs.setData(m_LEDLength);
+    m_LEDs.start();
   }
 
   /*
@@ -42,16 +47,19 @@ public class LEDs extends SubsystemBase{
   public void periodic(){
     m_isDefending = DefenseMode.getDefenseStatus();
     m_isLaunching = Launcher.isLaunching();
-    if(m_isLaunching && m_isDefending == false){
+    m_isClimbing = Climb.isClimbing();
+    m_isIntaking = Intake.isIntaking();
+    if(m_isLaunching && !m_isDefending){
       this.launchLEDs();
-    }else if (m_isDefending == false){
+    }else if (!m_isDefending){
       this.neutral();
-    }
-    else if (m_periodicIteration >= 3 && m_isDefending){
+    }else if (m_periodicIteration >= 3 && m_isDefending){
       this.defenseModeLEDs();
       m_periodicIteration = 0;
+    }else if(m_isClimbing){
+      this.climbLEDs();
     }
-    m_launcherLEDs.setData(m_LEDLength);
+    m_LEDs.setData(m_LEDLength);
     m_periodicIteration++;
   }
 
@@ -134,6 +142,22 @@ public class LEDs extends SubsystemBase{
       m_LEDLength.setHSV(i, hue, 225, 225);
       m_LEDLength.setHSV((Constants.TOTAL_LEDS_COUNT/2 - 1) - i, hue, 255, 255);
     }
-    m_launcherLEDs.setData(m_LEDLength);
+    m_LEDs.setData(m_LEDLength);
   }
+
+  //Change LED colors to blue for launch
+  public void climbLEDs(){
+    for(int i = 0; i < m_LEDLength.getLength(); i++){
+      m_LEDLength.setRGB(i, 0, 0, 255);
+    }
+    m_LEDs.setData(m_LEDLength);
+  }
+
+  public void intakeLEDs(){
+    for(int i = 0; i < m_LEDLength.getLength(); i++){
+      m_LEDLength.setRGB(i, 255, 115, 0);
+    }
+    m_LEDs.setData(m_LEDLength);
+  }
+
 }

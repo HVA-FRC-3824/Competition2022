@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase{
   //Declare intake objects
-  public WPI_TalonSRX m_intake;
+  public static WPI_TalonSRX m_intake;
   public int m_toggleIntake;
+
+  private static boolean isIntaking;
 
   public Intake(){
     //Set toggle intake to take cargo in
@@ -60,5 +62,10 @@ public class Intake extends SubsystemBase{
   //Get intake temp for continuous update
   public double getIntakeTemp(){
     return m_intake.getTemperature();
+  }
+
+  public static boolean isIntaking(){
+    isIntaking = (m_intake.getSelectedSensorVelocity() > 0.3);
+    return isIntaking;
   }
 }
