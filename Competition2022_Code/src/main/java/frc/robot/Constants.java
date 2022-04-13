@@ -153,7 +153,7 @@ public class Constants{
   public static final int K_SLOT_IDX                                      = 0;
   public static final int K_TIMEOUT_MS                                    = 30;
   public static final int TALON_FX_TPR                                    = 2048; //motor ticks per revolution for Talon FX (no gear)
-  public static final int INTAKE_TPR                                      = 4200; //talonSRX + gearbox
+  public static final int INTAKE_TPR                                      = 4096; //talonSRX + gearbox
 
   /* Swerve */
   public static final double SWERVE_DRIVE_MAX_VOLTAGE                     = 4.95;

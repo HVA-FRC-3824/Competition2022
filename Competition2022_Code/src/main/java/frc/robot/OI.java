@@ -13,7 +13,6 @@ public class OI{
   /* Button */
 
   //Chassis
-  public static JoystickButton m_toggleDriveModeBtn;
   public static JoystickButton m_toggleLimelightBtn;
   public static JoystickButton m_turnToTargetBtn;
 
@@ -53,7 +52,6 @@ public class OI{
     /* Buttons */
 
     //Chassis
-    m_toggleDriveModeBtn = new JoystickButton(m_driverJoystick, Constants.TOGGLE_DRIVE_MODE_BTN_ID); 
     m_toggleLimelightBtn = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_LIMELIGHT_BTN_ID);
     m_turnToTargetBtn    = new JoystickButton(m_operatorJoystick, Constants.TURN_TO_TARGET_BTN_ID);
 
@@ -92,7 +90,6 @@ public class OI{
   //Bind commands to buttons
   public void configureButtonBindings(){
     //Chassis
-    m_toggleDriveModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDriveMode);
     m_turnToTargetBtn.whenPressed(RobotContainer.m_inlineCommands.m_turnToTarget);
     m_turnToTargetBtn.whenReleased(RobotContainer.m_inlineCommands.m_driveWithJoystick);
     m_toggleLimelightBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleLimelight);  

@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase{
   //Set intake velocity & display desired vel on Dashboard
   public void setIntakeVelocity(int rpm){
     m_intake.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
-    SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm, Constants.INTAKE_TPR));
+    SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
   }
 
   public void toggleIntake(){
