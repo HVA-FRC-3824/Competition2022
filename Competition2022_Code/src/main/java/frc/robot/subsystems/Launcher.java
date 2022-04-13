@@ -55,8 +55,8 @@ public class Launcher extends SubsystemBase{
     m_launcherAccel.set(ControlMode.PercentOutput, power);
   }
   public void setIndexPower(double power){
-    m_launcherIndexTop.set(ControlMode.PercentOutput, power);
-    m_launcherIndexBottom.set(ControlMode.PercentOutput, -power);
+    m_launcherIndexTop.set(ControlMode.PercentOutput, power * m_toggleLaunch);
+    m_launcherIndexBottom.set(ControlMode.PercentOutput, -power * m_toggleLaunch);
   }
 
   //Set launch & accel velocity

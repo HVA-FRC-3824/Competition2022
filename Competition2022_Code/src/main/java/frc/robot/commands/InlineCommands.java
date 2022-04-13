@@ -76,7 +76,7 @@ public class InlineCommands {
 
     m_toggleDriveMode =
       new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode(RobotContainer.m_OI.getDriverJoystick().getRawAxis(3)));
-  
+    
     /* Climb */
     m_moveLeftClimb =
       new InstantCommand(() -> RobotContainer.m_climb.setLeftClimbPower(Constants.CLIMB_POWER));
@@ -96,7 +96,7 @@ public class InlineCommands {
       new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(Constants.INTAKE_WHEEL_RPM));
 
     m_stopIntake =
-      new InstantCommand(() -> RobotContainer.m_intake.setIntakeVelocity(0));
+      new InstantCommand(() -> RobotContainer.m_intake.setIntakePower(0));
     
     /* Launcher */
     m_startLaunchSequence = 
