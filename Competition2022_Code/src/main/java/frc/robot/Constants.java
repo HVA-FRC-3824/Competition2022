@@ -67,7 +67,7 @@ public class Constants{
   public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
 
   /* Climber */
-  public static final double CLIMB_POWER                                  = -0.8; //-0.67
+  public static final double CLIMB_POWER                                  = 0.8; //-0.67
 
   /* Intake */
   public static final double INTAKE_P                                     = 0.3; //0.4
