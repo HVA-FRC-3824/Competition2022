@@ -121,7 +121,6 @@ public class LEDs extends SubsystemBase{
         m_LEDLength.setRGB(i - 1, 0, m_neutralStepValue - 10, 255); //dark to light blue
       }
     }
-
     if (m_neutralPixelToChange >= 20){
       m_neutralPixelToChange -= 20;
     }else{
@@ -153,6 +152,7 @@ public class LEDs extends SubsystemBase{
     m_LEDs.setData(m_LEDLength);
   }
 
+  //Change LED colors to orange while intaking
   public void intakeLEDs(){
     for(int i = 0; i < m_LEDLength.getLength(); i++){
       m_LEDLength.setRGB(i, 255, 115, 0);

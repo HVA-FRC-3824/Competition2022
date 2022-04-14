@@ -9,9 +9,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Climb {
   //Declare climb objects
-  private WPI_TalonFX m_climbRight;
-  private WPI_TalonFX m_climbLeft;
+  private static WPI_TalonFX m_climbRight;
+  private static WPI_TalonFX m_climbLeft;
   private double m_toggleExtend;
+
+  private static boolean isClimbing;
 
   public Climb(){
     //Set extend up to be 12.655% faster than down
@@ -51,5 +53,11 @@ public class Climb {
     }else{
       m_toggleExtend = -1;
     }
+  }
+
+  //Check if the launcher is launching by acessing the launcher velocity
+  public static boolean isClimbing(){
+    isClimbing = (m_climbLeft.getSelectedSensorVelocity() > 0.3) || (m_climbRight.getSelectedSensorVelocity() > 0.3);
+    return isClimbing;
   }
 }
