@@ -47,7 +47,7 @@ public class LEDs extends SubsystemBase{
   public void periodic(){
     m_isDefending = DefenseMode.getDefenseStatus();
     m_isLaunching = Launcher.isLaunching();
-    m_isClimbing = Climb.isClimbing();
+    // m_isClimbing = Climb.isClimbing();
     m_isIntaking = Intake.isIntaking();
     if(m_isLaunching && !m_isDefending){
       this.launchLEDs();
