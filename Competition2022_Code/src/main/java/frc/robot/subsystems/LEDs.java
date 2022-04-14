@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.*;
+import frc.robot.commands.DefenseMode;
 import frc.robot.Constants;
 
 public class LEDs extends SubsystemBase{
@@ -51,13 +51,15 @@ public class LEDs extends SubsystemBase{
     m_isIntaking = Intake.isIntaking();
     if(m_isLaunching && !m_isDefending){
       this.launchLEDs();
-    }else if (!m_isDefending){
-      this.neutral();
     }else if (m_periodicIteration >= 3 && m_isDefending){
       this.defenseModeLEDs();
       m_periodicIteration = 0;
     }else if(m_isClimbing){
       this.climbLEDs();
+    }else if(m_isIntaking){
+      this.intakeLEDs();
+    }else{
+      this.neutral();
     }
     m_LEDs.setData(m_LEDLength);
     m_periodicIteration++;
@@ -121,6 +123,7 @@ public class LEDs extends SubsystemBase{
         m_LEDLength.setRGB(i - 1, 0, m_neutralStepValue - 10, 255); //dark to light blue
       }
     }
+
     if (m_neutralPixelToChange >= 20){
       m_neutralPixelToChange -= 20;
     }else{
@@ -152,7 +155,6 @@ public class LEDs extends SubsystemBase{
     m_LEDs.setData(m_LEDLength);
   }
 
-  //Change LED colors to orange while intaking
   public void intakeLEDs(){
     for(int i = 0; i < m_LEDLength.getLength(); i++){
       m_LEDLength.setRGB(i, 255, 115, 0);

@@ -66,7 +66,7 @@ public class Launcher extends SubsystemBase{
   }
   public void setAcceleratorVelocity(int rpm){
     m_launcherAccel.set(ControlMode.Velocity,  RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
-    SmartDashboard.putNumber("Accelerator Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
+    SmartDashboard.putNumber("Accel Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
   }
 
   //Set preset power for auto

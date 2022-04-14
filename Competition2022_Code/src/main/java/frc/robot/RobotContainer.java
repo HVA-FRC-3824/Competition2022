@@ -86,6 +86,8 @@ public class RobotContainer{
     m_autoChooser.setDefaultOption("DEFAULT COMMAND NAME HERE", "default");
     m_autoChooser.addOption("ONE BALL", "one_Ball");
     m_autoChooser.addOption("ONE BALL RIGHT", "one_Ball_Right");
+    m_autoChooser.addOption("TWO BALL", "two_Ball");
+    m_autoChooser.addOption("SABOTAGE", "sabotage");
 
     /* Display chooser on SmartDashboard */
     SmartDashboard.putData("Autonomous Command", m_autoChooser);
@@ -114,6 +116,10 @@ public class RobotContainer{
         return new AutonomousOneBall();
       case "one_Ball_Right":
         return new AutonomousRight();
+      case "two_Ball":
+        return new AutonomousTwoBall();
+      case "sabotage":
+        return new AutonomousSabotage();
       default:
         System.out.println("\nError selecting autonomous command:\nCommand selected: " + m_autoChooser.getSelected() + "\n");
         return null;
