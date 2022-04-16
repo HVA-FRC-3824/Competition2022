@@ -30,6 +30,7 @@ public class TurnToTarget extends CommandBase
   {
     m_turnOutput = 0.0;
     m_turnError = 0.0;
+    RobotContainer.m_chassis.limelightTurn = true;
 
     RobotContainer.m_limelight.setModeVision();
   }
@@ -62,6 +63,7 @@ public class TurnToTarget extends CommandBase
   */
   @Override
   public boolean isFinished(){
+    RobotContainer.m_chassis.limelightTurn = false;
     return false;
   }
 }
