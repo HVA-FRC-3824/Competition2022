@@ -44,7 +44,7 @@ public class Constants{
   public static final int AUTO_TARMAC_EDGE_ACCEL_RPM                      = 4300; //2300
 
   public static final int AUTO_HUB_LAUNCH_RPM                             = 6500; //6200
-  public static final int AUTO_HUB_ACCEL_RPM                              = 3500; //2500
+  public static final int AUTO_HUB_ACCEL_RPM                              = 3000; //2500
 
   /* Chassis */
   public static final double K_CHASSIS_TURN_P                             = 0;
@@ -96,7 +96,7 @@ public class Constants{
 
   public static final double LAUNCHER_LAUNCH_POWER                        = 0.7;
   public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
-  public static final double LAUNCHER_INDEX_POWER                         = -0.8; //-0.5
+  public static final double LAUNCHER_INDEX_POWER                         = -0.65; //-0.75
 
   public static final int LAUNCHER_LAUNCH_RPM                             = 5000; //4400
   public static final int LAUNCHER_ACCEL_RPM                              = 2000; //4300
