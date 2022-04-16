@@ -33,6 +33,9 @@ public class Chassis extends SubsystemBase{
 
   private boolean robotCentric = false;
 
+  public boolean limelightTurn = false;
+
+
   // public CANCoder AbsEncoderFR;
   // public CANCoder AbsEncoderFL;
   // public CANCoder AbsEncoderBL;
@@ -136,8 +139,15 @@ public class Chassis extends SubsystemBase{
     double d;
 
     //Set deadzone & dampening turn
-    if (Math.abs(x2) > 0.2)
+    if (limelightTurn == true){
+      turn = x2 * 0.7;
+    }
+    else{
+      if (Math.abs(x2) > 0.2)
       { turn = x2 *0.7; }    
+    }
+
+    
 
     //Set length & width proportional to chassis size by using circle of radius 1
     //turn_angle gets tan of length & width (in radians)
