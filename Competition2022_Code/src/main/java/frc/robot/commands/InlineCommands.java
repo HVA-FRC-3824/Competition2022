@@ -152,7 +152,7 @@ public class InlineCommands {
         RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0)));
     
     m_autoTwoPath =
-    this.m_autoOnePath.andThen(this.m_autoTurnChassis);
+    this.m_autoTurnChassis.andThen(this.m_autoOnePath);
     //#endregion
   }
 }

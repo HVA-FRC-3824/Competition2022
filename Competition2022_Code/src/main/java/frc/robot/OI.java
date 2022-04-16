@@ -41,6 +41,7 @@ public class OI{
   private static JoystickButton m_autoOnePathBtn;
   private static JoystickButton m_autoTwoPathBtn;
   private static JoystickButton m_indexTestBtn;
+  private static JoystickButton m_testIntakeBtn;
   //#endregion
 
   public OI(){
@@ -81,6 +82,8 @@ public class OI{
     m_autoOnePathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_ONE_PATH_BTN_ID);
     m_autoTwoPathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_TWO_PATH_BTN_ID);
     m_indexTestBtn         = new JoystickButton(m_testJoystick, Constants.INDEX_TEST_BTN_ID);
+    m_testIntakeBtn        = new JoystickButton(m_operatorJoystick, 2);
+
     //#endregion
   }
 
@@ -125,12 +128,18 @@ public class OI{
     m_autoTurnChassisBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTurnChassis);
 
     m_autoTarmacLaunchBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTarmacLaunch);
+    m_autoTarmacLaunchBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
+
     m_autoHubLaunchBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoHubLaunch);
+    m_autoHubLaunchBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchSequence);
 
     m_autoOnePathBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoOnePath);
     m_autoTwoPathBtn.whenPressed(RobotContainer.m_inlineCommands.m_autoTwoPath);
 
     m_indexTestBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);
     m_indexTestBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopLaunchIndex);
+
+    m_testIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
+    m_testIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
   }
 }
