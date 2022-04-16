@@ -54,8 +54,8 @@ public class Constants{
   public static final double K_TURN_TOLERANCE_DEG                         = 0;
   public static final double K_TURN_RATE_TOLERANCE_DEG_PER_SEC            = 0;
 
-  public static final double K_CHASSIS_TURN_VISION_P                      = 0.02;
-  public static final double K_CHASSIS_TURN_VISION_MIN                    = 0.1;
+  public static final double K_CHASSIS_TURN_VISION_P                      = 0.025;
+  public static final double K_CHASSIS_TURN_VISION_MIN                    = 0.05;
   public static final double CHASSIS_TURN_ERROR_THRESHOLD                 = 0.5;
   
   public static final double K_CHASSIS_LEFT_ANGLE_P                       = 0.2245;     //previous: 0.225
@@ -98,8 +98,8 @@ public class Constants{
   public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
   public static final double LAUNCHER_INDEX_POWER                         = -0.75; //-0.5
 
-  public static final int LAUNCHER_LAUNCH_RPM                             = 4400; //4100
-  public static final int LAUNCHER_ACCEL_RPM                              = 4300; //2300
+  public static final int LAUNCHER_LAUNCH_RPM                             = 5000; //4400
+  public static final int LAUNCHER_ACCEL_RPM                              = 2000; //4300
 
   /* LEDs */
   public static final int TOTAL_LEDS_COUNT                                = 0;

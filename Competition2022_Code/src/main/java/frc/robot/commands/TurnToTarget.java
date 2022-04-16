@@ -3,6 +3,9 @@ package frc.robot.commands;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
+import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class TurnToTarget extends CommandBase
@@ -13,7 +16,7 @@ public class TurnToTarget extends CommandBase
   public TurnToTarget()
   {
   /**
-   * Require chassis to take over all chassi input.
+   * Require chassis to take over all chassis input.
    * Allows command to set chassis angle based on vision.
    */
     addRequirements(RobotContainer.m_chassis);
@@ -38,20 +41,20 @@ public class TurnToTarget extends CommandBase
   public void execute(){
     //Get position of limelight vision
     m_turnError = RobotContainer.m_limelight.getTargetOffsetX();
+    SmartDashboard.putNumber("Target Horizontal Offset", RobotContainer.m_limelight.getTargetOffsetX());
 
-    //Use limelight output to designate adjust turn value
+    //Use limelight output to designate or adjust turn value
     if (m_turnError >= Constants.CHASSIS_TURN_ERROR_THRESHOLD){
       m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError - Constants.K_CHASSIS_TURN_VISION_MIN;
     }
     else if (m_turnError <= Constants.CHASSIS_TURN_ERROR_THRESHOLD){
       m_turnOutput = Constants.K_CHASSIS_TURN_VISION_P * m_turnError + Constants.K_CHASSIS_TURN_VISION_MIN;
     }
-    else{
-      m_turnOutput = 0.0;
-    }
 
     //Give robot turn value
-    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput * 1.5);
+    RobotContainer.m_chassis.convertSwerveValues(0, 0, m_turnOutput);
+
+    SmartDashboard.putNumber("Turn Output", m_turnOutput);
   }
 
   /**

@@ -63,7 +63,7 @@ public class OI{
     m_toggleClimbBtn     = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_CLIMB_BTN_ID);  
 
     //Defense
-    m_toggleDefenseModeBtn = new JoystickButton(m_driverJoystick, Constants.TOGGLE_DEFENSE_BTN_ID);
+    m_toggleDefenseModeBtn = new JoystickButton(m_operatorJoystick, Constants.TOGGLE_DEFENSE_BTN_ID);
 
     //Intake
     m_startIntakeBtn       = new JoystickButton(m_operatorJoystick, Constants.INTAKE_BTN_ID);
