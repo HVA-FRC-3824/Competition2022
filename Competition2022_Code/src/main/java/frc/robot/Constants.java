@@ -43,8 +43,8 @@ public class Constants{
   public static final int AUTO_TARMAC_EDGE_LAUNCH_RPM                     = 6000; //5000
   public static final int AUTO_TARMAC_EDGE_ACCEL_RPM                      = 4300; //2300
 
-  public static final int AUTO_HUB_LAUNCH_RPM                             = 6500; //6200
-  public static final int AUTO_HUB_ACCEL_RPM                              = 3000; //2500
+  public static final int AUTO_HUB_LAUNCH_RPM                             = 6200; //6500
+  public static final int AUTO_HUB_ACCEL_RPM                              = 2000; //3000
 
   /* Chassis */
   public static final double K_CHASSIS_TURN_P                             = 0;
@@ -67,7 +67,7 @@ public class Constants{
   public static final double K_CHASSIS_RIGHT_ANGLE_D                      = 0.000003;  //previous: 0.000005
 
   /* Climber */
-  public static final double CLIMB_POWER                                  = 0.8; //-0.67
+  public static final double CLIMB_POWER                                  = -0.8; //-0.67
 
   /* Intake */
   public static final double INTAKE_P                                     = 0.3; //0.4
@@ -98,8 +98,8 @@ public class Constants{
   public static final double LAUNCHER_ACCEL_POWER                         = 0.38;
   public static final double LAUNCHER_INDEX_POWER                         = -0.65; //-0.75
 
-  public static final int LAUNCHER_LAUNCH_RPM                             = 5000; //4400
-  public static final int LAUNCHER_ACCEL_RPM                              = 2000; //4300
+  public static final int LAUNCHER_LAUNCH_RPM                             = 5700; //5500
+  public static final int LAUNCHER_ACCEL_RPM                              = 1800; //1900
 
   /* LEDs */
   public static final int TOTAL_LEDS_COUNT                                = 0;
