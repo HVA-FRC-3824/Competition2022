@@ -16,7 +16,7 @@ public class LEDs extends SubsystemBase{
 
   // Defense mode variables
   private boolean m_isDefending;
-  private int m_periodicIteration = 0;
+  // private int m_periodicIteration = 0;
 
   //Launching Sequence
   private int m_rainbowFirstPixelHue;
@@ -56,7 +56,7 @@ public class LEDs extends SubsystemBase{
     // m_isClimbing = Climb.isClimbing();
     m_isIntaking = Intake.isIntaking();
 
-    if (m_isDefending){ //m_periodicIteration >= 3
+    if(m_isDefending){ //m_periodicIteration >= 3
       this.defenseModeLEDs();
       // m_periodicIteration = 0;
     }else if(m_isLaunching){
@@ -70,10 +70,9 @@ public class LEDs extends SubsystemBase{
     }else{
       this.neutral();
     }
-
     m_LEDs.setData(m_LEDLength);
     // m_LEDs2.setData(m_LEDLength2);
-    m_periodicIteration++;
+    // m_periodicIteration++;
   }
 
   //Resets LEDs to neutral

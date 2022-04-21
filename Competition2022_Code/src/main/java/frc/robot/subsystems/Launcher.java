@@ -102,7 +102,7 @@ public class Launcher extends SubsystemBase{
   }
 
   public static boolean isIndexing(){
-    if(m_launcherIndexTop.getSelectedSensorVelocity() > 0.3 || m_launcherIndexBottom.getSelectedSensorVelocity() > 0.3){
+    if(m_launcherIndexTop.getSelectedSensorVelocity() > 1 || m_launcherIndexBottom.getSelectedSensorVelocity() > 1){
       isIndexing = true;
     }else{
       isIndexing = false;

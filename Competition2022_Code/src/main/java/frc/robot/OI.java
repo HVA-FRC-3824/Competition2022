@@ -113,7 +113,9 @@ public class OI{
 
     //Intake
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
+    // m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_intakeLEDs);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
+    // m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_neutral);
 
     //Launch
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);

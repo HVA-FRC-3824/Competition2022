@@ -33,6 +33,7 @@ public class InlineCommands {
   /* Intake */
   public final Command m_startIntake;
   public final Command m_stopIntake;
+  public final Command m_intakeLEDs;
    
   /* Launch */
   public final Command m_startLaunchSequence;
@@ -131,6 +132,8 @@ public class InlineCommands {
       new RunCommand(() -> RobotContainer.m_LEDs.neutral());
     m_defenseLEDs =
       new RunCommand(() -> RobotContainer.m_LEDs.defenseModeLEDs());
+    m_intakeLEDs = 
+      new RunCommand(() -> RobotContainer.m_LEDs.intakeLEDs());
 
     /* Swerve */
     // m_driveWithJoystick =

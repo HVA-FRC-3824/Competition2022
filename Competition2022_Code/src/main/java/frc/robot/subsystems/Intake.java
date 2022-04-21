@@ -65,7 +65,7 @@ public class Intake extends SubsystemBase{
   }
 
   public static boolean isIntaking(){
-    isIntaking = (m_intake.getSelectedSensorVelocity() > 0.3);
+    isIntaking = (m_intake.getSelectedSensorVelocity() > 0.1);
     return isIntaking;
   }
 }
