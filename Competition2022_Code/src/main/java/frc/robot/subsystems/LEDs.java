@@ -21,6 +21,7 @@ public class LEDs extends SubsystemBase{
   //Launching Sequence
   private int m_rainbowFirstPixelHue;
   private boolean m_isLaunching;
+  private boolean m_isIndexing;
 
   //Climbing Sequence
   private boolean m_isClimbing;
@@ -51,20 +52,25 @@ public class LEDs extends SubsystemBase{
   public void periodic(){
     m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
     m_isLaunching = Launcher.isLaunching();
+    m_isIndexing = Launcher.isIndexing();
     // m_isClimbing = Climb.isClimbing();
     m_isIntaking = Intake.isIntaking();
-    if(m_isLaunching && !m_isDefending){
-      this.rainbow();
-    }else if (m_periodicIteration >= 3 && m_isDefending){
+
+    if (m_isDefending){ //m_periodicIteration >= 3
       this.defenseModeLEDs();
-      m_periodicIteration = 0;
+      // m_periodicIteration = 0;
+    }else if(m_isLaunching){
+      this.rainbow();
     }else if(m_isClimbing){
       this.rainbow();
     }else if(m_isIntaking){
       this.intakeLEDs();
+    }else if(m_isIndexing){
+      this.indexLEDs();
     }else{
       this.neutral();
     }
+
     m_LEDs.setData(m_LEDLength);
     // m_LEDs2.setData(m_LEDLength2);
     m_periodicIteration++;
@@ -77,10 +83,8 @@ public class LEDs extends SubsystemBase{
 
   //set color to red
   public void defenseModeLEDs(){
-    if(m_isDefending == true){
-      for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
-        m_LEDLength.setRGB(i, 255, 0, 0);
-      }
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
+      m_LEDLength.setRGB(i, 255, 0, 0);
     }
   }
 
@@ -131,6 +135,13 @@ public class LEDs extends SubsystemBase{
   public void intakeLEDs(){
     for(int i = 0; i < m_LEDLength.getLength(); i++){
       m_LEDLength.setRGB(i, 255, 115, 0);
+    }
+    m_LEDs.setData(m_LEDLength);
+  }
+
+  public void indexLEDs(){
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
+      m_LEDLength.setRGB(i, 60, 255, 100);
     }
     m_LEDs.setData(m_LEDLength);
   }
