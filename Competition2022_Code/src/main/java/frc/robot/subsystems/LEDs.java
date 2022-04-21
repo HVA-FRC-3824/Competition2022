@@ -32,6 +32,7 @@ public class LEDs extends SubsystemBase{
     m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT_2);
     m_LEDs.setLength(m_LEDLength.getLength());
 
+    this.neutral();
     //Set output data & start LEDs
     m_LEDs.setData(m_LEDLength);
     m_LEDs.start();
