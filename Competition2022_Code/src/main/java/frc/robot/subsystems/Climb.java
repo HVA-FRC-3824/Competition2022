@@ -41,7 +41,7 @@ public class Climb {
     
   //Move climb with power
   public void setLeftClimbPower(double power){
-    m_climbLeft.set(ControlMode.PercentOutput, power *m_toggleExtend);
+    m_climbLeft.set(ControlMode.PercentOutput,-power *m_toggleExtend);
   }
   public void setRightClimbPower(double power){
     m_climbRight.set(ControlMode.PercentOutput, power *m_toggleExtend);

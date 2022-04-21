@@ -82,7 +82,7 @@ public class OI{
     m_autoOnePathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_ONE_PATH_BTN_ID);
     m_autoTwoPathBtn       = new JoystickButton(m_testJoystick, Constants.AUTO_TWO_PATH_BTN_ID);
     m_indexTestBtn         = new JoystickButton(m_testJoystick, Constants.INDEX_TEST_BTN_ID);
-    m_testIntakeBtn        = new JoystickButton(m_operatorJoystick, 2);
+    m_testIntakeBtn        = new JoystickButton(m_testJoystick, 2);
 
     //#endregion
   }

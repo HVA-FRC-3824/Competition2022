@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.DefenseMode;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class LEDs extends SubsystemBase{
   //Declare LED objects
@@ -49,7 +49,7 @@ public class LEDs extends SubsystemBase{
   */
   @Override
   public void periodic(){
-    m_isDefending = DefenseMode.getDefenseStatus();
+    m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
     m_isLaunching = Launcher.isLaunching();
     // m_isClimbing = Climb.isClimbing();
     m_isIntaking = Intake.isIntaking();

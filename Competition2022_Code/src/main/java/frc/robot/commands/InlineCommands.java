@@ -72,7 +72,7 @@ public class InlineCommands {
       new TurnToTarget().andThen(new InstantCommand(() -> RobotContainer.m_limelight.setModeDriver()));
 
     m_toggleDefenseMode =
-      new DefenseMode();
+      new InstantCommand(() -> RobotContainer.m_chassis.toggleDefenseMode());
 
     m_toggleDriveMode =
       new InstantCommand(() -> RobotContainer.m_chassis.toggleDriveMode());
