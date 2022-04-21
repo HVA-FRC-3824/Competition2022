@@ -102,9 +102,11 @@ public class Constants{
   public static final int LAUNCHER_ACCEL_RPM                              = 1800; //1900
 
   /* LEDs */
-  public static final int TOTAL_LEDS_COUNT                                = 0;
+  public static final int TOTAL_LEDS_COUNT                                = 150;
+  public static final int TOTAL_LEDS_COUNT_2                              = 300;
   public static final int LEDS_ID                                         = 0;
-  public static final int LEDS_BUFFER_ID                                  = 0;
+  // public static final int LEDS_2_ID                                       = 2;
+  // public static final int LEDS_BUFFER_ID                                  = 0;
   public static final int LEDS_LENGTH                                     = 0;
 
   /* WPILIB Swerve */

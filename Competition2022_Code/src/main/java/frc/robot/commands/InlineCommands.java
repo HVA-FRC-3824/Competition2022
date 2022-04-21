@@ -46,7 +46,7 @@ public class InlineCommands {
   public final Command m_toggleLimelight;
 
   /* LEDs */
-  public final Command m_launchLEDs;
+  // public final Command m_launchLEDs;
   public final Command m_defenseLEDs;
   public final Command m_neutral;
 
@@ -125,8 +125,8 @@ public class InlineCommands {
     //   new RunCommand(() -> RobotContainer.m_LEDs.strobeOutward()); 
     // m_chaseOutwards =
     //   new RunCommand(() -> RobotContainer.m_LEDs.toggleableLauncherLEDS()()); 
-    m_launchLEDs =
-      new RunCommand(() -> RobotContainer.m_LEDs.launchLEDs()); 
+    // m_launchLEDs =
+    //   new RunCommand(() -> RobotContainer.m_LEDs.launchLEDs()); 
     m_neutral = 
       new RunCommand(() -> RobotContainer.m_LEDs.neutral());
     m_defenseLEDs =
