@@ -15,10 +15,11 @@ public class Launcher extends SubsystemBase{
   //Declare launcher objects
   private static WPI_TalonFX m_launcherLaunch;
   private WPI_TalonFX m_launcherAccel;
-  private WPI_TalonSRX m_launcherIndexTop;
-  private WPI_TalonSRX m_launcherIndexBottom;
+  private static WPI_TalonSRX m_launcherIndexTop;
+  private static WPI_TalonSRX m_launcherIndexBottom;
   private int m_toggleLaunch;
   public static boolean isLaunching;
+  public static boolean isIndexing;
 
   public Launcher(){
     //Set toggle launch to launch ball forward
@@ -98,5 +99,14 @@ public class Launcher extends SubsystemBase{
       isLaunching = false;
     }
     return isLaunching;
+  }
+
+  public static boolean isIndexing(){
+    if(m_launcherIndexTop.getSelectedSensorVelocity() > 0.3 || m_launcherIndexBottom.getSelectedSensorVelocity() > 0.3){
+      isIndexing = true;
+    }else{
+      isIndexing = false;
+    }
+    return isIndexing;
   }
 }
