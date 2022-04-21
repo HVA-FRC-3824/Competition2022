@@ -33,8 +33,7 @@ public class InlineCommands {
   /* Intake */
   public final Command m_startIntake;
   public final Command m_stopIntake;
-  public final Command m_intakeLEDs;
-   
+
   /* Launch */
   public final Command m_startLaunchSequence;
   public final Command m_stopLaunchSequence;
@@ -45,11 +44,6 @@ public class InlineCommands {
 
   /* Limelight */
   public final Command m_toggleLimelight;
-
-  /* LEDs */
-  // public final Command m_launchLEDs;
-  public final Command m_defenseLEDs;
-  public final Command m_neutral;
 
   /* Swerve */
   // public final Command m_driveWithJoystick;
@@ -128,12 +122,6 @@ public class InlineCommands {
     //   new RunCommand(() -> RobotContainer.m_LEDs.toggleableLauncherLEDS()()); 
     // m_launchLEDs =
     //   new RunCommand(() -> RobotContainer.m_LEDs.launchLEDs()); 
-    m_neutral = 
-      new RunCommand(() -> RobotContainer.m_LEDs.neutral());
-    m_defenseLEDs =
-      new RunCommand(() -> RobotContainer.m_LEDs.defenseModeLEDs());
-    m_intakeLEDs = 
-      new RunCommand(() -> RobotContainer.m_LEDs.intakeLEDs());
 
     /* Swerve */
     // m_driveWithJoystick =

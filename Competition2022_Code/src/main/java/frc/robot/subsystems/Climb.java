@@ -42,9 +42,23 @@ public class Climb {
   //Move climb with power
   public void setLeftClimbPower(double power){
     m_climbLeft.set(ControlMode.PercentOutput,-power *m_toggleExtend);
+    try{
+      if(power > 0){
+        RobotContainer.m_LEDs.climbLEDs();
+      }else{
+        RobotContainer.m_LEDs.neutral();
+      }
+    }finally{}
   }
   public void setRightClimbPower(double power){
     m_climbRight.set(ControlMode.PercentOutput, power *m_toggleExtend);
+    try{
+      if(power > 0){
+        RobotContainer.m_LEDs.climbLEDs();
+      }else{
+        RobotContainer.m_LEDs.neutral();
+      }
+    }finally{}
   }
 
   //Toggles climb from up (+) to down(-) & vice versa

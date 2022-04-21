@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 
 public class LEDs extends SubsystemBase{
   //Declare LED objects
@@ -15,34 +14,27 @@ public class LEDs extends SubsystemBase{
   //private static AddressableLEDBuffer m_LEDLength2;
 
   // Defense mode variables
-  private boolean m_isDefending;
+  // private boolean m_isDefending;
   // private int m_periodicIteration = 0;
 
   //Launching Sequence
   private int m_rainbowFirstPixelHue;
   private boolean m_isLaunching;
-  private boolean m_isIndexing;
+  // private boolean m_isIndexing;
 
   //Climbing Sequence
-  private boolean m_isClimbing;
+  // private boolean m_isClimbing;
 
-  private boolean m_isIntaking;
+  // private boolean m_isIntaking;
 
   public LEDs(){
     m_LEDs = new AddressableLED(Constants.LEDS_ID);
     m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT_2);
-
-    // m_LEDs2 = new AddressableLED(Constants.LEDS_2_ID);
-    // m_LEDLength2 = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT_2);
-
     m_LEDs.setLength(m_LEDLength.getLength());
-    // m_LEDs2.setLength(m_LEDLength2.getLength());
 
     //Set output data & start LEDs
     m_LEDs.setData(m_LEDLength);
-    // m_LEDs2.setData(m_LEDLength2);
     m_LEDs.start();
-    // m_LEDs2.start();
   }
 
   /*
@@ -50,28 +42,29 @@ public class LEDs extends SubsystemBase{
   */
   @Override
   public void periodic(){
-    m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
-    m_isLaunching = Launcher.isLaunching();
-    m_isIndexing = Launcher.isIndexing();
-    // m_isClimbing = Climb.isClimbing();
-    m_isIntaking = Intake.isIntaking();
+    // m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
+    // m_isLaunching = Launcher.isLaunching();
+    // m_isIndexing = Launcher.isIndexing();
+    // // m_isClimbing = Climb.isClimbing();
+    // m_isIntaking = Intake.isIntaking();
 
-    if(m_isDefending){ //m_periodicIteration >= 3
-      this.defenseModeLEDs();
-      // m_periodicIteration = 0;
-    }else if(m_isLaunching){
-      this.rainbow();
-    }else if(m_isClimbing){
-      this.rainbow();
-    }else if(m_isIntaking){
-      this.intakeLEDs();
-    }else if(m_isIndexing){
-      this.indexLEDs();
-    }else{
-      this.neutral();
-    }
-    m_LEDs.setData(m_LEDLength);
-    // m_LEDs2.setData(m_LEDLength2);
+    // if (m_isDefending){ //m_periodicIteration >= 3
+    //   this.defenseModeLEDs();
+    //   // m_periodicIteration = 0;
+    // }else if(m_isLaunching){
+    //   this.rainbow();
+    // }else if(m_isClimbing){
+    //   this.rainbow();
+    // }else if(m_isIntaking){
+    //   this.intakeLEDs();
+    // }else if(m_isIndexing){
+    //   this.indexLEDs();
+    // }else{
+    //   this.neutral();
+    // }
+
+    // m_LEDs.setData(m_LEDLength);
+    // // m_LEDs2.setData(m_LEDLength2);
     // m_periodicIteration++;
   }
 
@@ -107,7 +100,7 @@ public class LEDs extends SubsystemBase{
     }
   }
 
-  private void rainbow(){
+  public void rainbow(){
     // For every pixel
     for (var i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
       // Calculate the hue - hue is easier for rainbows because the color

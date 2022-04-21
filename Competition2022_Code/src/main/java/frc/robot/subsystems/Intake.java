@@ -38,13 +38,22 @@ public class Intake extends SubsystemBase{
   //Set intake power
   public void setIntakePower(double power){
     m_intake.set(ControlMode.PercentOutput, power);
+    try{
+      if(power == 0){
+        RobotContainer.m_LEDs.neutral();
+      }
+    }finally{}
   }
 
   //Set intake velocity & display desired vel on Dashboard
   public void setIntakeVelocity(int rpm){
     m_intake.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
     SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
+    try{ 
+      RobotContainer.m_LEDs.intakeLEDs();
+    }finally{}
   }
+
 
   public void toggleIntake(){
     if(m_toggleIntake == -1){
