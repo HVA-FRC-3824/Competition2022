@@ -43,30 +43,7 @@ public class LEDs extends SubsystemBase{
   */
   @Override
   public void periodic(){
-    // m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
-    // m_isLaunching = Launcher.isLaunching();
-    // m_isIndexing = Launcher.isIndexing();
-    // // m_isClimbing = Climb.isClimbing();
-    // m_isIntaking = Intake.isIntaking();
-
-    // if (m_isDefending){ //m_periodicIteration >= 3
-    //   this.defenseModeLEDs();
-    //   // m_periodicIteration = 0;
-    // }else if(m_isLaunching){
-    //   this.rainbow();
-    // }else if(m_isClimbing){
-    //   this.rainbow();
-    // }else if(m_isIntaking){
-    //   this.intakeLEDs();
-    // }else if(m_isIndexing){
-    //   this.indexLEDs();
-    // }else{
-    //   this.neutral();
-    // }
-
-    // m_LEDs.setData(m_LEDLength);
-    // // m_LEDs2.setData(m_LEDLength2);
-    // m_periodicIteration++;
+    
   }
 
   //Resets LEDs to neutral
@@ -79,13 +56,15 @@ public class LEDs extends SubsystemBase{
     for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
       m_LEDLength.setRGB(i, 255, 0, 0);
     }
+    m_LEDs.setData(m_LEDLength);
   }
 
   //sets color to blue
   public void neutral(){
     for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
       m_LEDLength.setRGB(i, 0, 0, 255);
-    }    
+    }
+    m_LEDs.setData(m_LEDLength);
   }
 
   //sets color to alliance
@@ -99,6 +78,7 @@ public class LEDs extends SubsystemBase{
         this.neutral(); 
       }
     }
+    m_LEDs.setData(m_LEDLength);
   }
 
   public void rainbow(){
@@ -114,6 +94,7 @@ public class LEDs extends SubsystemBase{
     m_rainbowFirstPixelHue += 3;
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
+    m_LEDs.setData(m_LEDLength);
   }
 
   //Change LED colors to blue for climb
