@@ -18,7 +18,21 @@ public class AutonomousOneBall extends SequentialCommandGroup{
     addCommands
     (
       //Get launcher to target RPM
-      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.AUTO_TARMAC_EDGE_LAUNCH_RPM, Constants.AUTO_TARMAC_EDGE_ACCEL_RPM)),
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(Constants.AUTO_HUB_LAUNCH_RPM, Constants.AUTO_HUB_ACCEL_RPM)),
+      
+      //Buffer time
+      new WaitCommand(3),
+
+      //Set index to target output
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(Constants.LAUNCHER_INDEX_POWER)),
+
+      new WaitCommand(3), //2.5
+            
+      //Stop launcher
+      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(0, 0)),
+
+      //Stop index
+      new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(0.0)),
 
       //Follow path off tarmac
       new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.4, 0.0)),
@@ -26,28 +40,8 @@ public class AutonomousOneBall extends SequentialCommandGroup{
       //Wait for path to finish
       new WaitCommand(2.25), //1.4
 
-      //Stop chassis & center launcher
-      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0, 0, 0.21)),
-
-      //Wait for turning to finish
-      new WaitCommand(0.4), //0.5
-
       //Stop chassis
-      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0, 0, 0.0)),
-
-      //Buffer time
-      new WaitCommand(2),
-
-      //Set index to target output
-      new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(Constants.LAUNCHER_INDEX_POWER)),
-
-      new WaitCommand(4), //2.5
-
-      //Stop launcher
-      new InstantCommand(() -> RobotContainer.m_launcher.setPresetVel(0, 0)),
-
-      //Stop index
-      new InstantCommand(() -> RobotContainer.m_launcher.setIndexPower(0.0))
+      new InstantCommand(() -> RobotContainer.m_chassis.convertSwerveValues(0.0, 0.0, 0.0))
     );
   }
 }

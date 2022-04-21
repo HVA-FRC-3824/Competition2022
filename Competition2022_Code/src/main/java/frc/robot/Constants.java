@@ -43,8 +43,8 @@ public class Constants{
   public static final int AUTO_TARMAC_EDGE_LAUNCH_RPM                     = 6000; //5000
   public static final int AUTO_TARMAC_EDGE_ACCEL_RPM                      = 4300; //2300
 
-  public static final int AUTO_HUB_LAUNCH_RPM                             = 6200; //6500
-  public static final int AUTO_HUB_ACCEL_RPM                              = 2000; //3000
+  public static final int AUTO_HUB_LAUNCH_RPM                             = 5700; //6200
+  public static final int AUTO_HUB_ACCEL_RPM                              = 1800; //2000
 
   /* Chassis */
   public static final double K_CHASSIS_TURN_P                             = 0;
