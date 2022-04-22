@@ -58,26 +58,12 @@ public class Launcher extends SubsystemBase{
   public void setIndexPower(double power){
     m_launcherIndexTop.set(ControlMode.PercentOutput, power * m_toggleLaunch);
     m_launcherIndexBottom.set(ControlMode.PercentOutput, -power * m_toggleLaunch);
-    try{
-      if(power > 0){
-        RobotContainer.m_LEDs.indexLEDs();
-      }else{
-        RobotContainer.m_LEDs.neutral();
-      }
-    }finally{}
   }
 
   //Set launch & accel velocity
   public void setLauncherVelocity(int rpm){
     m_launcherLaunch.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch , Constants.TALON_FX_TPR));
     SmartDashboard.putNumber("Launch Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
-    try{
-      if(rpm > 0){
-        RobotContainer.m_LEDs.rainbow();
-      }else{
-        RobotContainer.m_LEDs.neutral();
-      }
-    }finally{}
   }
   public void setAcceleratorVelocity(int rpm){
     m_launcherAccel.set(ControlMode.Velocity,  RobotContainer.convertRPMToVelocity(rpm * m_toggleLaunch, Constants.TALON_FX_TPR));
@@ -106,8 +92,8 @@ public class Launcher extends SubsystemBase{
 
 
   //Check if the launcher is launching by acessing the launcher velocity
-  public static boolean isLaunching(){
-    if(m_launcherLaunch.getSelectedSensorVelocity() > 0.3){
+  public boolean isLaunching(){
+    if(m_launcherLaunch.getSelectedSensorVelocity() > 25){
       isLaunching = true;
     }else{
       isLaunching = false;
@@ -115,12 +101,8 @@ public class Launcher extends SubsystemBase{
     return isLaunching;
   }
 
-  public static boolean isIndexing(){
-    if(m_launcherIndexTop.getSelectedSensorVelocity() > 1 || m_launcherIndexBottom.getSelectedSensorVelocity() > 1){
-      isIndexing = true;
-    }else{
-      isIndexing = false;
-    }
+  public boolean isIndexing(){
+    isIndexing = Math.abs(m_launcherIndexTop.getSelectedSensorVelocity()) > 20 || Math.abs(m_launcherIndexBottom.getSelectedSensorVelocity()) > 20;
     return isIndexing;
   }
 }

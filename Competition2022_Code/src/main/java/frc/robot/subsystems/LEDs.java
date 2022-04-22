@@ -5,36 +5,29 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class LEDs extends SubsystemBase{
   //Declare LED objects
   private static AddressableLED m_LEDs; 
-  //private static AddressableLED m_LEDs2;
-  private static AddressableLEDBuffer m_LEDLength;
-  //private static AddressableLEDBuffer m_LEDLength2;
+  private static AddressableLEDBuffer m_LEDBuffer;
 
-  // Defense mode variables
-  // private boolean m_isDefending;
-  // private int m_periodicIteration = 0;
-
-  //Launching Sequence
   private int m_rainbowFirstPixelHue;
+
+  //Status
+  private boolean m_isClimbing;
+  private boolean m_isIntaking;
   private boolean m_isLaunching;
-  // private boolean m_isIndexing;
-
-  //Climbing Sequence
-  // private boolean m_isClimbing;
-
-  // private boolean m_isIntaking;
+  private boolean m_isIndexing;
+  private boolean m_isDefending;
 
   public LEDs(){
     m_LEDs = new AddressableLED(Constants.LEDS_ID);
-    m_LEDLength = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT_2);
-    m_LEDs.setLength(m_LEDLength.getLength());
+    m_LEDBuffer = new AddressableLEDBuffer(Constants.TOTAL_LEDS_COUNT);
+    m_LEDs.setLength(m_LEDBuffer.getLength());
 
-    this.neutral();
     //Set output data & start LEDs
-    m_LEDs.setData(m_LEDLength);
+    m_LEDs.setData(m_LEDBuffer);
     m_LEDs.start();
   }
 
@@ -43,80 +36,87 @@ public class LEDs extends SubsystemBase{
   */
   @Override
   public void periodic(){
-    
+    //evaluate status of subsystems
+    m_isClimbing = RobotContainer.m_climb.isClimbing();
+    m_isLaunching = RobotContainer.m_launcher.isLaunching();
+    m_isIntaking = RobotContainer.m_intake.isIntaking();
+    m_isIndexing = RobotContainer.m_launcher.isIndexing();
+    m_isDefending = RobotContainer.m_chassis.getDefenseStatus();
+      
+    if(m_isDefending){
+      this.defenseModeLEDs();
+    }else if(m_isClimbing || m_isLaunching){
+      this.rainbow();
+    }else if(m_isIntaking){
+      this.intakeLEDs();
+    }else if(m_isIndexing){
+      this.indexLEDs();
+    }else{
+      this.neutral();
+    }
+    m_LEDs.setData(m_LEDBuffer);
   }
 
-  //Resets LEDs to neutral
-  public void resetSequences(){
-    m_isLaunching = false;
+  //Turns LEDs off
+  public void turnLEDsOff(){
+    for(int i = 0; i > Constants.TOTAL_LEDS_COUNT; i++){
+      m_LEDBuffer.setRGB(i, 0, 0, 0);
+    }
+    m_LEDs.setData(m_LEDBuffer);
   }
 
   //set color to red
   public void defenseModeLEDs(){
-    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
-      m_LEDLength.setRGB(i, 255, 0, 0);
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
+      m_LEDBuffer.setRGB(i, 255, 0, 0);
     }
-    m_LEDs.setData(m_LEDLength);
   }
 
   //sets color to blue
   public void neutral(){
-    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
-      m_LEDLength.setRGB(i, 0, 0, 255);
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
+      m_LEDBuffer.setRGB(i, 0, 0, 255);
     }
-    m_LEDs.setData(m_LEDLength);
   }
 
   //sets color to alliance
   public void alliance(){
-    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
+    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
       if (DriverStation.getAlliance() == DriverStation.Alliance.Blue){
-        m_LEDLength.setRGB(i, 0, 101, 180); //FRC blue
+        m_LEDBuffer.setRGB(i, 0, 101, 180); //FRC blue
       }else if (DriverStation.getAlliance() == DriverStation.Alliance.Red){
-        m_LEDLength.setRGB(i, 236, 26, 35); //FRC red
+        m_LEDBuffer.setRGB(i, 236, 26, 35); //FRC red
       }else{
         this.neutral(); 
       }
     }
-    m_LEDs.setData(m_LEDLength);
   }
 
   public void rainbow(){
     // For every pixel
-    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
+    for (var i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
       // Calculate the hue - hue is easier for rainbows because the color
       // shape is a circle so only one value needs to precess
-      final var hue = (m_rainbowFirstPixelHue + (i * 180 / Constants.TOTAL_LEDS_COUNT_2)) % 180;
+      final var hue = (m_rainbowFirstPixelHue + (i * 180 / Constants.TOTAL_LEDS_COUNT)) % 180;
       // Set the value
-      m_LEDLength.setHSV(i, hue, 255, 128);
+      m_LEDBuffer.setHSV(i, hue, 255, 128);
     }
     // Increase by to make the rainbow "move"
     m_rainbowFirstPixelHue += 3;
     // Check bounds
     m_rainbowFirstPixelHue %= 180;
-    m_LEDs.setData(m_LEDLength);
-  }
-
-  //Change LED colors to blue for climb
-  public void climbLEDs(){
-    for(int i = 0; i < m_LEDLength.getLength(); i++){
-      m_LEDLength.setRGB(i, 0, 0, 255);
-    }
-    m_LEDs.setData(m_LEDLength);
   }
 
   //Change LED colors to orange for intake
   public void intakeLEDs(){
-    for(int i = 0; i < m_LEDLength.getLength(); i++){
-      m_LEDLength.setRGB(i, 255, 115, 0);
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
+      m_LEDBuffer.setRGB(i, 255, 115, 0);
     }
-    m_LEDs.setData(m_LEDLength);
   }
 
   public void indexLEDs(){
-    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT_2; i++){
-      m_LEDLength.setRGB(i, 60, 255, 100);
+    for(int i = 0; i < Constants.TOTAL_LEDS_COUNT; i++){
+      m_LEDBuffer.setRGB(i, 60, 255, 100);
     }
-    m_LEDs.setData(m_LEDLength);
   }
 }

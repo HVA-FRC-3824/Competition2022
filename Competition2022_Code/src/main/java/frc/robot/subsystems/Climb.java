@@ -42,23 +42,9 @@ public class Climb {
   //Move climb with power
   public void setLeftClimbPower(double power){
     m_climbLeft.set(ControlMode.PercentOutput,-power *m_toggleExtend);
-    try{
-      if(power > 0){
-        RobotContainer.m_LEDs.climbLEDs();
-      }else{
-        RobotContainer.m_LEDs.neutral();
-      }
-    }finally{}
   }
   public void setRightClimbPower(double power){
     m_climbRight.set(ControlMode.PercentOutput, power *m_toggleExtend);
-    try{
-      if(power > 0){
-        RobotContainer.m_LEDs.climbLEDs();
-      }else{
-        RobotContainer.m_LEDs.neutral();
-      }
-    }finally{}
   }
 
   //Toggles climb from up (+) to down(-) & vice versa
@@ -71,8 +57,8 @@ public class Climb {
   }
 
   //Check if the launcher is launching by acessing the launcher velocity
-  public static boolean isClimbing(){
-    isClimbing = (m_climbLeft.getSelectedSensorVelocity() > 0.3) || (m_climbRight.getSelectedSensorVelocity() > 0.3);
+  public boolean isClimbing(){
+    isClimbing = (Math.abs(m_climbLeft.getSelectedSensorVelocity()) > 0.3) || (Math.abs(m_climbRight.getSelectedSensorVelocity()) > 0.3) ;
     return isClimbing;
   }
 }

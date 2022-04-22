@@ -38,20 +38,12 @@ public class Intake extends SubsystemBase{
   //Set intake power
   public void setIntakePower(double power){
     m_intake.set(ControlMode.PercentOutput, power);
-    try{
-      if(power == 0){
-        RobotContainer.m_LEDs.neutral();
-      }
-    }finally{}
   }
 
   //Set intake velocity & display desired vel on Dashboard
   public void setIntakeVelocity(int rpm){
     m_intake.set(ControlMode.Velocity, RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
     SmartDashboard.putNumber("Intake Desired Vel", RobotContainer.convertRPMToVelocity(rpm * m_toggleIntake, Constants.INTAKE_TPR));
-    try{ 
-      RobotContainer.m_LEDs.intakeLEDs();
-    }finally{}
   }
 
 
@@ -68,13 +60,17 @@ public class Intake extends SubsystemBase{
     return m_intake.getSelectedSensorVelocity();
   }
 
+  public double getIntakePos(){
+    return m_intake.getSelectedSensorPosition();
+  }
+
   //Get intake temp for continuous update
   public double getIntakeTemp(){
     return m_intake.getTemperature();
   }
 
-  public static boolean isIntaking(){
-    isIntaking = (m_intake.getSelectedSensorVelocity() > 0.1);
+  public boolean isIntaking(){
+    isIntaking = (Math.abs(getIntakeVel()) > 0.5);
     return isIntaking;
   }
 }

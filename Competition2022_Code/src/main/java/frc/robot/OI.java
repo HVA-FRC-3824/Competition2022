@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// import frc.robot.subsystems.Chassis;
 
 public class OI{
   //#region Declaration
@@ -110,12 +111,10 @@ public class OI{
 
     //Defense
     m_toggleDefenseModeBtn.whenPressed(RobotContainer.m_inlineCommands.m_toggleDefenseMode);
-
+    
     //Intake
     m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_startIntake);
-    // m_startIntakeBtn.whenPressed(RobotContainer.m_inlineCommands.m_intakeLEDs);
     m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_stopIntake);
-    // m_startIntakeBtn.whenReleased(RobotContainer.m_inlineCommands.m_neutral);
 
     //Launch
     m_indexLauncherBtn.whenPressed(RobotContainer.m_inlineCommands.m_startLaunchIndex);

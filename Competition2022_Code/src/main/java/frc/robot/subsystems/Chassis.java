@@ -308,15 +308,9 @@ public class Chassis extends SubsystemBase{
     if(swervePower == Constants.SWERVE_POWER){
       swervePower = defenseSwervePower;
       isDefending = true;
-      try{
-        RobotContainer.m_LEDs.defenseModeLEDs();
-      }finally{}
     }else if(swervePower == defenseSwervePower){
       swervePower = Constants.SWERVE_POWER;
       isDefending = false;
-      try{
-        RobotContainer.m_LEDs.neutral();
-      }finally{}
     }
   }
 

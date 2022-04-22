@@ -77,12 +77,14 @@ public class Robot extends TimedRobot{
     SmartDashboard.putNumber("Intake Current Vel", RobotContainer.m_intake.getIntakeVel());
     SmartDashboard.putNumber("Intake Temp", RobotContainer.m_intake.getIntakeTemp());    
     SmartDashboard.putNumber("Limelight Offset", RobotContainer.m_limelight.getTargetOffsetX());
+    SmartDashboard.putBoolean("isIntaking", RobotContainer.m_intake.isIntaking());
   }
 
   /** This function is called once when the robot is disabled. */
   @Override
   public void disabledInit(){
     RobotContainer.m_limelight.turnOffLED();
+    RobotContainer.m_LEDs.turnLEDsOff();
   }
 
   /** This function is called periodically when disabled. */
