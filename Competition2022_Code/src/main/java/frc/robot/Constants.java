@@ -125,16 +125,16 @@ public class Constants{
   public static final int TOGGLE_DRIVE_MODE_BTN_ID                        = 6;
 
   //Operator
-  public static final int LAUNCH_BTN_ID                                   = 6;
-  public static final int LAUNCHER_INDEX_BTN_ID                           = 5;
-  public static final int INTAKE_BTN_ID                                   = 1;
-  public static final int TOGGLE_SYSTEMS_BTN_ID                           = 7; 
-  public static final int LEFT_CLIMB_BTN_ID                               = 3;
-  public static final int RIGHT_CLIMB_BTN_ID                              = 4;
-  public static final int TOGGLE_CLIMB_BTN_ID                             = 8;
-  public static final int TURN_TO_TARGET_BTN_ID                           = 9;
-  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 10;
-  public static final int TOGGLE_DEFENSE_BTN_ID                           = 2;
+  public static final int LAUNCH_BTN_ID                                   = 6; //RB
+  public static final int LAUNCHER_INDEX_BTN_ID                           = 5; //LB
+  public static final int INTAKE_BTN_ID                                   = 1; //A
+  public static final int TOGGLE_SYSTEMS_BTN_ID                           = 7; //Back
+  public static final int LEFT_CLIMB_BTN_ID                               = 4; //Y
+  public static final int RIGHT_CLIMB_BTN_ID                              = 2; //B
+  public static final int TOGGLE_CLIMB_BTN_ID                             = 8; //Start
+  public static final int TURN_TO_TARGET_BTN_ID                           = 9; //L Stick down
+  public static final int TOGGLE_LIMELIGHT_BTN_ID                         = 10; //R Stick down
+  public static final int TOGGLE_DEFENSE_BTN_ID                           = 3; //X
 
   //Test
   public static final int  AUTO_TURN_CHASSIS_BTN_ID                       = 9;
